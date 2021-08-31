@@ -12,6 +12,7 @@ const FooterContainer = styled.footer`
 `;
 
 const Content = styled.section`
+  background: black;
   border: 2px solid black;
   border-radius: 5px;
   width: 520px;

@@ -1,4 +1,9 @@
+import Enviroment from "./Enviroment";
+import Language from "./Language";
+import Library from "./Library";
 import React from "react";
+import Server from "./Server";
+import Tools from "./Tools";
 import styled from "styled-components";
 
 const SkillContainer = styled.section`
@@ -11,7 +16,15 @@ const SkillContainer = styled.section`
 `;
 
 const Skill = () => {
-  return <SkillContainer>{`Skill`}</SkillContainer>;
+  return (
+    <SkillContainer>
+      <Language />
+      <Library />
+      <Server />
+      <Enviroment />
+      <Tools />
+    </SkillContainer>
+  );
 };
 
 export default Skill;

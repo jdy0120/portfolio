@@ -1,5 +1,8 @@
+import styled, { css } from "styled-components";
+
 import React from "react";
-import styled from "styled-components";
+import { ThemeColor } from "../../types/type";
+import { useAppContext } from "../../_providers/AppProviders";
 
 const NavContainer = styled.nav`
   position: fixed;
@@ -23,19 +26,52 @@ const NavButton = styled.li`
   }
 `;
 
+interface Theme {
+  theme: ThemeColor;
+}
+
+const colorStyle = css<Theme>`
+  ${({ theme }: Theme) => {
+    const backgroundColor = theme === "Black" ? "white" : "black";
+    const color = theme === "Black" ? "black" : "white";
+    console.log(theme);
+    return css`
+      background: ${backgroundColor};
+      color: ${color};
+    `;
+  }}
+`;
+
 const ThemeButton = styled.button`
   position: absolute;
   top: 2em;
   right: 2em;
+  border: none;
+  width: 5em;
+  height: 3em;
+
+  ${colorStyle}
 `;
 
 const Nav = () => {
+  const {
+    state: { themeColor },
+    setTheme,
+  } = useAppContext();
+
   const clickTItle = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   };
+
+  const changeTheme = () => {
+    const color = themeColor === "Black" ? "White" : "Black";
+    setTheme(color);
+  };
+
+  React.useEffect(() => {}, []);
   return (
     <NavContainer>
       <NavList>
@@ -46,7 +82,9 @@ const Nav = () => {
         <NavButton>{`Profile`}</NavButton>
       </NavList>
 
-      <ThemeButton>{"Dark"}</ThemeButton>
+      <ThemeButton onClick={changeTheme} theme={themeColor}>
+        {themeColor === "Black" ? `Change\nLite` : `Change\nDark`}
+      </ThemeButton>
     </NavContainer>
   );
 };

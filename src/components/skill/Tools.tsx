@@ -11,9 +11,9 @@ const Tools = () => {
   return (
     <Container>
       <h1>{`Tools`}</h1>
-      <SkillStyle SkillName={"MySQL"} icon={Gitimg} />
-      <SkillStyle SkillName={"MySQL"} icon={Slackimg} />
-      <SkillStyle SkillName={"MySQL"} icon={Jeplinimg} />
+      <SkillStyle SkillName={"Git"} icon={Gitimg} />
+      <SkillStyle SkillName={"Slack"} icon={Slackimg} />
+      <SkillStyle SkillName={"Jeplin"} icon={Jeplinimg} />
     </Container>
   );
 };

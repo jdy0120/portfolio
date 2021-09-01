@@ -21,7 +21,7 @@ const Skill = () => {
       <Language />
       <Library />
       <Server />
-      <Enviroment />
+      {/* <Enviroment /> */}
       <Tools />
     </SkillContainer>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import Text from "./Text";
 import styled from "styled-components";
+import { themeMode } from "../../_color/ColorProvider";
 
 const AboutContainer = styled.section`
   height: 100vh;

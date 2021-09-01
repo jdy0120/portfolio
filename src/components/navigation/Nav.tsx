@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 
 import React from "react";
 import { ThemeColor } from "../../types/type";
+import { themeMode } from "../../_color/ColorProvider";
 import { useAppContext } from "../../_providers/AppProviders";
 
 const NavContainer = styled.nav`
@@ -32,9 +33,9 @@ interface Theme {
 
 const colorStyle = css<Theme>`
   ${({ theme }: Theme) => {
-    const backgroundColor = theme === "Black" ? "white" : "black";
-    const color = theme === "Black" ? "black" : "white";
-    console.log(theme);
+    const backgroundColor = themeMode[theme].buttonBackground;
+    const color = themeMode[theme].fontColor;
+
     return css`
       background: ${backgroundColor};
       color: ${color};

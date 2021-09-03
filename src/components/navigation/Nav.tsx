@@ -2,15 +2,22 @@ import styled, { css } from "styled-components";
 
 import React from "react";
 import { ThemeColor } from "../../types/type";
+import ToggleSwitch from "./ToggleSwitch";
 import { themeMode } from "../../_color/ColorProvider";
 import { useAppContext } from "../../_providers/AppProviders";
+
+interface Theme {
+  theme: ThemeColor;
+}
 
 const NavContainer = styled.nav`
   position: fixed;
   width: 100vw;
   display: flex;
   justify-content: center;
-  color: white;
+  color: ${({ theme }: Theme) => {
+    return `${themeMode[theme].fontColor}`;
+  }};
 `;
 
 const NavList = styled.ul`
@@ -27,31 +34,10 @@ const NavButton = styled.li`
   }
 `;
 
-interface Theme {
-  theme: ThemeColor;
-}
-
-const colorStyle = css<Theme>`
-  ${({ theme }: Theme) => {
-    const backgroundColor = themeMode[theme].buttonBackground;
-    const color = themeMode[theme].fontColor;
-
-    return css`
-      background: ${backgroundColor};
-      color: ${color};
-    `;
-  }}
-`;
-
-const ThemeButton = styled.button`
+const ThemeButton = styled.div`
   position: absolute;
-  top: 2em;
+  top: 1em;
   right: 2em;
-  border: none;
-  width: 5em;
-  height: 3em;
-
-  ${colorStyle}
 `;
 
 const Nav = () => {
@@ -67,14 +53,9 @@ const Nav = () => {
     });
   };
 
-  const changeTheme = () => {
-    const color = themeColor === "Black" ? "White" : "Black";
-    setTheme(color);
-  };
-
   React.useEffect(() => {}, []);
   return (
-    <NavContainer>
+    <NavContainer theme={themeColor}>
       <NavList>
         <NavButton>{`Header`}</NavButton>
         <NavButton onClick={clickTItle}>{`About`}</NavButton>
@@ -83,8 +64,11 @@ const Nav = () => {
         <NavButton>{`Profile`}</NavButton>
       </NavList>
 
-      <ThemeButton onClick={changeTheme} theme={themeColor}>
-        {themeColor === "Black" ? `Change\nLite` : `Change\nDark`}
+      <ThemeButton>
+        {`Theme`}
+        <br />
+        {`Change`}
+        <ToggleSwitch theme={themeColor} />
       </ThemeButton>
     </NavContainer>
   );

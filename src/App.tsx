@@ -10,6 +10,7 @@ import Skill from "./components/skill/Skill";
 import { ThemeColor } from "./types/type";
 import { themeMode } from "./_color/ColorProvider";
 import { useAppContext } from "./_providers/AppProviders";
+import { useRef } from "react";
 
 interface Color {
   theme: ThemeColor;
@@ -31,6 +32,7 @@ function App() {
   const {
     state: { themeColor },
   } = useAppContext();
+
   return (
     <Container theme={themeColor}>
       <Nav />

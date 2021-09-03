@@ -2,8 +2,9 @@ type Keys = "Black" | "White";
 
 interface ThemeDetail {
   backgroundColor: string;
-  buttonBackground: string;
   fontColor: string;
+  buttonBackground: string;
+  buttonFontColor: string;
 }
 
 type ThemeMode = {
@@ -14,11 +15,13 @@ export const themeMode: ThemeMode = {
   Black: {
     backgroundColor: "black",
     buttonBackground: "white",
-    fontColor: "black",
+    fontColor: "white",
+    buttonFontColor: "black",
   },
   White: {
     backgroundColor: "white",
     buttonBackground: "black",
-    fontColor: "white",
+    fontColor: "black",
+    buttonFontColor: "white",
   },
 };

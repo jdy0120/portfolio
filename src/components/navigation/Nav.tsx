@@ -65,9 +65,6 @@ const Nav = () => {
       </NavList>
 
       <ThemeButton>
-        {`Theme`}
-        <br />
-        {`Change`}
         <ToggleSwitch theme={themeColor} />
       </ThemeButton>
     </NavContainer>

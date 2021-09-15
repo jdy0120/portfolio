@@ -1,6 +1,8 @@
 import React from "react";
 import { ThemeColor } from "../../types/type";
+import moon from "../../_assets/moon.png";
 import styled from "styled-components";
+import sun from "../../_assets/sun.png";
 import { useAppContext } from "../../_providers/AppProviders";
 
 const InputWrapper = styled.label`
@@ -11,26 +13,29 @@ const Input = styled.input`
   position: absolute;
   left: -9999px;
   top: -9999px;
+  background-color: #bfbfbf;
 
   &: checked + span {
-    background-color: #1890ff;
-
     &:before {
       left: calc(100% - 2px);
       transform: translateX(-100%);
     }
   }
 `;
+const Img = styled.img`
+  height: 70%;
+`;
 
 const Slider = styled.span`
   display: flex;
+  justify-content: space-around;
+  align-items: center;
   cursor: pointer;
   width: 50px;
   height: 25px;
   border-radius: 100px;
   background-color: #bfbfbf;
   position: relative;
-  transition: background-color 0.2s;
 
   &:before {
     content: "";
@@ -70,7 +75,10 @@ const ToggleSwitch = ({ theme }: Props) => {
   return (
     <InputWrapper>
       <Input type="checkbox" onChange={changeTheme} />
-      <Slider />
+      <Slider>
+        <Img src={moon} alt="" />
+        <Img src={sun} alt="" />
+      </Slider>
     </InputWrapper>
   );
 };

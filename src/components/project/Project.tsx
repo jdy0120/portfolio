@@ -1,4 +1,5 @@
 import React from "react";
+import Slider from "./Slider";
 import styled from "styled-components";
 
 const ProjectContainer = styled.section`
@@ -11,7 +12,11 @@ const ProjectContainer = styled.section`
 `;
 
 const Project = () => {
-  return <ProjectContainer>{`Project`}</ProjectContainer>;
+  return (
+    <ProjectContainer>
+      <Slider />
+    </ProjectContainer>
+  );
 };
 
 export default Project;

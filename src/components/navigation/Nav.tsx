@@ -21,6 +21,7 @@ const NavContainer = styled.nav`
 `;
 
 const NavList = styled.ul`
+  padding: 0;
   list-style: none;
   display: flex;
 `;

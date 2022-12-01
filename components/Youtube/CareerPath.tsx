@@ -69,7 +69,9 @@ const CareerPath = () => {
   const getPosts = async () => {
     const response = await axios.get(`/api/youtube/posts`);
 
-    setVideos(response.data.items);
+    console.log(response);
+
+    // setVideos(response.data.items);
   };
 
   useEffect(() => {

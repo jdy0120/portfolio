@@ -33,7 +33,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   console.log(itemList);
 
-  res.status(200).json(itemList);
+  res.status(200).json({ itemList, requestData });
 };
 
 export default handler;

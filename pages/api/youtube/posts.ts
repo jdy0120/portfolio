@@ -24,7 +24,7 @@ const getAccessToken = async () => {
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const response = await getAccessToken();
 
-  res.status(200).json(response);
+  res.status(200).json({ response, requestData });
 };
 
 export default handler;

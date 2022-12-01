@@ -54,7 +54,9 @@ const Articles = () => {
   const [category, setCategory] = useState("1015842");
   const getPosts = async () => {
     const response = await axios.get(`/api/tistory/posts`);
-    setPosts(response.data);
+
+    console.log(response);
+    // setPosts(response.data);
   };
 
   useEffect(() => {

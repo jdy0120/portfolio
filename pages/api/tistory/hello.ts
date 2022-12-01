@@ -19,8 +19,12 @@ const getAccessToken = async (page: number): Promise<[]> => {
 };
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const response = await getAccessToken(1);
-  res.status(200).json({ name: "John Doe" });
+  try {
+    const response = await getAccessToken(1);
+    res.status(200).json({ response });
+  } catch (err) {
+    res.status(400);
+  }
 };
 
 export default handler;

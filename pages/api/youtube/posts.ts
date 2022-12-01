@@ -3,7 +3,7 @@ import axios, { AxiosRequestConfig } from "axios";
 
 const requestData = {
   url: `https://www.googleapis.com/youtube/v3/search?`,
-  access_token: process.env.NEXT_PUBLIC_YOUTUBE_ACCESSTOKEN,
+  access_token: process.env.YOUTUBE_ACCESSTOKEN,
   channelId: `UCeVlsTPnmF7eWEPixBGpFGw`,
   type: `video`,
 };

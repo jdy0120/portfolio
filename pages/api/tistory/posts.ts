@@ -3,7 +3,7 @@ import axios from "axios";
 
 const requestData = {
   url: `https://www.tistory.com/apis/post/list?`,
-  access_token: process.env.NEXT_PUBLIC_TISTORY_ACCESSTOKEN,
+  access_token: process.env.TISTORY_ACCESSTOKEN,
   blogName: `doyeonism`,
   output: `json`,
   page: `3`,

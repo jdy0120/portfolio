@@ -17,7 +17,10 @@ const getAccessToken = async (page: number): Promise<[]> => {
   return res.data.tistory.item.posts;
 };
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const itemList: [] = [];
   let i = 1;
   while (true) {
@@ -34,6 +37,4 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   console.log(itemList);
 
   res.status(200).json({ itemList, requestData });
-};
-
-export default handler;
+}

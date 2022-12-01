@@ -54,10 +54,11 @@ const Articles = () => {
   const [category, setCategory] = useState("1015842");
   const [responseDate, setResponseDate] = useState(``);
   const getPosts = async () => {
-    const response = await axios.get(`/api/tistory/posts`);
+    const response = await fetch(`/api/tistory/posts`);
 
-    console.log(response);
-    setResponseDate(response.data.requestData.access_token);
+    const res = await response.json();
+    setResponseDate(res.requestData.url);
+    // setResponseDate(await response.json());
     // setPosts(response.data);
   };
 

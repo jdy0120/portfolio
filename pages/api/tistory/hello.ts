@@ -10,7 +10,16 @@ const requestData = {
   page: `3`,
 };
 
+const getAccessToken = async (page: number): Promise<[]> => {
+  const res = await axios.get(
+    `${requestData.url}access_token=${requestData.access_token}&output=${requestData.output}&blogName=${requestData.blogName}&page=${page}`
+  );
+
+  return res.data.tistory.item.posts;
+};
+
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  const response = await getAccessToken(1);
   res.status(200).json({ name: "John Doe" });
 };
 

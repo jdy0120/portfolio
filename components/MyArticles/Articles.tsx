@@ -52,10 +52,12 @@ const ArtivleBoxContainer = styled.div`
 const Articles = () => {
   const [posts, setPosts] = useState<TistoryData[]>();
   const [category, setCategory] = useState("1015842");
+  const [responseDate, setResponseDate] = useState(``);
   const getPosts = async () => {
     const response = await axios.get(`/api/tistory/posts`);
 
     console.log(response);
+    setResponseDate(response.data.requestData.access_token);
     // setPosts(response.data);
   };
 
@@ -66,6 +68,7 @@ const Articles = () => {
   return (
     <Container>
       <Category category={category} setCategory={setCategory} />
+      <p>{responseDate}</p>
       <ArtivleBoxContainer>
         <ArticleBox
           posts={posts?.filter((data) => {

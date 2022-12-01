@@ -18,9 +18,9 @@ const getAccessToken = async (page: number): Promise<[]> => {
   return res.data.tistory.item.posts;
 };
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const response = await getAccessToken(1);
+    const response = getAccessToken(1);
     res.status(200).json({ response });
   } catch (err) {
     res.status(400);

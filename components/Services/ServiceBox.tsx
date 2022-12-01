@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Image from "next/image";
 
 const Container = styled.div`
   background-color: white;
@@ -12,14 +13,14 @@ const Container = styled.div`
   padding: 3rem;
   border-radius: 20px;
 
-  h1 {
-    margin: 15px;
-    font-size: large;
-  }
-
-  p {
-    margin: 15px;
-    text-align: center;
+  @media (max-width: 820px) {
+    width: 95%;
+    height: auto;
+    margin: 10px 0 10px;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0%;
+    padding: 10px;
   }
 `;
 
@@ -29,10 +30,45 @@ const IconBox = styled.div`
   background-color: ${({ theme }) => theme.buttonColor};
   border-radius: 15px;
   margin: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 820px) {
+    margin: 0;
+  }
+
+  img {
+    width: 3rem;
+    height: 3rem;
+  }
+`;
+
+const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    margin: 15px;
+    font-size: large;
+  }
+
+  p {
+    margin: 15px;
+    text-align: center;
+  }
+  @media (max-width: 820px) {
+    h1 {
+      margin: 0;
+    }
+    p {
+      padding: 0;
+    }
+  }
 `;
 
 interface Props {
-  icon: string;
+  icon: StaticImageData;
   title: string;
   description: string;
 }
@@ -40,9 +76,13 @@ interface Props {
 const ServiceBox = ({ icon, title, description }: Props) => {
   return (
     <Container>
-      <IconBox />
-      <h1>{title}</h1>
-      <p>{description}</p>
+      <IconBox>
+        <Image src={icon} alt={`none`} />
+      </IconBox>
+      <TitleContainer>
+        <h1>{title}</h1>
+        <p>{description}</p>
+      </TitleContainer>
     </Container>
   );
 };

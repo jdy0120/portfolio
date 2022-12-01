@@ -4,7 +4,7 @@ import styled from "styled-components";
 import MyNameIs from "./MyNameIs/MyNameIs";
 import Services from "./Services/Services";
 import MyWorks from "./MyWorks/MyWorks";
-import CareerPath from "./CareerPath/CareerPath";
+import CareerPath from "./Youtube/CareerPath";
 import MyArticles from "./MyArticles/MyArticles";
 import LearningPath from "./LearningPath/LearningPath";
 import Contact from "./Contact/Contact";

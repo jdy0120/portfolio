@@ -1,5 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import gitHubLight from "public/assets/Github.png";
+import gitHubDark from "public/assets/Github_negative.png";
+import youtubeLight from "public/assets/youtube.png";
+import youtubeDark from "public/assets/youtube_negative.png";
+import blogLight from "public/assets/blogger.png";
+import blogDark from "public/assets/blogger_negative.png";
+import { useThemeContext } from "../../context/themeContext";
+import Image from "next/image";
+import ProfileImage from "./ProfileImage";
+
+const logo: { [key: string]: { [key: string]: StaticImageData } } = {
+  light: { github: gitHubLight, youtube: youtubeLight, blog: blogLight },
+  dark: { github: gitHubDark, youtube: youtubeDark, blog: blogDark },
+};
 
 const Body = styled.div`
   width: 100%;
@@ -17,15 +31,22 @@ const Container = styled.div`
   justify-content: space-between;
   height: 90vh;
   align-items: center;
+  @media (max-width: 820px) {
+    flex-direction: column;
+  }
 `;
 
 const Introduce = styled.div`
-  /* border: 1px solid red; */
   width: 40%;
   height: 30%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  @media (max-width: 820px) {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+  }
 `;
 
 const Title = styled.div`
@@ -60,10 +81,22 @@ const Description = styled.p`
 `;
 
 const MyImage = styled.div`
-  border: 1px solid red;
+  width: 50%;
+`;
+
+const IconContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+  img {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 10px;
+  }
 `;
 
 const MyNameIs = () => {
+  const { theme } = useThemeContext();
   return (
     <Body>
       <OutContainer>
@@ -82,15 +115,21 @@ const MyNameIs = () => {
               </h1>
             </Name>
             <Description>{`Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. `}</Description>
-            <p>
-              {`youtube `}
-              {`tistory `}
-              {`깃허브`}
-            </p>
+            <IconContainer>
+              <a href="https://github.com/jdy0120">
+                <Image src={logo[theme][`github`]} alt={`깃허브`}></Image>
+              </a>
+              <a href="https://blog.doyeonism.com/">
+                <Image src={logo[theme][`blog`]} alt={`블로그`}></Image>
+              </a>
+              <a href="https://www.youtube.com/channel/UCeVlsTPnmF7eWEPixBGpFGw">
+                <Image src={logo[theme][`youtube`]} alt={`유튜브`}></Image>
+              </a>
+            </IconContainer>
           </Introduce>
 
           <MyImage>
-            <h1>{`Image`}</h1>
+            <ProfileImage />
           </MyImage>
         </Container>
       </OutContainer>

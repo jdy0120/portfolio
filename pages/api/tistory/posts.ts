@@ -6,21 +6,34 @@ const requestData = {
   access_token: process.env.NEXT_PUBLIC_TISTORY_ACCESSTOKEN,
   blogName: `doyeonism`,
   output: `json`,
-  page: `1`,
+  page: `3`,
 };
 
-const getAccessToken = async () => {
+const getAccessToken = async (page: number): Promise<[]> => {
   const res = await axios.get(
-    `${requestData.url}access_token=${requestData.access_token}&output=${requestData.output}&blogName=${requestData.blogName}&page=${requestData.page}`
+    `${requestData.url}access_token=${requestData.access_token}&output=${requestData.output}&blogName=${requestData.blogName}&page=${page}`
   );
 
   return res.data.tistory.item.posts;
 };
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const response = await getAccessToken();
+  const itemList: [] = [];
+  let i = 1;
+  while (true) {
+    const response = await getAccessToken(i);
+    console.log(response);
+    if (!response) {
+      break;
+    }
+    itemList.push(...response);
 
-  res.status(200).json(response);
+    i += 1;
+  }
+
+  console.log(itemList);
+
+  res.status(200).json(itemList);
 };
 
 export default handler;

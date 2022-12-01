@@ -31,7 +31,7 @@ const Titles = () => {
       <Title>
         <div>
           <hr />
-        </div>
+        </div> 
         <p>{`VIDEOS`}</p>
       </Title>
       <h1>{`Youtube Channel`}</h1>

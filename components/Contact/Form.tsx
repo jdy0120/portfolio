@@ -7,6 +7,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @media (max-width: 820px) {
+    width: 95%;
+  }
+
   input {
     width: 100%;
     border: none;

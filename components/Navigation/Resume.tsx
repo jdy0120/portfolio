@@ -1,13 +1,13 @@
 import React from "react";
 import { useThemeContext } from "../../context/themeContext";
 import styled from "styled-components";
-import moonlight from "../../assets/moonlight.png";
-import moondark from "../../assets/moondark.png";
+import moonlight from "public/assets/moonlight.png";
+import Sum from "public/assets/Frame_negative.png";
 import Image from "next/image";
 
 const moon: { [key: string]: StaticImageData } = {
   light: moonlight,
-  dark: moondark,
+  dark: Sum,
 };
 
 const Container = styled.div`
@@ -17,8 +17,8 @@ const Container = styled.div`
   justify-content: space-between;
 
   img {
-    width: 20px;
-    height: auto;
+    width: 1.5rem;
+    height: 1.5rem;
   }
 
   button {

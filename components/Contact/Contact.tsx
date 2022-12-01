@@ -21,6 +21,9 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 820px) {
+    flex-direction: column;
+  }
 `;
 
 const Contact = () => {

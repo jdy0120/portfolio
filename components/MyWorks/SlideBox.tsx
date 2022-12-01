@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
-import Logo from "../../assets/logo.jpg";
+import Logo from "public/assets/logo.jpg";
 
 const Container = styled.div`
   width: 30vh;
-  border: 1px solid red;
   margin: 0 30px 0 30px;
   border-radius: 10px;
   border: 1px solid #f1f1f1;

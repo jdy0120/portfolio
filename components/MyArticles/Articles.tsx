@@ -3,52 +3,57 @@ import styled from "styled-components";
 import ArticleBox from "./ArticleBox";
 import axios from "axios";
 import { TistoryData } from "../../types/types";
+import Category from "./Category";
 
 const Container = styled.div`
-  width: 100%;
+  width: 80%;
+  height: 40%;
   display: flex;
   justify-content: space-between;
-  margin-top: 13rem;
 `;
 
-const sampleData = [
-  {
-    categoryId: 1015842,
-    comments: 0,
-    date: new Date("2022-11-28 10:42:54"),
-    id: 16,
-    postUrl: "https://blog.doyeonism.com/16",
-    title: "cra없이 리액트 프로젝트 생성하기 두번째 파일구성 알아보기",
-    trackbacks: 0,
-    visibility: 20,
-  },
-  {
-    categoryId: 1015842,
-    comments: 0,
-    date: new Date("2022-11-28 10:42:54"),
-    id: 16,
-    postUrl: "https://blog.doyeonism.com/16",
-    title: "cra없이 리액트 프로젝트 생성하기 두번째 파일구성 알아보기",
-    trackbacks: 0,
-    visibility: 20,
-  },
-  {
-    categoryId: 1015842,
-    comments: 0,
-    date: new Date("2022-11-28 10:42:54"),
-    id: 16,
-    postUrl: "https://blog.doyeonism.com/16",
-    title: "cra없이 리액트 프로젝트 생성하기 두번째 파일구성 알아보기",
-    trackbacks: 0,
-    visibility: 20,
-  },
-];
+const ArtivleBoxContainer = styled.div`
+  width: 75%;
+`;
+
+// const sampleData = [
+//   {
+//     categoryId: "1015842",
+//     comments: "0",
+//     date: "2022-11-28 10:42:54",
+//     id: "16",
+//     postUrl: "https://blog.doyeonism.com/16",
+//     title: "cra없이 리액트 프로젝트 생성하기 두번째 파일구성 알아보기",
+//     trackbacks: "0",
+//     visibility: "20",
+//   },
+//   {
+//     categoryId: "1015842",
+//     comments: "0",
+//     date: "2022-11-28 10:42:54",
+//     id: "16",
+//     postUrl: "https://blog.doyeonism.com/16",
+//     title: "cra없이 리액트 프로젝트 생성하기 두번째 파일구성 알아보기",
+//     trackbacks: "0",
+//     visibility: "20",
+//   },
+//   {
+//     categoryId: "1015842",
+//     comments: "0",
+//     date: "2022-11-28 10:42:54",
+//     id: "16",
+//     postUrl: "https://blog.doyeonism.com/16",
+//     title: "cra없이 리액트 프로젝트 생성하기 두번째 파일구성 알아보기",
+//     trackbacks: "0",
+//     visibility: "20",
+//   },
+// ];
 
 const Articles = () => {
-  const [posts, setPosts] = useState<TistoryData[]>(sampleData);
+  const [posts, setPosts] = useState<TistoryData[]>();
+  const [category, setCategory] = useState("1015842");
   const getPosts = async () => {
     const response = await axios.get(`/api/tistory/posts`);
-
     setPosts(response.data);
   };
 
@@ -58,9 +63,14 @@ const Articles = () => {
 
   return (
     <Container>
-      <ArticleBox data={posts[0]} />
-      <ArticleBox data={posts[1]} />
-      <ArticleBox data={posts[2]} />
+      <Category category={category} setCategory={setCategory} />
+      <ArtivleBoxContainer>
+        <ArticleBox
+          posts={posts?.filter((data) => {
+            return data.categoryId === category;
+          })}
+        />
+      </ArtivleBoxContainer>
     </Container>
   );
 };

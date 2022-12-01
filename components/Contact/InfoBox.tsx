@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Image from "next/image";
 
 const Container = styled.div`
   display: flex;
@@ -12,6 +13,9 @@ const IconBox = styled.div`
   background-color: ${({ theme }) => theme.buttonColor};
   border-radius: 10px;
   margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Description = styled.div`
@@ -30,13 +34,21 @@ const Description = styled.div`
   }
 `;
 
-const InfoBox = () => {
+interface Props {
+  icon: StaticImageData;
+  title: string;
+  description: string;
+}
+
+const InfoBox = ({ icon, title, description }: Props) => {
   return (
     <Container>
-      <IconBox></IconBox>
+      <IconBox>
+        <Image src={icon} alt={`icon`}></Image>
+      </IconBox>
       <Description>
-        <h1>{`Address`}</h1>
-        <p>{`평동로 23길 16`}</p>
+        <h1>{title}</h1>
+        <p>{description}</p>
       </Description>
     </Container>
   );

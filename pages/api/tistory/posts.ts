@@ -35,6 +35,6 @@ export default async function handler(
   }
 
   console.log(itemList);
-
-  res.status(200).json({ itemList, requestData });
+  // itemList, requestData
+  res.status(200).json({ name: "hello" });
 }

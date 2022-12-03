@@ -49,17 +49,41 @@ const ArtivleBoxContainer = styled.div`
 //   },
 // ];
 
+const requestData = {
+  url: `https://www.tistory.com/apis/post/list?`,
+  access_token: process.env.NEXT_PUBLIC_TISTORY_ACCESSTOKEN,
+  blogName: `doyeonism`,
+  output: `json`,
+  page: `3`,
+};
+
+const getAccessToken = async (page: number): Promise<[]> => {
+  const res = await axios.get(
+    `${requestData.url}access_token=${requestData.access_token}&output=${requestData.output}&blogName=${requestData.blogName}&page=${page}`
+  );
+
+  return res.data.tistory.item.posts;
+};
+
 const Articles = () => {
   const [posts, setPosts] = useState<TistoryData[]>();
   const [category, setCategory] = useState("1015842");
-  const [responseDate, setResponseDate] = useState(``);
-  const getPosts = async () => {
-    const response = await fetch(`/api/tistory/posts`);
 
-    const res = await response.json();
-    setResponseDate(res.requestData.url);
-    // setResponseDate(await response.json());
-    // setPosts(response.data);
+  const getPosts = async () => {
+    const itemList: [] = [];
+    let i = 1;
+    while (true) {
+      const response = await getAccessToken(i);
+      if (!response) {
+        break;
+      }
+      itemList.push(...response);
+
+      i += 1;
+    }
+
+    console.log(itemList);
+    setPosts(itemList);
   };
 
   useEffect(() => {
@@ -69,7 +93,6 @@ const Articles = () => {
   return (
     <Container>
       <Category category={category} setCategory={setCategory} />
-      <p>{responseDate}</p>
       <ArtivleBoxContainer>
         <ArticleBox
           posts={posts?.filter((data) => {

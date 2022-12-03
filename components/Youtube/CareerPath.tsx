@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Titles from "./Titles";
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import { YoutubeData } from "../../types/types";
 import VideoContainer from "./VideoContainer";
 
@@ -63,15 +63,33 @@ const notSettingItem = [
   },
 ];
 
+const requestData = {
+  url: `https://www.googleapis.com/youtube/v3/search?`,
+  access_token: process.env.NEXT_PUBLIC_YOUTUBE_ACCESSTOKEN,
+  channelId: `UCeVlsTPnmF7eWEPixBGpFGw`,
+  type: `video`,
+};
+
+const header: AxiosRequestConfig<any> = {
+  headers: { Accept: "application/json", "Accept-Encoding": "identity" },
+};
+
+const getAccessToken = async () => {
+  const res = await axios.get(
+    `${requestData.url}part=snippet&channelId=${requestData.channelId}&key=${requestData.access_token}&type=${requestData.type}`,
+    header
+  );
+
+  return res.data;
+};
+
 const CareerPath = () => {
   const [videos, setVideos] = useState<YoutubeData[]>(notSettingItem);
 
   const getPosts = async () => {
-    const response = await axios.get(`/api/youtube/posts`);
+    const response = await getAccessToken();
 
-    console.log(response);
-
-    // setVideos(response.data.items);
+    setVideos(response.items);
   };
 
   useEffect(() => {

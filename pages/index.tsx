@@ -12,6 +12,10 @@ export default function Home() {
           name="google-site-verification"
           content="WrgXhDJoxCGujyLnFUO8SgIZCiXVWzwutKiQQujBiY8"
         />
+        <meta
+          name="naver-site-verification"
+          content="4909b4bb612edd28d0f591516306e500cd19b359"
+        />
       </Head>
     </>
   );

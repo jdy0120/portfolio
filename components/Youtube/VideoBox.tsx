@@ -13,7 +13,6 @@ interface Props {
 }
 
 const VideoBox = ({ video }: Props) => {
-  console.log(video.snippet.thumbnails.high.url);
   const [imageSrc, setImageSrc] = useState(video.snippet.thumbnails.high.url);
 
   const onError = () => {

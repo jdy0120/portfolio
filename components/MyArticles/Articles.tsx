@@ -81,8 +81,6 @@ const Articles = () => {
 
       i += 1;
     }
-
-    console.log(itemList);
     setPosts(itemList);
   };
 

@@ -10,10 +10,17 @@ const Container = styled.div`
   height: 40%;
   display: flex;
   justify-content: space-between;
+  @media (max-width: 820px) {
+    width: 100%;
+    flex-direction: column;
+  }
 `;
 
 const ArtivleBoxContainer = styled.div`
   width: 75%;
+  @media (max-width: 820px) {
+    width: 100%;
+  }
 `;
 
 // const sampleData = [

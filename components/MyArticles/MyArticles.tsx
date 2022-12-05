@@ -21,6 +21,9 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media (max-width: 820px) {
+    height: auto;
+  }
 `;
 
 const MyArticles = () => {

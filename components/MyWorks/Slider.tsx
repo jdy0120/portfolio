@@ -5,6 +5,10 @@ import SlideContainer from "./SlideContainer";
 const Container = styled.div`
   overflow: hidden;
   margin-top: 15rem;
+
+  @media (max-width: 820px) {
+    margin-top: 0;
+  }
 `;
 
 const Slider = () => {

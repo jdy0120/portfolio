@@ -6,6 +6,10 @@ const Container = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
+  @media (max-width: 820px) {
+    width: 100%;
+    flex-direction: row;
+  }
 `;
 
 interface CategoryBoxProps {

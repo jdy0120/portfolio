@@ -32,6 +32,14 @@ const Description = styled.div`
     font-weight: normal;
     font-size: 1.2rem;
   }
+  @media (max-width: 820px) {
+    h1 {
+      font-size: 20px;
+    }
+    p {
+      font-size: 15px;
+    }
+  }
 `;
 
 interface Props {

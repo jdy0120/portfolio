@@ -10,6 +10,11 @@ const Container = styled.div`
     text-decoration: none;
     color: black;
   }
+
+  @media (max-width: 820px) {
+    flex-direction: column;
+    margin-left: 0px;
+  }
 `;
 
 const TitleContainer = styled.div`
@@ -43,6 +48,16 @@ const TitleContainer = styled.div`
 
   &:hover h1 {
     color: #f1f1f1;
+  }
+
+  @media (max-width: 820px) {
+    width: 100%;
+    flex-direction: column;
+    margin: 0 0 10px 0;
+
+    h1 {
+      font-size: 15px;
+    }
   }
 `;
 

@@ -19,6 +19,7 @@ const Container = styled.div`
   img {
     width: 1.5rem;
     height: 1.5rem;
+    cursor: pointer;
   }
 
   button {
@@ -28,6 +29,7 @@ const Container = styled.div`
     border: 1.5px solid ${({ theme }) => theme.title};
     padding: 15px 25px 15px 25px;
     border-radius: 10px;
+    cursor: pointer;
   }
 `;
 

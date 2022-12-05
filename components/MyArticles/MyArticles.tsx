@@ -22,7 +22,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   @media (max-width: 820px) {
-    height: 80rem;
+    height: 100rem;
   }
 `;
 

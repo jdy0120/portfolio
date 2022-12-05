@@ -9,6 +9,7 @@ const Container = styled.div`
   @media (max-width: 820px) {
     width: 100%;
     flex-direction: row;
+    justify-content: space-around;
   }
 `;
 
@@ -27,6 +28,13 @@ const CategoryBox = styled.div<CategoryBoxProps>`
   transition: all 0.2s;
   color: ${({ check, theme }) => (check ? theme.buttonText : "#232e35")};
   font-weight: ${({ check }) => (check ? `bold` : `normal`)};
+  @media (max-width: 820px) {
+    width: 8rem;
+    height: 8rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
 `;
 
 const allCategory: { [key: string]: string } = {

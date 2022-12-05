@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Titles from "./Tittles";
 import Slider from "./Slider";
+
 const Body = styled.div`
   width: 100%;
   display: flex;

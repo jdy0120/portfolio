@@ -34,7 +34,8 @@ const Description = styled.div`
   position: absolute;
   font-size: 0.8rem;
   color: white;
-  background-color: black;
+  background-color: ${({ theme }) => theme.buttonColor};
+  color: ${({ theme }) => theme.buttonText};
   transition: all 0.7s ease-out;
   border-radius: 10px 10px 0 0;
   padding: 10px;

@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import emailjs from "@emailjs/browser";
 
-const Container = styled.div`
+const Container = styled.form`
   width: 50%;
   height: 70%;
   display: flex;
@@ -49,12 +50,26 @@ const Container = styled.div`
 `;
 
 const Form = () => {
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    emailjs.sendForm(
+      "service_99biwcm",
+      "template_utrpbpo",
+      e.currentTarget,
+      "-K5aB3MXuxTDn6aJJ"
+    );
+    console.log("email send");
+
+    e.currentTarget.reset();
+  };
+
   return (
-    <Container>
-      <input type="text" placeholder="Name" />
-      <input type="text" placeholder="Email" />
-      <textarea placeholder="Message" />
-      <button>{`Send Message`}</button>
+    <Container onSubmit={sendEmail}>
+      <input type="text" name="name" placeholder="Name" />
+      <input type="email" name="email" placeholder="Email" />
+      <textarea name="message" placeholder="Message" />
+      <button type="submit">{`Send Message`}</button>
     </Container>
   );
 };

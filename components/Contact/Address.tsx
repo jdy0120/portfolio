@@ -4,6 +4,7 @@ import InfoBox from "./InfoBox";
 import Location from "public/assets/location.png";
 import Phone from "public/assets/phone.png";
 import Email from "public/assets/email.png";
+import useScrollFadeIn from "../utils/hooks/animation";
 
 const InfoData = [
   {
@@ -46,8 +47,9 @@ const BoxContainer = styled.div`
 `;
 
 const Address = () => {
+  const fadeInUp = useScrollFadeIn("up", 1, 0);
   return (
-    <Container>
+    <Container {...fadeInUp}>
       <BoxContainer>
         {InfoData.map((data) => {
           return (

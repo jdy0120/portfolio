@@ -4,6 +4,7 @@ import styled from "styled-components";
 import optimazation from "public/assets/optimization.png";
 import clean from "public/assets/broom.png";
 import web from "public/assets/world-wide-web.png";
+import useScrollFadeIn from "../utils/hooks/animation";
 
 const Container = styled.div`
   width: 100%;
@@ -36,8 +37,9 @@ const serviceList = [
 ];
 
 const Service = () => {
+  const fadeinUp = useScrollFadeIn("up", 1, 0);
   return (
-    <Container>
+    <Container {...fadeinUp}>
       {serviceList.map((data) => {
         return (
           <ServiceBox

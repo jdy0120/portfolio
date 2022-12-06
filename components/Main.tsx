@@ -28,7 +28,7 @@ const Main = () => {
         <Nav />
         <MyNameIs />
         <Services />
-        <MyWorks />
+        {/* <MyWorks /> */}
         <CareerPath />
         <MyArticles />
         <LearningPath />

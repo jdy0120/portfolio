@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import emailjs from "@emailjs/browser";
+import useScrollFadeIn from "../utils/hooks/animation";
 
 const Container = styled.form`
   width: 50%;
@@ -50,6 +51,8 @@ const Container = styled.form`
 `;
 
 const Form = () => {
+  const fadeInUp = useScrollFadeIn("up", 1, 0);
+
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -65,7 +68,7 @@ const Form = () => {
   };
 
   return (
-    <Container onSubmit={sendEmail}>
+    <Container {...fadeInUp} onSubmit={sendEmail}>
       <input type="text" name="name" placeholder="Name" />
       <input type="email" name="email" placeholder="Email" />
       <textarea name="message" placeholder="Message" />

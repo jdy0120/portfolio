@@ -12,6 +12,7 @@ const Container = styled.div`
   height: 30vh;
   padding: 3rem;
   border-radius: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
   @media (max-width: 820px) {
     width: 95%;

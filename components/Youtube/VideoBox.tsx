@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { YoutubeData } from "../../types/types";
 import Image from "next/image";
+import useScrollFadeIn from "../utils/hooks/animation";
 
 const Container = styled.div`
   display: flex;
@@ -10,6 +11,8 @@ const Container = styled.div`
   border: 1px solid #232e35;
   border-radius: 10px;
   overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
   img {
     transition: all 0.7s ease-out;
@@ -18,6 +21,7 @@ const Container = styled.div`
   }
 
   &:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     img {
       scale: 1.1;
     }
@@ -52,6 +56,7 @@ interface Props {
 const VideoBox = ({ video }: Props) => {
   const [imageSrc, setImageSrc] = useState(video.snippet.thumbnails.high.url);
   const published = new Date(video.snippet.publishTime);
+  const fadeInUp = useScrollFadeIn("up", 1, 0);
 
   const onError = () => {
     console.log("error image");
@@ -63,7 +68,7 @@ const VideoBox = ({ video }: Props) => {
   }, []);
   return (
     <a href={`https://www.youtube.com/watch?v=${video.id.videoId}`}>
-      <Container>
+      <Container {...fadeInUp}>
         <Image
           src={imageSrc}
           width={video.snippet.thumbnails.high.width}

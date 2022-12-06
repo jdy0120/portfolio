@@ -21,8 +21,8 @@ const Carousel = styled.div`
 
 const card = [
   { projectName: "1", image: img1 },
-  { projectName: "1", image: img2 },
-  { projectName: "1", image: img3 },
+  { projectName: "2", image: img2 },
+  { projectName: "3", image: img3 },
 ];
 
 const mod = (n: number, m: number) => {

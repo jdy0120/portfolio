@@ -97,6 +97,7 @@ const IconContainer = styled.div`
 
 const MyNameIs = () => {
   const { theme } = useThemeContext();
+
   return (
     <Body>
       <OutContainer>

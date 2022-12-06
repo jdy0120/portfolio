@@ -9,6 +9,7 @@ import blogLight from "public/assets/blogger.png";
 import blogDark from "public/assets/blogger_negative.png";
 import { useThemeContext } from "../../context/themeContext";
 import Arrow from "public/assets/arrow.png";
+import kakao from "public/assets/kakaoconsult.png";
 
 const logo: { [key: string]: { [key: string]: StaticImageData } } = {
   light: { github: gitHubLight, youtube: youtubeLight, blog: blogLight },
@@ -84,6 +85,17 @@ const Toggle = styled.div<ToggleProps>`
   }
 `;
 
+const ConsultToggle = styled(Toggle)`
+  padding: 0;
+  margin: 0;
+  right: 6rem;
+  background: none;
+  img {
+    width: 6rem;
+    height: auto;
+  }
+`;
+
 const Footer = () => {
   const [toggleBtn, setToggleBtn] = useState(false);
   const { theme } = useThemeContext();
@@ -127,6 +139,11 @@ const Footer = () => {
               Contact doyeon for more information. 010-9489-9904
             </address>
           </div>
+          <ConsultToggle toggleBtn={toggleBtn}>
+            <a href="http://pf.kakao.com/_hqgfxj" target="_blank">
+              <Image src={kakao} alt={`consult`} />
+            </a>
+          </ConsultToggle>
           <Toggle onClick={goToTop} toggleBtn={toggleBtn}>
             <Image src={Arrow} alt={`none`}></Image>
           </Toggle>

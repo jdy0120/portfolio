@@ -43,10 +43,10 @@ const SkillBox = ({ title, images }: Props) => {
     <Container>
       <h1>{title}</h1>
       <ContainerImages>
-        {images.map((data) => {
+        {images.map((data, idx) => {
           return (
             <a href="">
-              <Image key={String(data)} src={data} alt="" />
+              <Image key={idx} src={data} alt="" />
             </a>
           );
         })}

@@ -10,7 +10,6 @@ export default function Home() {
           name="description"
           content="프론트엔드 개발자 도여니즘의 포트폴리오 사이트입니다."
         />
-        <link rel="icon" href="/favicon.ico" />
         <meta
           name="google-site-verification"
           content="WrgXhDJoxCGujyLnFUO8SgIZCiXVWzwutKiQQujBiY8"

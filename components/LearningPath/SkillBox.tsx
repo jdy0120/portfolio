@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
+import useScrollFadeIn from "../utils/hooks/animation";
 
 const Container = styled.div`
   border: 1px solid #f1f1f1;
@@ -51,10 +52,11 @@ interface Props {
 }
 
 const SkillBox = ({ title, images }: Props) => {
+  const fadeInUp = useScrollFadeIn("up", 1, 0);
   return (
     <Container>
       <h1>{title}</h1>
-      <ContainerImages>
+      <ContainerImages {...fadeInUp}>
         {images.map((data, idx) => {
           return (
             <a key={idx} href="">

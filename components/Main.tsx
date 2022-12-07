@@ -28,10 +28,10 @@ const Main = () => {
         <Nav />
         <MyNameIs />
         <Services />
-        <MyWorks />
         <CareerPath />
         <MyArticles />
         <LearningPath />
+        <MyWorks />
         <Contact />
         <Footer />
       </ThemeProvider>

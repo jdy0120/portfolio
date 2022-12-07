@@ -48,19 +48,19 @@ const ContainerImages = styled.div`
 
 interface Props {
   title: string;
-  images: StaticImageData[];
+  content: { image: StaticImageData; url: string }[];
 }
 
-const SkillBox = ({ title, images }: Props) => {
+const SkillBox = ({ title, content }: Props) => {
   const fadeInUp = useScrollFadeIn("up", 1, 0);
   return (
     <Container>
       <h1>{title}</h1>
       <ContainerImages {...fadeInUp}>
-        {images.map((data, idx) => {
+        {content.map((data, idx) => {
           return (
-            <a key={idx} href="">
-              <Image src={data} alt="" />
+            <a key={idx} href={data.url}>
+              <Image src={data.image} alt="" />
             </a>
           );
         })}

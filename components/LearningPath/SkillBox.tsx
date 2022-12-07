@@ -8,6 +8,10 @@ const Container = styled.div`
   margin: 30px;
   border-radius: 10px;
   padding: 10px;
+
+  h1 {
+    color: ${({ theme }) => theme.title};
+  }
 `;
 
 const ContainerImages = styled.div`
@@ -21,12 +25,13 @@ const ContainerImages = styled.div`
   }
 
   img {
-    border: 3px solid #f1f1f1;
+    border: 2px solid ${({ theme }) => theme.buttonText};
     width: auto;
     height: 10rem;
     margin: 20px;
     padding: 20px;
     border-radius: 10px;
+    background-color: ${({ theme }) => theme.buttonColor};
 
     @media (max-width: 700px) {
       height: 5rem;

@@ -6,7 +6,6 @@ import Slider from "./Slider";
 const Body = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
 `;
 
 const OutContainer = styled.div`
@@ -18,7 +17,6 @@ const Container = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 `;
 
 const InnerContainer = styled.div`

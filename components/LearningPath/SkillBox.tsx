@@ -15,6 +15,8 @@ const ContainerImages = styled.div`
   grid-template-columns: repeat(5, 1fr);
 
   @media (max-width: 1100px) {
+    padding: 0;
+    margin: 0;
     grid-template-columns: repeat(3, 1fr);
   }
 
@@ -25,6 +27,11 @@ const ContainerImages = styled.div`
     margin: 20px;
     padding: 20px;
     border-radius: 10px;
+
+    @media (max-width: 700px) {
+      height: 5rem;
+      margin: 5px;
+    }
 
     &:hover {
       transition: all 0.3s ease-out;
@@ -45,8 +52,8 @@ const SkillBox = ({ title, images }: Props) => {
       <ContainerImages>
         {images.map((data, idx) => {
           return (
-            <a href="">
-              <Image key={idx} src={data} alt="" />
+            <a key={idx} href="">
+              <Image src={data} alt="" />
             </a>
           );
         })}

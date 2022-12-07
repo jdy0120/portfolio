@@ -140,7 +140,11 @@ const Footer = () => {
             </address>
           </div>
           <ConsultToggle toggleBtn={toggleBtn}>
-            <a href="http://pf.kakao.com/_hqgfxj" target="_blank">
+            <a
+              href="http://pf.kakao.com/_hqgfxj"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Image src={kakao} alt={`consult`} />
             </a>
           </ConsultToggle>

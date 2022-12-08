@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: http://portfolio.doyeonism.com/
+Host: https://portfolio.doyeonism.com/
 
 # Sitemaps
-Sitemap: http://portfolio.doyeonism.com/sitemap.xml
+Sitemap: https://portfolio.doyeonism.com/sitemap.xml

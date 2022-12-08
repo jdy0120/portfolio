@@ -6,20 +6,20 @@ const Container = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   width: 30vh;
   height: 30vh;
-  padding: 3rem;
   border-radius: 20px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
-  @media (max-width: 820px) {
+  @media (max-width: 853px) {
     width: 95%;
     height: auto;
     margin: 10px 0 10px;
     flex-direction: row;
-    justify-content: center;
+    justify-content: start;
+
     padding: 0%;
     padding: 10px;
   }
@@ -35,8 +35,11 @@ const IconBox = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media (max-width: 820px) {
+  @media (max-width: 853px) {
     margin: 0;
+    width: 64px;
+    height: 64px;
+    padding: 10px;
   }
 
   img {
@@ -48,6 +51,7 @@ const IconBox = styled.div`
 const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
+  text-align: center;
 
   h1 {
     margin: 15px;
@@ -58,12 +62,14 @@ const TitleContainer = styled.div`
     margin: 15px;
     text-align: center;
   }
-  @media (max-width: 820px) {
+  @media (max-width: 853px) {
     h1 {
-      margin: 0;
+      margin: 15px;
+      text-align: start;
     }
     p {
       padding: 0;
+      text-align: start;
     }
   }
 `;
@@ -72,17 +78,22 @@ interface Props {
   icon: StaticImageData;
   title: string;
   description: string;
+  url: string | undefined;
 }
 
-const ServiceBox = ({ icon, title, description }: Props) => {
+const ServiceBox = ({ icon, title, description, url }: Props) => {
   return (
     <Container>
       <IconBox>
-        <Image src={icon} alt={`none`} />
+        <a href={url}>
+          <Image src={icon} alt={`none`} />
+        </a>
       </IconBox>
       <TitleContainer>
-        <h1>{title}</h1>
-        <p>{description}</p>
+        <a href={url}>
+          <h1>{title}</h1>
+          <p>{description}</p>
+        </a>
       </TitleContainer>
     </Container>
   );

@@ -10,7 +10,7 @@ const Container = styled.div`
   height: 40%;
   display: flex;
   justify-content: space-between;
-  @media (max-width: 820px) {
+  @media (max-width: 875px) {
     width: 100%;
     flex-direction: column;
   }
@@ -18,7 +18,7 @@ const Container = styled.div`
 
 const ArtivleBoxContainer = styled.div`
   width: 75%;
-  @media (max-width: 820px) {
+  @media (max-width: 875px) {
     width: 100%;
   }
 `;

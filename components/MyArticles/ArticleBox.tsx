@@ -12,7 +12,7 @@ const Container = styled.div`
     color: black;
   }
 
-  @media (max-width: 820px) {
+  @media (max-width: 875px) {
     flex-direction: column;
     margin-left: 0px;
   }
@@ -57,7 +57,7 @@ const TitleContainer = styled.div`
     color: #f1f1f1;
   }
 
-  @media (max-width: 820px) {
+  @media (max-width: 875px) {
     width: 100%;
     flex-direction: column;
     margin: 0 0 10px 0;

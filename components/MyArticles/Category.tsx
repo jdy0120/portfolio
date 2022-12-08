@@ -7,7 +7,7 @@ const Container = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
-  @media (max-width: 820px) {
+  @media (max-width: 875px) {
     width: 100%;
     flex-direction: row;
     justify-content: space-around;
@@ -35,7 +35,7 @@ const CategoryBox = styled.div<CategoryBoxProps>`
   &:hover {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
-  @media (max-width: 820px) {
+  @media (max-width: 875px) {
     width: 8rem;
     height: 8rem;
     justify-content: center;

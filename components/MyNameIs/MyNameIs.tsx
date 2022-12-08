@@ -29,7 +29,7 @@ const OutContainer = styled.div`
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 90vh;
+  height: auto;
   align-items: center;
   p {
     line-height: 2;
@@ -48,6 +48,7 @@ const Introduce = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  padding: 10rem 0 10rem;
   @media (max-width: 820px) {
     width: 100%;
     height: 100%;

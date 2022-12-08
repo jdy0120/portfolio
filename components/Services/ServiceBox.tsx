@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
+import useScrollFadeIn from "../utils/hooks/animation";
 
 const Container = styled.div`
   background-color: white;
@@ -82,8 +83,9 @@ interface Props {
 }
 
 const ServiceBox = ({ icon, title, description, url }: Props) => {
+  const fadeinUp = useScrollFadeIn("up", 1, 0);
   return (
-    <Container>
+    <Container {...fadeinUp}>
       <IconBox>
         <a href={url}>
           <Image src={icon} alt={`none`} />

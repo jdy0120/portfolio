@@ -59,6 +59,7 @@ const Toggle = styled.div<ToggleProps>`
   position: fixed;
   bottom: 1.5rem;
   right: 1.5rem;
+  cursor: pointer;
   ${({ toggleBtn }) => {
     return toggleBtn
       ? css`

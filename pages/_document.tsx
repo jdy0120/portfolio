@@ -11,6 +11,7 @@ class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
+
     try {
       ctx.renderPage = () =>
         originalRenderPage({
@@ -106,7 +107,11 @@ class MyDocument extends Document {
             sizes="16x16"
             href="/favicon/favicon-16x16.png"
           />
-          <link rel="manifest" href="/manifest.json" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Raleway:wght@400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap"
+            rel="stylesheet"
+          />
+          <link rel="/manifest" href="/manifest.json" />
           <meta name="msapplication-TileColor" content="#ffffff" />
           <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
           <meta name="theme-color" content="#ffffff" />

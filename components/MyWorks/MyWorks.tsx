@@ -81,8 +81,6 @@ const content = [
 
 const MyWorks = () => {
   const [index, setIndex] = useState(0);
-  console.log(index);
-  console.log(content[index].image);
   return (
     <Body>
       <OutContainer>

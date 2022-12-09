@@ -29,10 +29,6 @@ export default function Home() {
           content="https://portfolio.doyeonism.com/assets/logo.png"
         />
         <meta property="og:url" content="https://portfolio.doyeonism.com/" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Raleway:wght@400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap"
-          rel="stylesheet"
-        />
       </Head>
     </>
   );

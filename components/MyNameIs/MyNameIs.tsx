@@ -22,7 +22,7 @@ const Body = styled.div`
 `;
 
 const OutContainer = styled.div`
-  width: 100%;
+  width: 95%;
   max-width: 2000px;
 `;
 

@@ -23,6 +23,8 @@ const Container = styled.div`
   align-items: center;
   @media (max-width: 820px) {
     flex-direction: column;
+    height: auto;
+    margin: 3rem 0 3rem;
   }
 `;
 

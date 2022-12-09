@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Titles from "./Tittles";
+import Titles from "../Titles/TItle";
 import Slider from "./Slider";
 import img1 from "public/assets/project1.png";
 import img2 from "public/assets/project2.png";
@@ -79,13 +79,18 @@ const content = [
   },
 ];
 
+const titleData = {
+  title: `MY WORKS`,
+  description: `Featured Portfolios`,
+};
+
 const MyWorks = () => {
   const [index, setIndex] = useState(0);
   return (
     <Body>
       <OutContainer>
         <Container>
-          <Titles />
+          <Titles title={titleData.title} description={titleData.description} />
           <InnerContainer img={content[index].imageurl}>
             <Image
               className="contentImage"

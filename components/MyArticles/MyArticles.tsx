@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Titles from "./Titles";
+import Titles from "../Titles/TItle";
 import Articles from "./Articles";
 
 const Body = styled.div`
@@ -26,12 +26,17 @@ const Container = styled.div`
   }
 `;
 
+const titleData = {
+  title: `MY ARTICLES`,
+  description: `Personal Blog`,
+};
+
 const MyArticles = () => {
   return (
     <Body>
       <OutContainer>
         <Container>
-          <Titles />
+          <Titles title={titleData.title} description={titleData.description} />
           <Articles />
         </Container>
       </OutContainer>

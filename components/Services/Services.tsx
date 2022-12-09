@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Titles from "./Titles";
+import Titles from "../Titles/TItle";
 import Service from "./Service";
 
 const Body = styled.div`
@@ -24,12 +24,17 @@ const Container = styled.div`
   justify-content: center;
 `;
 
+const titleData = {
+  title: `SERVICES`,
+  description: `Specialized in`,
+};
+
 const Services = () => {
   return (
     <Body>
       <OutContainer>
         <Container>
-          <Titles />
+          <Titles title={titleData.title} description={titleData.description} />
           <Service />
         </Container>
       </OutContainer>

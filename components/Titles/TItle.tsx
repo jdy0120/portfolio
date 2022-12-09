@@ -25,16 +25,21 @@ const Title = styled.div`
   }
 `;
 
-const Titles = () => {
+interface Props {
+  title: string;
+  description: string;
+}
+
+const Titles = ({ title, description }: Props) => {
   return (
     <Container>
       <Title>
         <div>
           <hr />
         </div>
-        <p>{`MY WORKS`}</p>
+        <p>{`LEARNING PATH`}</p>
       </Title>
-      <h1>{`Featured Portfolios`}</h1>
+      <h1>{`Education & Skills`}</h1>
     </Container>
   );
 };

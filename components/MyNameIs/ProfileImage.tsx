@@ -29,14 +29,7 @@ const ProfileImage = () => {
   return (
     <Container>
       {/* <Image className="img" src={ReactLogo} alt={`none`}></Image> */}
-      <ReactLogo>
-        <animate
-          attributeName="rx"
-          values="0;5;0"
-          dur="10s"
-          repeatCount="indefinite"
-        />
-      </ReactLogo>
+      <ReactLogo />
     </Container>
   );
 };

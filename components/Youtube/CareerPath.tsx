@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Titles from "./Titles";
 import axios, { AxiosRequestConfig } from "axios";
 import { YoutubeData } from "../../types/types";
 import VideoContainer from "./VideoContainer";
+import Titles from "../Titles/TItle";
 
 const Body = styled.div`
   width: 100%;
@@ -82,6 +82,11 @@ const getAccessToken = async () => {
   return res.data;
 };
 
+const titleData = {
+  title: `VIDEOS`,
+  description: `Youtube Channel`,
+};
+
 const CareerPath = () => {
   const [videos, setVideos] = useState<YoutubeData[]>(notSettingItem);
 
@@ -99,7 +104,7 @@ const CareerPath = () => {
     <Body>
       <OutContainer>
         <Container>
-          <Titles />
+          <Titles title={titleData.title} description={titleData.description} />
           <VideoContainer videos={videos} />
         </Container>
       </OutContainer>

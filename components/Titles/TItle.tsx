@@ -37,9 +37,9 @@ const Titles = ({ title, description }: Props) => {
         <div>
           <hr />
         </div>
-        <p>{`LEARNING PATH`}</p>
+        <p>{title}</p>
       </Title>
-      <h1>{`Education & Skills`}</h1>
+      <h1>{description}</h1>
     </Container>
   );
 };

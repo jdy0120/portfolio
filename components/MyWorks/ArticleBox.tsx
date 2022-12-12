@@ -10,6 +10,7 @@ const ContentContainer = styled.div`
   position: absolute;
   background-color: ${({ theme }) => theme.buttonColor};
   opacity: 0%;
+  font-size: 1rem;
   color: ${({ theme }) => theme.buttonText};
   display: flex;
   justify-content: center;
@@ -17,6 +18,7 @@ const ContentContainer = styled.div`
   text-align: center;
   @media (max-width: 850px) {
     opacity: 70%;
+    font-size: 10px;
   }
 `;
 

@@ -67,9 +67,7 @@ const Nav = () => {
               <Image src={logo[theme]} alt={`logo`} priority />
             </a>
           </LogoContainer>
-          <MenuContainer>
-            <Menu />
-          </MenuContainer>
+          <MenuContainer>{/* <Menu /> */}</MenuContainer>
           <HambergerMenuContainer></HambergerMenuContainer>
           <Resume />
         </Container>

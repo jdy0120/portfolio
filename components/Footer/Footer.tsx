@@ -59,6 +59,7 @@ const Toggle = styled.div<ToggleProps>`
   position: fixed;
   bottom: 1.5rem;
   right: 1.5rem;
+  z-index: 3;
   cursor: pointer;
   ${({ toggleBtn }) => {
     return toggleBtn

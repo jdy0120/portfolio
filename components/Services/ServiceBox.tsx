@@ -9,12 +9,12 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  width: 20vw;
+  width: 25rem;
   height: auto;
   border-radius: 20px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
-  @media (max-width: 853px) {
+  @media (max-width: 1150px) {
     width: 95%;
     height: auto;
     margin: 10px 0 10px;
@@ -36,7 +36,7 @@ const IconBox = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media (max-width: 853px) {
+  @media (max-width: 1150px) {
     margin: 0;
     width: 64px;
     height: 64px;
@@ -63,7 +63,7 @@ const TitleContainer = styled.div`
     margin: 15px;
     text-align: center;
   }
-  @media (max-width: 853px) {
+  @media (max-width: 1150px) {
     h1 {
       margin: 15px;
       text-align: start;

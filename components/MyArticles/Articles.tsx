@@ -64,7 +64,7 @@ const requestData = {
   page: `3`,
 };
 
-const getAccessToken = async (page: number): Promise<[]> => {
+const getTistoryPosts = async (page: number): Promise<[]> => {
   const res = await axios.get(
     `${requestData.url}access_token=${requestData.access_token}&output=${requestData.output}&blogName=${requestData.blogName}&page=${page}`
   );
@@ -80,7 +80,7 @@ const Articles = () => {
     const itemList: [] = [];
     let i = 1;
     while (true) {
-      const response = await getAccessToken(i);
+      const response = await getTistoryPosts(i);
       if (!response) {
         break;
       }

@@ -41,7 +41,9 @@ const Resume = () => {
         <Image onClick={toggleTheme} src={moon[theme]} alt="" />
       </div>
       <div>
-        <button>{`Resume`}</button>
+        <a href="https://drive.google.com/file/d/1MkZ69b5uC6QmmlrI5lazq8CzucZNcpAb/view?usp=sharing">
+          <button>{`Resume`}</button>
+        </a>
       </div>
     </Container>
   );

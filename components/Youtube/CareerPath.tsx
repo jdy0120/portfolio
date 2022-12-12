@@ -73,7 +73,7 @@ const header: AxiosRequestConfig<any> = {
   headers: { Accept: "application/json", "Accept-Encoding": "identity" },
 };
 
-const getAccessToken = async () => {
+const getYoutubeVideoDatas = async () => {
   const res = await axios.get(
     `${requestData.url}part=snippet&channelId=${requestData.channelId}&key=${requestData.access_token}&type=${requestData.type}`,
     header
@@ -91,7 +91,7 @@ const CareerPath = () => {
   const [videos, setVideos] = useState<YoutubeData[]>(notSettingItem);
 
   const getPosts = async () => {
-    const response = await getAccessToken();
+    const response = await getYoutubeVideoDatas();
 
     setVideos(response.items);
   };

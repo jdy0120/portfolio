@@ -21,7 +21,7 @@ const OutContainer = styled.div`
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: auto;
 `;
 
 interface InnerContainerProps {
@@ -35,6 +35,7 @@ const InnerContainer = styled.div<InnerContainerProps>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 10vh 0 10vh 0;
 
   .contentImage {
     width: 70%;

@@ -9,8 +9,8 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  width: 30vh;
-  height: 30vh;
+  width: 20vw;
+  height: auto;
   border-radius: 20px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 

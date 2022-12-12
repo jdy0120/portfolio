@@ -24,9 +24,10 @@ const Portfolios = () => {
   return (
     <Container>
       <ArticleContainer>
-        {articles.map((article) => {
+        {articles.map((article, idx) => {
           return (
             <ArticleBox
+              key={idx}
               url={article.url}
               projectName={article.projectName}
               term={article.term}

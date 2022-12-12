@@ -25,7 +25,6 @@ const ContentContainer = styled.div`
 const Container = styled.div`
   position: relative;
   overflow: hidden;
-  padding: 5px;
 
   img {
     width: 40vw;
@@ -40,31 +39,31 @@ const Container = styled.div`
   span {
     z-index: 1;
     position: absolute;
-    background-color: red;
+    background-color: ${({ theme }) => theme.buttonText};
     transition: all 0.5s;
 
     &:nth-child(1) {
       left: 0;
       top: 10px;
       width: 0;
-      height: 3px;
+      height: 2px;
     }
     &:nth-child(2) {
       right: 10px;
       top: 0;
-      width: 3px;
+      width: 2px;
       height: 0;
     }
     &:nth-child(3) {
       right: 0;
       bottom: 10px;
       width: 0;
-      height: 3px;
+      height: 2px;
     }
     &:nth-child(4) {
       left: 10px;
       bottom: 0;
-      width: 3px;
+      width: 2px;
       height: 0;
     }
   }

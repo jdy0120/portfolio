@@ -64,7 +64,7 @@ const Nav = () => {
         <Container>
           <LogoContainer>
             <a href="#">
-              <Image src={logo[theme]} alt={`logo`}></Image>
+              <Image src={logo[theme]} alt={`logo`} priority />
             </a>
           </LogoContainer>
           <MenuContainer>

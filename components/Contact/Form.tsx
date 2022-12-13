@@ -51,7 +51,7 @@ const Container = styled.form`
 `;
 
 const Form = () => {
-  const fadeInUp = useScrollFadeIn("up", 1, 0);
+  const fadeInUp = useScrollFadeIn();
 
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

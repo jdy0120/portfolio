@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
+import useScrollFadeIn from "../utils/hooks/animation";
 
 const ContentContainer = styled.div`
   width: 100%;
@@ -117,8 +118,9 @@ interface Props {
 }
 
 const ArticleBox = ({ url, projectName, term, img }: Props) => {
+  const fadeInUp = useScrollFadeIn();
   return (
-    <Container>
+    <Container {...fadeInUp}>
       <a href={url}>
         <span></span>
         <span></span>

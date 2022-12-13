@@ -58,7 +58,7 @@ interface Props {
 }
 
 const Category = ({ category, setCategory }: Props) => {
-  const fadeInUp = useScrollFadeIn("up", 1, 0);
+  const fadeInUp = useScrollFadeIn();
 
   return (
     <Container {...fadeInUp}>

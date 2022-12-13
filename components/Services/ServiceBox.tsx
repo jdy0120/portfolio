@@ -83,7 +83,7 @@ interface Props {
 }
 
 const ServiceBox = ({ icon, title, description, url }: Props) => {
-  const fadeinUp = useScrollFadeIn("up", 1, 0);
+  const fadeinUp = useScrollFadeIn();
   return (
     <Container {...fadeinUp}>
       <IconBox>

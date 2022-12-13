@@ -73,7 +73,7 @@ interface Props {
 }
 
 const ArticleBox = ({ posts }: Props) => {
-  const fadeInUp = useScrollFadeIn("up", 1, 0);
+  const fadeInUp = useScrollFadeIn();
   return (
     <Container {...fadeInUp}>
       {posts?.map((data, idx) => {

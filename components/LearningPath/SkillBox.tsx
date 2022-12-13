@@ -52,7 +52,7 @@ interface Props {
 }
 
 const SkillBox = ({ title, content }: Props) => {
-  const fadeInUp = useScrollFadeIn("up", 1, 0);
+  const fadeInUp = useScrollFadeIn();
   return (
     <Container>
       <h1>{title}</h1>

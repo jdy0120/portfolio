@@ -3,6 +3,7 @@ import img2 from "public/assets/project2.png";
 import img3 from "public/assets/project3.png";
 import img4 from "public/assets/project4.png";
 import img5 from "public/assets/project5.png";
+import img6 from "public/assets/project6.png";
 
 export const articles = [
   {
@@ -15,11 +16,11 @@ export const articles = [
     url: "#",
     projectName: "운동 선수 순위권 출력 프로젝트",
     term: "2022.11.10-진행중",
-    img: img1,
+    img: img6,
   },
   {
     url: "https://blog.doyeonism.com/27",
-    projectName: "리그오브레전드 팀 나누기 프로젝트",
+    projectName: "리그오브레전드 팀 밸런스 프로젝트",
     term: "2021.7.10-2021.8.05",
     img: img5,
   },

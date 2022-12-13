@@ -136,10 +136,8 @@ const Footer = () => {
                 <Image src={logo[theme][`youtube`]} alt={`유튜브`}></Image>
               </a>
             </IconContainer>
-            <p>Copyright © 2022 doyeon</p>
-            <address>
-              Contact doyeon for more information. 010-9489-9904
-            </address>
+            <p>{`Copyright © 2022 doyeon`}</p>
+            <address>{`Contact doyeon for more information.`}</address>
           </div>
           <ConsultToggle toggleBtn={toggleBtn}>
             <a

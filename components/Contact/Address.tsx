@@ -47,7 +47,7 @@ const BoxContainer = styled.div`
 `;
 
 const Address = () => {
-  const fadeInUp = useScrollFadeIn("up", 1, 0);
+  const fadeInUp = useScrollFadeIn();
   return (
     <Container {...fadeInUp}>
       <BoxContainer>

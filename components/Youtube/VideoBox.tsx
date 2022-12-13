@@ -56,7 +56,7 @@ interface Props {
 const VideoBox = ({ video }: Props) => {
   const [imageSrc, setImageSrc] = useState(video.snippet.thumbnails.high.url);
   const published = new Date(video.snippet.publishTime);
-  const fadeInUp = useScrollFadeIn("up", 1, 0);
+  const fadeInUp = useScrollFadeIn();
 
   const onError = () => {
     console.log("error image");

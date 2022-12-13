@@ -7,6 +7,7 @@ const Body = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  transition: all 0.25s;
   background-color: ${({ theme }) => theme.secondary};
 `;
 

@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Frontend Developer Doyeonism</title>
+        <title>{`Frontend Developer Doyeonism`}</title>
         <meta
           name="description"
           content="프론트엔드 개발자 도여니즘의 포트폴리오 사이트입니다."

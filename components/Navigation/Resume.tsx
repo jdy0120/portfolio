@@ -38,7 +38,7 @@ const Resume = () => {
   return (
     <Container>
       <div>
-        <Image onClick={toggleTheme} src={moon[theme]} alt="" />
+        <Image onClick={toggleTheme} src={moon[theme]} alt="" priority />
       </div>
       <div>
         <a href="https://drive.google.com/file/d/1MkZ69b5uC6QmmlrI5lazq8CzucZNcpAb/view?usp=sharing">

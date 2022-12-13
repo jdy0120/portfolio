@@ -13,9 +13,9 @@ export const articles = [
     img: img3,
   },
   {
-    url: "#",
+    url: "https://doyeonism.tistory.com/33",
     projectName: "운동 선수 순위권 출력 프로젝트",
-    term: "2022.11.10-진행중",
+    term: "2022.11.15-진행중",
     img: img6,
   },
   {

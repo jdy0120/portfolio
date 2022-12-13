@@ -41,7 +41,7 @@ const Resume = () => {
         <Image onClick={toggleTheme} src={moon[theme]} alt="" priority />
       </div>
       <div>
-        <a href="https://drive.google.com/file/d/1MkZ69b5uC6QmmlrI5lazq8CzucZNcpAb/view?usp=sharing">
+        <a href="https://drive.google.com/file/d/1oFfbmozE3WxJtwF7og_mU38WD5g5m4yC/view?usp=sharing">
           <button>{`Resume`}</button>
         </a>
       </div>

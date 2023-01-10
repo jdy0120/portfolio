@@ -4,8 +4,15 @@ import img3 from "public/assets/project3.png";
 import img4 from "public/assets/project4.png";
 import img5 from "public/assets/project5.png";
 import img6 from "public/assets/project6.png";
+import img7 from "public/assets/project7.png";
 
 export const articles = [
+  {
+    url: "https://blog.doyeonism.com/41",
+    projectName: "DoyeonPedia Social WebSite",
+    term: "2023.12.30-2022.1.30",
+    img: img7,
+  },
   {
     url: "https://blog.doyeonism.com/26",
     projectName: "포트폴리오 웹사이트",

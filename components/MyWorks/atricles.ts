@@ -9,7 +9,7 @@ import img7 from "public/assets/project7.png";
 export const articles = [
   {
     url: "https://blog.doyeonism.com/41",
-    projectName: "DoyeonPedia Social WebSite",
+    projectName: "도연피디아 소셜 웹사이트",
     term: "2023.12.30-2022.1.30",
     img: img7,
   },

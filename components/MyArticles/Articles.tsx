@@ -8,6 +8,7 @@ import Category from "./Category";
 const Container = styled.div`
   width: 80%;
   height: 40%;
+  margin: 2rem 0 2rem 0;
   display: flex;
   justify-content: space-between;
   @media (max-width: 875px) {

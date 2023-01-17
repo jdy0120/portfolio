@@ -46,7 +46,7 @@ const contents = [
   {
     title: "Communication",
     content: [
-      { image: figmalogo, url: "https://blog.doyeonism.com/search/figam" },
+      { image: figmalogo, url: "https://blog.doyeonism.com/search/figma" },
       { image: slacklogo, url: "https://blog.doyeonism.com/search/slcak" },
       { image: zeplinlogo, url: "https://blog.doyeonism.com/search/zeplin" },
     ],

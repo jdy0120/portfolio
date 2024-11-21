@@ -1,6 +1,7 @@
 {
   "name": "portfolio",
   "version": "0.1.0",
+  "homepage": "https://portfolio.doyeonism.com",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,14 +10,36 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.5.1",
+    "@emotion/css": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
+    "@react-hook/window-size": "^3.1.1",
+    "antd": "^5.22.2",
+    "framer-motion": "^11.11.17",
+    "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.1.0"
+    "react-fastclick": "^3.0.2",
+    "react-rotating-text": "^1.4.1",
+    "react-spring": "^9.7.4",
+    "zustand": "^5.0.1"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
-    "@types/react-dom": "^18"
-  }
+    "@types/react-dom": "^18",
+    "typescript": "^5"
+  },
+  "keywords": [
+    "프론트엔드",
+    "frontend",
+    "backend",
+    "백엔드",
+    "이력서",
+    "nextjs",
+    "javascript",
+    "boilerplate",
+    "typescript",
+    "react"
+  ]
 }

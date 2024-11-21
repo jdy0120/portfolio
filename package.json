@@ -17,6 +17,7 @@
     "antd": "^5.22.2",
     "framer-motion": "^11.11.17",
     "next": "14.1.0",
+    "normalize.css": "^8.0.1",
     "react": "^18",
     "react-dom": "^18",
     "react-fastclick": "^3.0.2",

@@ -16,9 +16,7 @@ interface Props {
 }
 const ThemeModeSelector = (props: Props) => {
   const { size } = props;
-  const { useDark } = useThemeStore();
-
-  const toggleTheme = () => dispatch(setUseDark(!useDark));
+  const { useDark, toggleTheme } = useThemeStore();
 
   const spring = {
     type: "spring",

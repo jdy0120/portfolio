@@ -8,6 +8,9 @@ import MyProfile from "../profile/MyProfile";
 import { useThemeStore } from "@/app/lib/zustand/themeStore";
 
 import COLOR from "../../core/colors";
+import { ArrowUpOutlined } from "@ant-design/icons";
+import IconMenu from "../menu/IconMenu";
+import HeroBackground from "../common/Background";
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -25,9 +28,15 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 
   return (
     <AnimatePresence>
-      <Layout>
-        <Layout.Content>
-          <motion.div>
+      <Layout
+        style={{ transition: "background-image 1s ease-in-out" }}
+        className={`${useDark ? "dark" : "light"} auth main-layout`}
+      >
+        <Layout.Content
+          style={{ minHeight: screens.md ? onlyHeight : "100%" }}
+        >
+          <motion.div animate={controls}>
+            <HeroBackground backStyle={backColor} />
             <Row style={{ height: screens.lg ? "100vh" : "auto" }}>
               <Col
                 xs={24}
@@ -94,16 +103,39 @@ const MainLayout = ({ children }: MainLayoutProps) => {
                           : "transparent",
                     }}
                   >
-                    {/* <Suspense fallback={<LazyIconLoader />}>
+                    <Suspense fallback={<></>}>
                       <IconMenu />
-                    </Suspense> */}
+                    </Suspense>
                   </div>
                 </Affix>
               </Col>
               <Col xs={24} sm={24} md={24} lg={15} xl={15} xxl={15}>
                 {/* <FolioRoutes ref={RouteRef} loading={loading} /> */}
+                <>{children}</>
               </Col>
             </Row>
+            <BackTop
+              visibilityHeight={400}
+              style={{ bottom: 30, right: 30 }}
+            >
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                style={{
+                  height: 40,
+                  width: 40,
+                  lineHeight: "40px",
+                  borderRadius: 4,
+                  backgroundColor: COLOR.PURPLE_POINT_BG,
+                  boxShadow: `0px 1px 10px 3px ${COLOR.BTN_LESS_SHADOW}`,
+                  color: "#fff",
+                  textAlign: "center",
+                  fontSize: 14,
+                }}
+              >
+                <ArrowUpOutlined />
+              </motion.div>
+            </BackTop>
           </motion.div>
         </Layout.Content>
       </Layout>

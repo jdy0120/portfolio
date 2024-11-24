@@ -1,12 +1,12 @@
 import { Row, Col, Typography, Avatar, Affix, Grid } from "antd";
-// import ReactRotatingText from "react-rotating-text";
+import ReactRotatingText from "react-rotating-text";
 import { GithubOutlined } from "@ant-design/icons";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 import { pageVariants, pageTransition } from "../../interface/motion";
 import COLOR from "../../core/colors";
 import { useThemeStore } from "../../lib/zustand/themeStore";
-import MePhoto from "../../assets/images/me.png";
+import MePhoto from "../../assets/images/doyeonism.png";
 
 interface MainIntroTextProps {
   useDark: boolean;
@@ -157,10 +157,10 @@ const MyProfile = () => {
                     color: useDark ? "white" : "black",
                     textShadow: "rgba(0, 0, 0, 0.2) 0px 2px 8px",
                   }}
-                  href="https://github.com/babamba"
+                  href="https://github.com/jdy0120"
                   target="_blank"
                 >
-                  JW <GithubOutlined />
+                  DOYEONISM <GithubOutlined />
                 </Typography.Link>
               </Typography.Title>
             </div>
@@ -202,20 +202,19 @@ const MyProfile = () => {
               <motion.div variants={textVariants}>
                 <SubIntroText useDark={useDark}>
                   {screens.xl && (
-                    // <ReactRotatingText
-                    //   items={[
-                    //     "Front",
-                    //     "React",
-                    //     "UI ",
-                    //     "BackEnd",
-                    //     "Salesforce",
-                    //     "진지한",
-                    //     "배고픈",
-                    //   ]}
-                    // />
-                    <></>
+                    <ReactRotatingText
+                      items={[
+                        "Front",
+                        "React",
+                        "UI ",
+                        "BackEnd",
+                        "Salesforce",
+                        "진지한",
+                        "배고픈",
+                      ]}
+                    />
                   )}
-                  개발자 김진원입니다.
+                  개발 조도연입니다.
                 </SubIntroText>
               </motion.div>
             </Col>
@@ -245,20 +244,19 @@ const MyProfile = () => {
                 )} */}
                 <SubIntroSmallText useDark={useDark}>
                   {screens.sm && (
-                    // <ReactRotatingText
-                    //   items={[
-                    //     "Front",
-                    //     "React",
-                    //     "UI ",
-                    //     "BackEnd",
-                    //     "Salesforce",
-                    //     "진지한",
-                    //     "배고픈",
-                    //   ]}
-                    // />
-                    <></>
+                    <ReactRotatingText
+                      items={[
+                        "Front",
+                        "React",
+                        "UI ",
+                        "BackEnd",
+                        "Salesforce",
+                        "진지한",
+                        "배고픈",
+                      ]}
+                    />
                   )}
-                  개발자 김진원입니다.
+                  개발자 조도연입니다.
                 </SubIntroSmallText>
               </motion.div>
             </Col>

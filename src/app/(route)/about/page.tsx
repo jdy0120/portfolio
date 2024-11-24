@@ -9,7 +9,6 @@ import {
   Typography,
   Badge,
   Grid,
-  Empty,
 } from "antd";
 import styled from "@emotion/styled";
 

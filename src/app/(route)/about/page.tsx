@@ -10,7 +10,6 @@ import {
   Badge,
   Grid,
 } from "antd";
-import styled from "@emotion/styled";
 
 import COLOR from "../../core/colors";
 import { pageVariants, pageTransition } from "../../interface/motion";

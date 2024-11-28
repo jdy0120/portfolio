@@ -1,0 +1,15 @@
+name: production
+services:
+  server:
+    build:
+      context: ../../
+      dockerfile: ./ci/dockerfiles/Dockerfile
+      target: production
+    volumes:
+      - ../../src:/usr/src/app/src
+      - /usr/src/app/node_modules
+    ports:
+      - ${APP_DOCKER_HOST_PORT}:${PORT}
+    depends_on:
+      database:
+        condition: service_healthy

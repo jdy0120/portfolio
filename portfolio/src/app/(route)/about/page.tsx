@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import {
   Row,
   Col,

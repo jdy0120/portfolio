@@ -2,7 +2,6 @@
 
 import { Timeline, Row, Col, Card, Grid } from "antd";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
 import { pageTransition, pageVariants } from "../../interface/motion";
 
 import ResumeContent from "../../component/resume/ResumeContent";

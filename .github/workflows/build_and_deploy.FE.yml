@@ -18,17 +18,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Navigate to frontend directory
-        run: cd portfolio # 프론트엔드 디렉토리로 이동
-
       - name: Setup node
         uses: actions/setup-node@v2
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd portfolio
+          npm install
 
       - name: Build static file
-        run: npm run build
+        run: |
+          cd portfolio
+          npm run build
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -38,7 +39,9 @@ jobs:
           aws-region: us-east-2
 
       - name: Deploy static site to S3 bucket
-        run: aws s3 sync ./out s3://doyeonism-portfolio
+        run: |
+          cd portfolio
+          aws s3 sync ./out s3://doyeonism-portfolio
 
       # - name: Invalidate CloudFront Cache
       #   run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/*"

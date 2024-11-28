@@ -1,0 +1,19 @@
+name: backend build and deploy
+on:
+  push:
+    paths:
+      - "portfolio-server/**"
+    branches:
+      - main
+  pull_request:
+    paths:
+      - "portfolio-server/**"
+    branches:
+      - main
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2

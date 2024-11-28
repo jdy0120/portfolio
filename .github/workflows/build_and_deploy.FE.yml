@@ -1,4 +1,4 @@
-name: frontend build and deploy
+name: backend build and deploy
 on:
   push:
     paths:

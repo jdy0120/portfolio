@@ -1,4 +1,4 @@
-name: backend build and deploy
+name: frontend build and deploy
 on:
   push:
     paths:
@@ -17,6 +17,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Navigate to frontend directory
+        run: cd portfolio # 프론트엔드 디렉토리로 이동
 
       - name: Setup node
         uses: actions/setup-node@v2

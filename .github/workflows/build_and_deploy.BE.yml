@@ -17,3 +17,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Navigate to backend directory
+        run: cd portfolio-server # 백엔드 디렉토리로 이동
+

@@ -9,7 +9,7 @@ const runServer = async () => {
   const PORT = process.env.PORT;
   app.listen(PORT, async () => {
     await connectPostgres();
-    console.log("PostgreSQL에 성공적으로 연결되었습니다!");
+    console.log("Connected to PostgreSQL!");
 
     console.log(`Server is running on http://localhost:${PORT}`);
   });

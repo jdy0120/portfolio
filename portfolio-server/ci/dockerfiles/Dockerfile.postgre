@@ -1,7 +1,7 @@
 FROM postgres:15.1-alpine
 
 LABEL version="1.0.0"
-LABEL maintainer="PIYoung"
+LABEL maintainer="Doyeonism"
 
 WORKDIR /.
 

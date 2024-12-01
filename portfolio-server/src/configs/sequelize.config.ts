@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
-import * as models from "../models";
+import * as models from "../blog/models";
 
 const modelSync = async (sequelize: Sequelize) => {
   sequelize.addModels(Object.values(models));

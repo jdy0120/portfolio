@@ -1,5 +1,7 @@
 FROM node:22-alpine as base
 
+LABEL maintainer="Doyeonism"
+
 FROM base as local
 WORKDIR /usr/src/app
 ENV NODE_ENV=development

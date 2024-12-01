@@ -1,5 +1,5 @@
 import express from "express";
-import * as routes from "../routes";
+import blogRouter from "../blog/routes";
 
 const app = express();
 
@@ -8,6 +8,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.use("/", routes.v1.test);
+app.use("/", blogRouter);
 
 export default app;

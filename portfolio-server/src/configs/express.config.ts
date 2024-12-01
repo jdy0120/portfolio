@@ -1,5 +1,4 @@
 import express from "express";
-import blogRouter from "../blog/routes";
 
 const app = express();
 
@@ -8,6 +7,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.use("/", blogRouter);
+app.use("/", (req, res) => {
+  res.status(200).json({ message: "Hello World" });
+});
 
 export default app;

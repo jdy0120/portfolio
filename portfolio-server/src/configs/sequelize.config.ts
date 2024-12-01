@@ -1,10 +1,10 @@
 import { Sequelize } from "sequelize-typescript";
-import * as models from "../blog/models";
+// import * as models from "../blog/models";
 
-const modelSync = async (sequelize: Sequelize) => {
-  sequelize.addModels(Object.values(models));
-  await sequelize.sync();
-};
+// const modelSync = async (sequelize: Sequelize) => {
+//   sequelize.addModels(Object.values(models));
+//   await sequelize.sync();
+// };
 
 export const connectPostgres = async () => {
   try {
@@ -25,8 +25,8 @@ export const connectPostgres = async () => {
 
     await sequelize.authenticate();
 
-    console.log("table migration start :: only use in local");
-    await modelSync(sequelize);
+    // console.log("table migration start :: only use in local");
+    // await modelSync(sequelize);
 
     return sequelize;
   } catch (error) {

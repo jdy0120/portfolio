@@ -1,5 +1,5 @@
 import express from "express";
-
+import exampleRouter from "../example/routes";
 const app = express();
 
 // Middleware
@@ -7,8 +7,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.use("/", (req, res) => {
-  res.status(200).json({ message: "Hello World" });
-});
+app.use("/api", exampleRouter);
 
 export default app;

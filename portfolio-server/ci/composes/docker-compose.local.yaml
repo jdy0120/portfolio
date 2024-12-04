@@ -14,19 +14,6 @@ services:
       database:
         condition: service_healthy
 
-  nginx:
-    image: nginx:latest
-    volumes:
-      - ../nginx/default.conf:/etc/nginx/conf.d/default.conf
-    ports:
-      - ${NGINX_DOCKER_HOST_PORT}:${NGINX_PORT}
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    depends_on:
-      - server
-    networks:
-      - server-network
-
   database:
     image: postgres:16
     environment:
@@ -41,7 +28,3 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-
-networks:
-  server-network:
-    driver: bridge

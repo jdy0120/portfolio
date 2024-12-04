@@ -17,7 +17,7 @@ declare global {
 
 declare module "express-serve-static-core" {
   interface ParamsDictionary {
-    id: number;
+    id: string;
     [key: string]: string;
   }
 }

@@ -65,7 +65,7 @@ export class Example extends SQLZ_TS.Model<
   }
 
   static async readOne(
-    id: number,
+    id: string,
     options?: Omit<SQLZ.FindOptions<ExampleAttributes>, "where">
   ) {
     return this.findByPk(id, {
@@ -74,7 +74,7 @@ export class Example extends SQLZ_TS.Model<
   }
 
   static async erase(
-    id: number,
+    id: string,
     options?: Omit<SQLZ.DestroyOptions<ExampleAttributes>, "where">
   ) {
     return this.destroy({

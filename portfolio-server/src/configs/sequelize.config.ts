@@ -25,8 +25,8 @@ export const connectPostgres = async () => {
 
     await sequelize.authenticate();
 
-    // console.log("table migration start :: only use in local");
-    // await modelSync(sequelize);
+    console.log("table migration start :: only use in local");
+    await modelSync(sequelize);
 
     return sequelize;
   } catch (error) {

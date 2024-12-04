@@ -1,10 +1,10 @@
 import { Sequelize } from "sequelize-typescript";
-// import * as models from "../blog/models";
+import * as models from "../example/models";
 
-// const modelSync = async (sequelize: Sequelize) => {
-//   sequelize.addModels(Object.values(models));
-//   await sequelize.sync();
-// };
+const modelSync = async (sequelize: Sequelize) => {
+  sequelize.addModels(Object.values(models));
+  await sequelize.sync();
+};
 
 export const connectPostgres = async () => {
   try {

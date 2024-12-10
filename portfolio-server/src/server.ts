@@ -1,9 +1,10 @@
-import { configDotenv } from "./configs/dotenv.config";
-import { connectPostgres } from "./configs/sequelize.config";
+import { configDotenv } from "./shared/configs/dotenv.config";
+import { connectPostgres } from "./shared/configs/sequelize.config";
 configDotenv();
 
 const runServer = async () => {
-  const app = (await import("./configs/express.config")).default;
+  const app = (await import("./shared/configs/express.config"))
+    .default;
 
   // Start Server
   const PORT = process.env.PORT;

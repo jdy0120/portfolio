@@ -28,11 +28,11 @@ export const configDotenv = () => {
       return;
 
     case "local":
-      envPath = join(path, ".env.local");
+      envPath = join(path, "./envs/.env.local");
       break;
 
     case "test":
-      envPath = join(path, ".env.test");
+      envPath = join(path, "./envs/.env.test");
       break;
 
     default:

@@ -1,14 +1,20 @@
 import { Sequelize } from "sequelize-typescript";
 import * as models from "../../example/models";
+import * as shared from "../models";
 
 const modelSync = async (sequelize: Sequelize) => {
-  sequelize.addModels(Object.values(models));
+  sequelize.addModels([
+    ...Object.values(shared),
+    ...Object.values(models),
+  ]);
   await sequelize.sync();
 };
 
+export let seq: Sequelize;
+
 export const connectPostgres = async () => {
   try {
-    const sequelize = new Sequelize({
+    seq = new Sequelize({
       host: process.env.POSTGRES_HOST,
       port: Number(process.env.POSTGRES_PORT) || 5432,
       username: process.env.POSTGRES_USER,
@@ -23,12 +29,12 @@ export const connectPostgres = async () => {
       },
     });
 
-    await sequelize.authenticate();
+    await seq.authenticate();
 
     console.log("table migration start :: only use in local");
-    await modelSync(sequelize);
+    await modelSync(seq);
 
-    return sequelize;
+    return seq;
   } catch (error) {
     console.error("PostgreSQL 연결 실패", error);
     throw error;

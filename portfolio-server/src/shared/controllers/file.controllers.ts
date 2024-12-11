@@ -1,9 +1,19 @@
-import { Request, Response } from "express";
+import { Request } from "express";
 
 import fileService from "../services/file.service";
+import { BaseResponse } from "../types";
+import { AttachmentTempAttributes } from "../models/v1/attachment.model";
+import { STATUS_CODES } from "../constants";
+import { getResponsePhrase } from "../utils/http";
 
-export const upload = async (req: Request, res: Response) => {
+export const upload = async (req: Request) => {
   const data = await fileService.upload(req);
 
-  return res.status(200).json({ hello: "world" });
+  req.statusCode = STATUS_CODES.OK;
+
+  return <BaseResponse<AttachmentTempAttributes>>{
+    result: true,
+    message: getResponsePhrase(STATUS_CODES.CREATED),
+    data,
+  };
 };

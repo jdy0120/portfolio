@@ -1,8 +1,10 @@
 import { Request } from "express";
-import { ParamsDictionary } from "express-serve-static-core";
 
 import exampleService from "../services/example.service";
-import { ListQuery } from "../../shared/dtos/common.dto";
+import { BasicResponse, ListResponse } from "../../shared/types";
+import { Example } from "../models";
+import { getResponsePhrase } from "../../shared/utils/http";
+import { STATUS_CODES } from "../../shared/constants";
 
 const write = async (req: Request) => {
   const data = await exampleService.write(req);
@@ -10,23 +12,38 @@ const write = async (req: Request) => {
   return data;
 };
 
-const readAll = async (query: ListQuery) => {
-  console.log(query);
-  const data = await exampleService.readAll();
+const readAll = async (req: Request) => {
+  const { count, rows: data } = await exampleService.readAll(req);
 
-  return data;
+  req.statusCode = STATUS_CODES.OK;
+
+  return <ListResponse<Example>>{
+    result: true,
+    message: getResponsePhrase(STATUS_CODES.OK),
+    count,
+    data,
+  };
 };
 
-const readOne = async (params: ParamsDictionary) => {
-  const data = await exampleService.readOne(params);
+const readOne = async (req: Request) => {
+  const data = await exampleService.readOne(req);
 
-  return data;
+  return <BasicResponse<Example>>{
+    result: true,
+    message: getResponsePhrase(STATUS_CODES.OK),
+    data,
+  };
 };
 
-const erase = async (params: ParamsDictionary) => {
-  const data = await exampleService.erase(params);
+const erase = async (req: Request) => {
+  const { result } = await exampleService.erase(req);
 
-  return data;
+  req.statusCode = STATUS_CODES.OK;
+
+  return <BasicResponse<Example>>{
+    result,
+    message: getResponsePhrase(STATUS_CODES.OK),
+  };
 };
 
 export default {

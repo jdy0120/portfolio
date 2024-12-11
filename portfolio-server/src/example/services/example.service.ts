@@ -7,15 +7,23 @@ const write = async (req: Request) => {
   return Example.write({ ...req.body });
 };
 
-const readAll = async () => {
-  return Example.readAll();
+const readAll = async (req: Request) => {
+  const { query } = req;
+  return Example.readAll(query);
 };
 
-const readOne = async (params: ParamsDictionary) => {
+const readOne = async (
+  req: Request<ParamsDictionary, unknown, unknown, unknown>
+) => {
+  const { params } = req;
+
   return Example.readOne(params.id);
 };
 
-const erase = async (params: ParamsDictionary) => {
+const erase = async (
+  req: Request<ParamsDictionary, unknown, unknown, unknown>
+) => {
+  const { params } = req;
   return Example.erase(params.id);
 };
 

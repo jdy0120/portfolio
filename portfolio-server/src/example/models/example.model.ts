@@ -1,5 +1,6 @@
 import * as SQLZ_TS from "sequelize-typescript";
 import * as SQLZ from "sequelize";
+import { ListQuery } from "../../shared/dtos/common.dto";
 
 export interface ExampleAttributes {
   id: number;
@@ -58,10 +59,30 @@ export class Example extends SQLZ_TS.Model<
   }
 
   static async readAll(
-    this: typeof Example,
+    query: ListQuery,
     options?: SQLZ.FindOptions<ExampleAttributes>
   ) {
-    return this.findAll(options);
+    const {
+      page = 1,
+      coount = 30,
+      sort = "createdAt",
+      dir = "DESC",
+      type,
+    } = query;
+    const where = type ? { type } : {};
+
+    return this.findAndCountAll({
+      distinct: true,
+      where,
+      nest: true,
+      raw: false,
+      limit: coount,
+      offset: (page - 1) * coount,
+      order: [[sort, dir]],
+      ...options,
+    }).catch((error) => {
+      throw error;
+    });
   }
 
   static async readOne(
@@ -69,7 +90,11 @@ export class Example extends SQLZ_TS.Model<
     options?: Omit<SQLZ.FindOptions<ExampleAttributes>, "where">
   ) {
     return this.findByPk(id, {
+      nest: true,
+      raw: false,
       ...options,
+    }).catch((error) => {
+      throw error;
     });
   }
 
@@ -77,9 +102,16 @@ export class Example extends SQLZ_TS.Model<
     id: string,
     options?: Omit<SQLZ.DestroyOptions<ExampleAttributes>, "where">
   ) {
-    return this.destroy({
+    const destryedCount = await this.destroy({
       where: { id },
       ...options,
     });
+
+    let result = true;
+    if (destryedCount === 0) {
+      result = false;
+    }
+
+    return { result };
   }
 }

@@ -1,5 +1,6 @@
 import express from "express";
-import exampleRouter from "../../example/routes";
+import { sharedRouter } from "../routes";
+
 const app = express();
 
 // Middleware
@@ -7,6 +8,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.use("/api", exampleRouter);
+app.use("/", sharedRouter);
 
 export default app;

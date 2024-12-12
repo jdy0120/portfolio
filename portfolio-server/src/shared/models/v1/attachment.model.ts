@@ -68,15 +68,13 @@ export class AttachmentTemp extends SQLZ_TS.Model<
     values: AttachmentTempCreationAttributes[],
     options?: SQLZ.CreateOptions<SQLZ.Attributes<AttachmentTemp>>
   ) {
-    return this.schema(`main`)
-      .bulkCreate(values, {
-        returning: true,
-        ...options,
-      })
-      .catch((error) => {
-        console.error(error);
-        throw error;
-      });
+    return this.bulkCreate(values, {
+      returning: true,
+      ...options,
+    }).catch((error) => {
+      console.error(error);
+      throw error;
+    });
   }
 
   static async readAll(

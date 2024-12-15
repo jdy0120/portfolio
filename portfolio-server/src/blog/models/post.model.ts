@@ -15,7 +15,7 @@ export interface PostAttributes {
   categoryId: number;
   imageUrl: string;
   metaDescription: string;
-  viewCount: number;
+  viewCount?: number;
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;
@@ -63,6 +63,7 @@ export class Post extends SQLZ_TS.Model<
   @SQLZ_TS.Column(SQLZ_TS.DataType.STRING)
   readonly metaDescription!: string;
 
+  @SQLZ_TS.Default(0)
   @SQLZ_TS.Column(SQLZ_TS.DataType.INTEGER)
   readonly viewCount!: number;
 

@@ -13,9 +13,18 @@ export const validateJwt =
         info?: object | string | Array<string | undefined>,
         _status?: number | Array<number | undefined>
       ) => {
-        if (err) return next(err);
-        if (info && info instanceof Error) return next(info);
-        if (user) req.user = user;
+        if (err) {
+          console.error("Authentication error:", err);
+          return next(err);
+        }
+        if (info) {
+          console.warn("Authentication info:", info);
+          if (info instanceof Error) return next(info);
+        }
+        if (user) {
+          console.log("Authenticated user:", user);
+          req.user = user;
+        }
 
         return next();
       }

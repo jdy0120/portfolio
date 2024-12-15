@@ -8,7 +8,7 @@ import { seq } from "../../shared/configs/sequelize.config";
 import {
   AttachmentTemp,
   AttachmentTempCreationAttributes,
-} from "../models/v1/attachment.model";
+} from "../models/main/attachment.model";
 import {
   PutObjectCommand,
   PutObjectCommandInput,

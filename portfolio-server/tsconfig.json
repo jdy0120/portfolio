@@ -1,4 +1,8 @@
 {
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist"],
+  "ts-node": { "files": true },
+  "files": ["src/shared/types/global.d.ts"],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
 

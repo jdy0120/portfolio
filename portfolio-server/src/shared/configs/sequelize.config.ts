@@ -1,11 +1,13 @@
 import { Sequelize } from "sequelize-typescript";
 import * as models from "../../blog/models";
+import * as auth from "../../shared/models";
 import * as shared from "../models";
 
 const modelSync = async (sequelize: Sequelize) => {
   sequelize.addModels([
     ...Object.values(shared),
     ...Object.values(models),
+    ...Object.values(auth),
   ]);
   await sequelize.sync();
 };

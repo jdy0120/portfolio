@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
-import * as models from "../../example/models";
+import * as models from "../../blog/models";
 import * as shared from "../models";
 
 const modelSync = async (sequelize: Sequelize) => {

@@ -18,7 +18,7 @@ const readAll = async (req: Request) => {
 };
 
 const write = async (req: Request) => {
-  const data = await categoryService.write(req.body);
+  const data = await categoryService.write(req);
 
   req.statusCode = STATUS_CODES.CREATED;
 

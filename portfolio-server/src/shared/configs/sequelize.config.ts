@@ -21,6 +21,10 @@ export const connectPostgres = async () => {
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE,
       dialect: "postgres",
+      define: {
+        paranoid: true,
+        timestamps: true,
+      },
       pool: {
         max: 20,
         min: 0,

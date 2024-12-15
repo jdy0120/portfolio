@@ -16,8 +16,8 @@ export interface PostAttributes {
   imageUrl: string;
   metaDescription: string;
   viewCount: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
   deletedAt?: Date;
 }
 
@@ -27,7 +27,11 @@ export type PostCreationAttributes = SQLZ.Optional<
   PostOmitAttributes
 >;
 
-@SQLZ_TS.Table({ tableName: "cf_post", modelName: "post" })
+@SQLZ_TS.Table({
+  tableName: "cf_post",
+  modelName: "post",
+  paranoid: true,
+})
 export class Post extends SQLZ_TS.Model<
   PostAttributes,
   PostCreationAttributes
@@ -37,36 +41,28 @@ export class Post extends SQLZ_TS.Model<
   @SQLZ_TS.Column(SQLZ_TS.DataType.INTEGER)
   override readonly id!: number;
 
-  @SQLZ_TS.AllowNull(false)
   @SQLZ_TS.Column(SQLZ_TS.DataType.STRING)
   readonly title!: string;
 
-  @SQLZ_TS.AllowNull(false)
   @SQLZ_TS.Column(SQLZ_TS.DataType.STRING)
   readonly description!: string;
 
-  @SQLZ_TS.AllowNull(false)
   @SQLZ_TS.Column(SQLZ_TS.DataType.STRING)
   readonly filePath!: string;
 
-  @SQLZ_TS.AllowNull(false)
   @SQLZ_TS.Column(SQLZ_TS.DataType.STRING)
   readonly slug!: string;
 
-  @SQLZ_TS.AllowNull(false)
   @SQLZ_TS.ForeignKey(() => Category)
   @SQLZ_TS.Column(SQLZ_TS.DataType.INTEGER)
   readonly categoryId!: number;
 
-  @SQLZ_TS.AllowNull(false)
   @SQLZ_TS.Column(SQLZ_TS.DataType.STRING)
   readonly imageUrl!: string;
 
-  @SQLZ_TS.AllowNull(false)
   @SQLZ_TS.Column(SQLZ_TS.DataType.STRING)
   readonly metaDescription!: string;
 
-  @SQLZ_TS.AllowNull(false)
   @SQLZ_TS.Column(SQLZ_TS.DataType.INTEGER)
   readonly viewCount!: number;
 
@@ -161,16 +157,19 @@ export class Post extends SQLZ_TS.Model<
     return data[0];
   }
 
-  static async delete(id: number) {
+  static async delete(
+    id: number,
+    options?: SQLZ.DestroyOptions<SQLZ.Attributes<Post>>
+  ) {
     const destroyedCount = await this.destroy({
       where: { id },
+      ...options,
     }).catch((error) => {
       console.error(error);
       throw error;
     });
 
     let result = true;
-
     if (destroyedCount === 0) {
       result = false;
     }

@@ -17,6 +17,7 @@ const write = async (
     imageUrl,
     metaDescription,
   } = req.body;
+
   const transaction = await seq.transaction();
 
   try {
@@ -69,7 +70,7 @@ const modify = async (
   const transaction = await seq.transaction();
 
   try {
-    const post = await Blog.Post.modify(postId, body, {
+    const post = await Blog.Post.modify(Number(postId), body, {
       transaction,
     });
     await transaction.commit();
@@ -86,7 +87,7 @@ const erase = async (
   const { params } = req;
   const postId = params.id;
 
-  return Blog.Post.delete(postId);
+  return Blog.Post.delete(Number(postId));
 };
 
 export default { write, readOne, readAll, modify, erase };

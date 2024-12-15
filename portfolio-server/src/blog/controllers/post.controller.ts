@@ -7,7 +7,7 @@ import { getResponsePhrase } from "../../shared/utils/http";
 import { Post } from "../models";
 
 const write = async (req: Request) => {
-  const data = await postService.write(req.body);
+  const data = await postService.write(req);
 
   req.statusCode = STATUS_CODES.CREATED;
 

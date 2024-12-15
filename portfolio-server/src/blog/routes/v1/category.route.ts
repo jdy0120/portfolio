@@ -7,8 +7,5 @@ export const categoryRouter = Router();
 
 categoryRouter
   .route("/categories")
-  .get(tryCatchAsync(categoryController.readAll));
-
-categoryRouter
-  .route("/categories/:id")
+  .get(tryCatchAsync(categoryController.readAll))
   .post(tryCatchAsync(categoryController.write));

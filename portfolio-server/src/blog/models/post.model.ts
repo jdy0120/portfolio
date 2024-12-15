@@ -2,6 +2,9 @@ import * as SQLZ_TS from "sequelize-typescript";
 import * as SQLZ from "sequelize";
 import { ListQuery } from "../../shared/dtos/common.dto";
 import { Category } from "./category.model";
+import { isUndefined } from "../../shared/utils";
+import { HttpError } from "../../shared/errors/http-error";
+import { STATUS_CODES } from "../../shared/constants";
 
 export interface PostAttributes {
   id: number;
@@ -9,7 +12,6 @@ export interface PostAttributes {
   description: string;
   filePath: string;
   slug: string;
-  status: string;
   categoryId: number;
   imageUrl: string;
   metaDescription: string;
@@ -50,10 +52,6 @@ export class Post extends SQLZ_TS.Model<
   @SQLZ_TS.AllowNull(false)
   @SQLZ_TS.Column(SQLZ_TS.DataType.STRING)
   readonly slug!: string;
-
-  @SQLZ_TS.AllowNull(false)
-  @SQLZ_TS.Column(SQLZ_TS.DataType.STRING)
-  readonly status!: string;
 
   @SQLZ_TS.AllowNull(false)
   @SQLZ_TS.ForeignKey(() => Category)
@@ -142,9 +140,12 @@ export class Post extends SQLZ_TS.Model<
   static async modify(
     id: number,
     values: Partial<PostAttributes>,
-    options?: SQLZ.UpdateOptions<SQLZ.Attributes<Post>>
+    options?: Omit<
+      SQLZ.UpdateOptions<SQLZ.Attributes<Post>>,
+      "returning" | "where"
+    >
   ) {
-    return this.update(values, {
+    const [affectedCount, data] = await this.update(values, {
       where: { id },
       returning: true,
       ...options,
@@ -152,12 +153,28 @@ export class Post extends SQLZ_TS.Model<
       console.error(error);
       throw error;
     });
+
+    if (affectedCount === 0 || isUndefined(data)) {
+      throw new HttpError(STATUS_CODES.NOT_FOUND, "Post not found");
+    }
+
+    return data[0];
   }
 
   static async delete(id: number) {
-    return this.destroy({ where: { id } }).catch((error) => {
+    const destroyedCount = await this.destroy({
+      where: { id },
+    }).catch((error) => {
       console.error(error);
       throw error;
     });
+
+    let result = true;
+
+    if (destroyedCount === 0) {
+      result = false;
+    }
+
+    return { result };
   }
 }

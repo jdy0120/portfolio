@@ -7,7 +7,7 @@ import { STATUS_CODES } from "../constants";
 import { getResponsePhrase } from "../utils/http";
 
 export const upload = async (req: Request) => {
-  const data = await fileService.upload(req);
+  const data = await fileService.uploads(req);
 
   req.statusCode = STATUS_CODES.OK;
 

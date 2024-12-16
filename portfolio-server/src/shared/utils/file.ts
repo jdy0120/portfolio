@@ -1,8 +1,9 @@
+import { randomBytes } from "crypto";
 import { Request } from "express";
 
 import formidable from "formidable";
 
-export const parseFormData = (
+const parseFormData = (
   req: Request
 ): Promise<{
   field: formidable.Fields;
@@ -24,3 +25,12 @@ export const parseFormData = (
     });
   });
 };
+
+const filename = (_name: string, extension: string) => {
+  const today = Date.now();
+  const random = randomBytes(16).toString("hex");
+
+  return `${today}_${random}.${extension}`;
+};
+
+export { filename, parseFormData };

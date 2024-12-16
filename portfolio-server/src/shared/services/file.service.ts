@@ -1,6 +1,5 @@
 import { Request } from "express";
 
-import { v4 as uuidv4 } from "uuid";
 import s3 from "../../shared/configs/aws.config";
 import fs from "fs/promises";
 import { parseFormData } from "../utils/file";
@@ -14,6 +13,7 @@ import {
   PutObjectCommandInput,
 } from "@aws-sdk/client-s3";
 import formidable from "formidable";
+import { filename } from "../utils/file";
 
 const uploadToS3 = async (
   file: formidable.File,
@@ -40,16 +40,20 @@ const uploads = async (req: Request) => {
     const attachmentTempList: AttachmentTempCreationAttributes[] = [];
 
     for (const file of files["files"]) {
-      const filename = file.newFilename;
+      const newFilename = file.newFilename;
       const extension = file.mimetype?.split("/")[1];
 
-      const uniqueFilename = `${uuidv4()}-${filename}.${extension}`;
+      const uniqueFilename = filename(
+        file.originalFilename as string,
+        extension as string
+      );
+
       const path = `https://${process.env.AWS_S3_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/assets/images/${uniqueFilename}`;
 
       await uploadToS3(file, uniqueFilename);
 
       attachmentTempList.push({
-        filename,
+        filename: newFilename,
         originalFilename: file.originalFilename as string,
         path,
         mimetype: file.mimetype as string,

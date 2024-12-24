@@ -13,7 +13,7 @@ export const tryCatchAsync =
   (fn: FnController) =>
   (req: Request, res: Response, next: NextFunction) =>
     Promise.resolve(fn(req, res, next))
-      .then((result) =>
-        res.status(req.statusCode ?? STATUS_CODES.OK).json(result)
-      )
+      .then((result) => {
+        res.status(req.statusCode ?? STATUS_CODES.OK).json(result);
+      })
       .catch((err) => next(err));

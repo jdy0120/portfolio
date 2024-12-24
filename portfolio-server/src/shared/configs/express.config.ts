@@ -8,6 +8,10 @@ import {
   localStrategy,
   refreshJwtStrategy,
 } from "./passport.config";
+import {
+  errorConverter,
+  errorHandler,
+} from "../middlewares/error.middleware";
 
 const app = express();
 
@@ -25,5 +29,8 @@ passport.use("validate-refresh-jwt", refreshJwtStrategy);
 
 // Routes
 app.use("/", sharedRouter);
+
+app.use(errorConverter);
+app.use(errorHandler);
 
 export default app;

@@ -2,6 +2,7 @@ import express from "express";
 import { sharedRouter } from "../routes";
 import compression from "compression";
 import passport from "passport";
+import cors from "cors";
 import {
   accessJwtStrategy,
   localStrategy,
@@ -10,6 +11,7 @@ import {
 
 const app = express();
 
+app.use(cors({ origin: "http://localhost:3000" }));
 app.use(compression());
 
 // Middleware

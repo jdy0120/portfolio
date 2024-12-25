@@ -4,19 +4,16 @@ import { Get } from "./request";
 
 // Request interceptor
 const insertAccessToken = (config: InternalAxiosRequestConfig) => {
-  const token = sessionStorage.getItem("persist:root");
+  const token = sessionStorage.getItem("login");
   // Check if token exists and is valid
   let accessToken;
   try {
-    const login = token ? JSON.parse(token).login : null;
-    accessToken = JSON.parse(login).accessToken;
+    const login = token ? JSON.parse(token)?.state : null;
+    accessToken = login?.accessToken;
   } catch (error) {
     console.error("Failed to parse token:", error);
     accessToken = null; // Ensure accessToken is null on error
   }
-
-  accessToken =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdybTE3NzFAc2VlcnNsYWIuY29tIiwicm9sZSI6InN1cGVyYWRtaW4iLCJpYXQiOjE3Mjc0MjM3OTAsImV4cCI6MTcyNzQyMzgwMH0.4sPnSexWWTf9BKtntHMhos6_62Fsw-AKid3sB8wSnHo";
 
   if (config.headers && accessToken) {
     config.headers.authorization = `Bearer ${accessToken}`;
@@ -29,20 +26,24 @@ const insertAccessToken = (config: InternalAxiosRequestConfig) => {
 const refreshAccessToken = async (response: AxiosResponse) => {
   if (response.status === 401) {
     const token = sessionStorage.getItem("login");
-    const refreshTokenInStorage = JSON.parse(token || "").state.refreshToken;
+    const refreshTokenInStorage = JSON.parse(token || "").state
+      .refreshToken;
     try {
-      const accessTokenResponse = await Get<LoginResponse>("/auth/refresh", {
-        params: {
-          refreshtoken: refreshTokenInStorage,
-        },
-      });
-      const accessToken = accessTokenResponse.data.data.accesstoken;
-      const refreshToken = accessTokenResponse.data.data.refreshtoken;
+      const accessTokenResponse = await Get<LoginResponse>(
+        "/auth/refresh",
+        {
+          params: {
+            refreshtoken: refreshTokenInStorage,
+          },
+        }
+      );
+      const accessToken = accessTokenResponse.data.data.accessToken;
+      const refreshToken = accessTokenResponse.data.data.refreshToken;
 
       console.log(accessTokenResponse);
       sessionStorage.setItem(
         "persist:root",
-        JSON.stringify({ state: { accessToken, refreshToken } }),
+        JSON.stringify({ state: { accessToken, refreshToken } })
       );
     } catch (error) {
       console.log(error);

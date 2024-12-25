@@ -26,7 +26,7 @@ const page = () => {
   const { mutate: login, isPending } = useLogin({
     onSuccess: (data: LoginResponse) => {
       setState({ isLogin: true, accessToken: data.accessToken });
-      router.push("/");
+      router.push("/home");
     },
   });
 

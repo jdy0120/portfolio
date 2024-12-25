@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev:dev": "NEXT_NODE_ENV=development next dev -p ${PORT:-3000}",
-    "dev:stg": "NEXT_NODE_ENV=staging next dev -p ${PORT:-3000}",
-    "dev:prod": "NEXT_NODE_ENV=production next dev -p ${PORT:-3000}",
+    "dev:dev": "NEXT_NODE_ENV=development next dev -p ${PORT:-3003}",
+    "dev:stg": "NEXT_NODE_ENV=staging next dev -p ${PORT:-3003}",
+    "dev:prod": "NEXT_NODE_ENV=production next dev -p ${PORT:-3003}",
     "build:dev": "NEXT_NODE_ENV=development next build",
     "build:stg": "NEXT_NODE_ENV=staging next build",
     "build:prod": "NEXT_NODE_ENV=production next build",

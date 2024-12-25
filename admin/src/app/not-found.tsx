@@ -35,6 +35,7 @@ const NotFountPageStyles = {
   `,
 
   Title: styled.h1`
-    ${({ theme }) => theme.typography.semibold}
+    ${({ theme }) => theme.typography.semibold[24]}
+    text-align: center;
   `,
 };

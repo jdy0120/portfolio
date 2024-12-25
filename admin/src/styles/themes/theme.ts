@@ -1,4 +1,5 @@
-import { css, Theme } from "@emotion/react";
+import { Theme } from "@emotion/react";
+import Typography from "./typography";
 
 const primaryColor = {
   bg: "#F9F9FA",
@@ -13,50 +14,40 @@ const primaryColor = {
   textActive: "#6A1E55",
 };
 
+const backgroundColor = {
+  bg1: "#FFFFFF",
+  bg2: "#F9F9FA",
+  bg3: "#E6F1FD",
+  bg4: "#EDEEFC",
+  bg5: "#FFFFFFCC",
+};
+
+const black = {
+  100: "#000000",
+  80: "#000000CC",
+  40: "#00000066",
+  20: "#00000033",
+  10: "#0000001A",
+  4: "#0000000A",
+};
+
+const white = {
+  100: "#FFFFFF",
+  80: "#FFFFFFCC",
+  40: "#FFFFFF66",
+  20: "#FFFFFF33",
+  10: "#FFFFFF1A",
+  4: "#FFFFFF0A",
+};
+
 const theme: Theme = {
   colors: {
     primary: primaryColor,
-    white: {
-      default: "#FFFFFF",
-      info: "#2656F6",
-    },
-    black: "#000000",
-    negative: "#F21724",
-    gray: {
-      50: "#F9FAFB",
-      100: "#F5F6F7",
-      200: "#E9EBED",
-      300: "#DBDEE2",
-      400: "#BFC6D2",
-      500: "#AAB1BC",
-      600: "#8E94A0",
-      700: "#6F7785",
-      800: "#404A5C",
-      900: "#101C33",
-    },
+    background: backgroundColor,
+    white: white,
+    black: black,
   },
-  typography: {
-    semibold: css`
-      font-family: var(--FontFamily);
-      font-size: 24px;
-      font-weight: 600;
-      line-height: 32px;
-      letter-spacing: var(--LetterSpacing);
-      text-align: center;
-      text-underline-position: from-font;
-      text-decoration-skip-ink: none;
-    `,
-    regular: css`
-      font-family: var(--FontFamily);
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 20px;
-      letter-spacing: var(--LetterSpacing);
-      text-align: center;
-      text-underline-position: from-font;
-      text-decoration-skip-ink: none;
-    `,
-  },
+  typography: Typography,
 };
 
 export { theme };

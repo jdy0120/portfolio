@@ -10,7 +10,7 @@ dotenv.config({
 });
 
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   env: {
     MODE: process.env.MODE,
   },

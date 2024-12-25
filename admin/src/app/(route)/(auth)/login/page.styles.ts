@@ -22,11 +22,13 @@ export const LoginPageStyles = {
   `,
 
   Title: styled.h1`
-    ${({ theme }) => theme.typography.semibold}
+    ${({ theme }) => theme.typography.semibold[24]}
+    text-align: center;
   `,
 
   Subtitle: styled.h2`
-    ${({ theme }) => theme.typography.regular}
+    ${({ theme }) => theme.typography.regular[14]}
+    text-align: center;
   `,
 
   InputContainer: styled.div`

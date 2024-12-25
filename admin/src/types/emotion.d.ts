@@ -27,24 +27,38 @@ interface Gradient {
   900: string;
 }
 
-interface MonoColor {
-  default: string;
-  info: string;
+interface BackgroundColor {
+  bg1: string;
+  bg2: string;
+  bg3: string;
+  bg4: string;
+  bg5: string;
+}
+
+interface White {
+  [key: number]: string;
+}
+
+interface Black {
+  [key: number]: string;
 }
 
 interface Typography {
-  semibold: SerializedStyles;
-  regular: SerializedStyles;
+  semibold: {
+    [key: number]: SerializedStyles;
+  };
+  regular: {
+    [key: number]: SerializedStyles;
+  };
 }
 
 declare module "@emotion/react" {
   export interface Theme {
     colors: {
       primary: Palette;
-      white: MonoColor;
-      black: string;
-      gray: Gradient;
-      negative: string;
+      background: BackgroundColor;
+      white: White;
+      black: Black;
     };
     typography: Typography;
   }

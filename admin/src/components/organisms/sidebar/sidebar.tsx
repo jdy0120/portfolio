@@ -21,7 +21,7 @@ const Sidebar = () => {
       </PorfileStyles.Profile>
       <SidebarStyles.Menu>
         {MENU.map((menu) => (
-          <MenuItem menu={menu} />
+          <MenuItem key={menu.key} menu={menu} />
         ))}
       </SidebarStyles.Menu>
     </SidebarStyles.Container>

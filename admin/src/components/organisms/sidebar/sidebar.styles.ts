@@ -7,8 +7,11 @@ const SidebarStyles = {
 
     border-right: 0.5px solid #0000001a;
 
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
     padding: 16px;
-    gap: 8px;
   `,
   Menu: styled.div`
     display: flex;

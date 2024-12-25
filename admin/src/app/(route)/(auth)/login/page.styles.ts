@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const LoginPageStyles = {
-  Container: styled.div`
+  Container: styled.form`
     padding: 104px 148px;
 
     border-radius: 24px;

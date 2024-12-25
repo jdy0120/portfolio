@@ -6,7 +6,7 @@ import {
 
 export const login = async (data: LoginRequest) => {
   try {
-    const response = await Post<LoginResponse>("/auth/login", data);
+    const response = await Post<LoginResponse>("/auth/sign-in", data);
 
     return response.data;
   } catch (error) {

@@ -24,16 +24,6 @@ const nextConfig = {
     });
     return config;
   },
-
-  async redirects() {
-    return [
-      {
-        source: "/",
-        destination: "/login",
-        permanent: true,
-      },
-    ];
-  },
 };
 
 export default withNextIntl(nextConfig);

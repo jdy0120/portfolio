@@ -1,11 +1,11 @@
 type LoginRequest = {
-  email: string;
+  userId: string;
   password: string;
 };
 
 type LoginResponse = {
-  accesstoken: string;
-  refreshtoken: string;
+  accessToken: string;
+  refreshToken: string;
 };
 
 export type { LoginRequest, LoginResponse };

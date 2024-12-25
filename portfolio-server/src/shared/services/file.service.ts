@@ -39,7 +39,9 @@ const uploads = async (req: Request) => {
   try {
     const attachmentTempList: AttachmentTempCreationAttributes[] = [];
 
-    for (const file of files["files"]) {
+    for (const file of Array.isArray(files["files"])
+      ? files["files"]
+      : [files["files"]]) {
       const newFilename = file.newFilename;
       const extension = file.mimetype?.split("/")[1];
 

@@ -48,6 +48,13 @@ const readOne = async (req: Request) => {
   return Blog.Post.findOne({ where: { id } });
 };
 
+const readSlug = async (req: Request) => {
+  const { params } = req;
+  const { slug } = params;
+
+  return Blog.Post.readSlug(slug);
+};
+
 const readAll = async (
   req: Request<unknown, unknown, unknown, ListQuery>
 ) => {
@@ -89,4 +96,4 @@ const erase = async (
   return Blog.Post.delete(postId);
 };
 
-export default { write, readOne, readAll, modify, erase };
+export default { write, readOne, readSlug, readAll, modify, erase };

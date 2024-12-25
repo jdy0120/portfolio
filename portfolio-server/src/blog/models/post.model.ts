@@ -50,6 +50,8 @@ export class Post extends SQLZ_TS.Model<
   @SQLZ_TS.Column(SQLZ_TS.DataType.STRING)
   readonly filePath!: string;
 
+  @SQLZ_TS.Index
+  @SQLZ_TS.Unique
   @SQLZ_TS.Column(SQLZ_TS.DataType.STRING)
   readonly slug!: string;
 
@@ -99,6 +101,19 @@ export class Post extends SQLZ_TS.Model<
     return this.findByPk(id, {
       nest: true,
       raw: false,
+      ...options,
+    }).catch((error) => {
+      console.error(error);
+      throw error;
+    });
+  }
+
+  static async readSlug(
+    slug: string,
+    options?: SQLZ.FindOptions<SQLZ.Attributes<Post>>
+  ) {
+    return this.findOne({
+      where: { slug },
       ...options,
     }).catch((error) => {
       console.error(error);

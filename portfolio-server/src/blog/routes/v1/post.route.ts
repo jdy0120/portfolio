@@ -14,3 +14,7 @@ postRouter
   .get(tryCatchAsync(postController.readOne))
   .put(tryCatchAsync(postController.modify))
   .delete(tryCatchAsync(postController.erase));
+
+postRouter
+  .route("/posts/slug/:slug")
+  .get(tryCatchAsync(postController.readSlug));

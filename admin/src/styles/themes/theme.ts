@@ -1,17 +1,21 @@
-const theme = {
+import { css, Theme } from "@emotion/react";
+
+const primaryColor = {
+  bg: "#F9F9FA",
+  bgHover: "#3B1C32",
+  border: "#1A1A1D",
+  borderHover: "#3B1C32",
+  hover: "#6A1E55",
+  default: "#1A1A1D",
+  active: "#A64D79",
+  textHover: "#4f7eff",
+  text: "#2656f6",
+  textActive: "#6A1E55",
+};
+
+const theme: Theme = {
   colors: {
-    primary: {
-      bg: "#f0f6ff",
-      bgHover: "#c9ddff",
-      border: "#a1c0ff",
-      borderHover: "#78a0ff",
-      hover: "#4f7eff",
-      default: "#2656f6",
-      active: "#153acf",
-      textHover: "#4f7eff",
-      text: "#2656f6",
-      textActive: "#153acf",
-    },
+    primary: primaryColor,
     white: {
       default: "#FFFFFF",
       info: "#2656F6",
@@ -30,6 +34,28 @@ const theme = {
       800: "#404A5C",
       900: "#101C33",
     },
+  },
+  typography: {
+    semibold: css`
+      font-family: var(--FontFamily);
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 32px;
+      letter-spacing: var(--LetterSpacing);
+      text-align: center;
+      text-underline-position: from-font;
+      text-decoration-skip-ink: none;
+    `,
+    regular: css`
+      font-family: var(--FontFamily);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: var(--LetterSpacing);
+      text-align: center;
+      text-underline-position: from-font;
+      text-decoration-skip-ink: none;
+    `,
   },
 };
 

@@ -31,6 +31,9 @@ export default async function RootLayout({
 
   return (
     <html lang="ko">
+      <head>
+        <title>My App</title>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable}`}
         suppressHydrationWarning

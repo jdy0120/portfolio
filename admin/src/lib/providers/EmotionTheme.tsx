@@ -5,6 +5,7 @@ import { Theme, ThemeProvider } from "@emotion/react";
 import { App, ConfigProvider } from "antd";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { theme as emotionTheme } from "../../styles/themes/theme";
+import GlobalStyle from "../../styles/themes/global";
 
 interface EmotionThemeProviderProps {
   children: React.ReactNode;
@@ -99,22 +100,20 @@ const EmotionThemeProvider = ({
 
           // Components settings (defaults)
           components: {
-            // Button: {
-            //   borderRadius: 6,
-            //   size: 16,
-            //   paddingInline: 12,
-            //   paddingBlock: 8,
-            //   fontWeight: 500
-            // },
+            Button: {
+              borderRadius: 12,
+              size: 16,
+              fontWeight: 500,
+              controlHeight: 40,
+              colorPrimary: theme.colors.primary.default,
+            },
             // Checkbox: {
             //   size: 48,
             //   borderRadius: 40
             // },
-            // Input: {
-            //   borderRadius: 6,
-            //   paddingInline: 12,
-            //   paddingBlock: 6
-            // },
+            Input: {
+              borderRadius: 12,
+            },
             // Modal: {
             //   borderRadius: 10
             // },
@@ -132,7 +131,10 @@ const EmotionThemeProvider = ({
         }}
       >
         <App>
-          <AntdRegistry>{children}</AntdRegistry>
+          <AntdRegistry>
+            <GlobalStyle />
+            {children}
+          </AntdRegistry>
         </App>
       </ConfigProvider>
     </ThemeProvider>

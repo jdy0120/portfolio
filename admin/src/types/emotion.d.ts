@@ -1,4 +1,5 @@
 import "@emotion/react";
+import { SerializedStyles } from "@emotion/react";
 
 interface Palette {
   bg: string;
@@ -31,6 +32,11 @@ interface MonoColor {
   info: string;
 }
 
+interface Typography {
+  semibold: SerializedStyles;
+  regular: SerializedStyles;
+}
+
 declare module "@emotion/react" {
   export interface Theme {
     colors: {
@@ -40,5 +46,6 @@ declare module "@emotion/react" {
       gray: Gradient;
       negative: string;
     };
+    typography: Typography;
   }
 }

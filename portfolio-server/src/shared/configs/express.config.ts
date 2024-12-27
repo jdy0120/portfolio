@@ -15,7 +15,7 @@ import {
 
 const app = express();
 
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors({ origin: "http://localhost:3003" }));
 app.use(compression());
 
 // Middleware

@@ -16,6 +16,7 @@ export interface PostAttributes {
   imageUrl: string;
   metaDescription: string;
   viewCount?: number;
+  status?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;
@@ -68,6 +69,10 @@ export class Post extends SQLZ_TS.Model<
   @SQLZ_TS.Default(0)
   @SQLZ_TS.Column(SQLZ_TS.DataType.INTEGER)
   readonly viewCount!: number;
+
+  @SQLZ_TS.Default(false)
+  @SQLZ_TS.Column(SQLZ_TS.DataType.BOOLEAN)
+  readonly status!: boolean;
 
   @SQLZ_TS.CreatedAt
   override readonly createdAt!: Date;
@@ -147,6 +152,33 @@ export class Post extends SQLZ_TS.Model<
       console.error(error);
       throw error;
     });
+  }
+
+  static async changeStatus(
+    id: number,
+    status: boolean,
+    options?: Omit<
+      SQLZ.UpdateOptions<SQLZ.Attributes<Post>>,
+      "returning" | "where"
+    >
+  ) {
+    const [affectedCount, data] = await this.update(
+      { status },
+      {
+        where: { id },
+        returning: true,
+        ...options,
+      }
+    ).catch((error) => {
+      console.error(error);
+      throw error;
+    });
+
+    if (affectedCount === 0 || isUndefined(data)) {
+      throw new HttpError(STATUS_CODES.NOT_FOUND, "Post not found");
+    }
+
+    return data[0];
   }
 
   static async modify(

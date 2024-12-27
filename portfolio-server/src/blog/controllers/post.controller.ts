@@ -54,6 +54,18 @@ const readAll = async (req: Request) => {
   };
 };
 
+const changeStatus = async (req: Request) => {
+  const data = await postService.changeStatus(req);
+
+  req.statusCode = STATUS_CODES.OK;
+
+  return <BasicResponse<Post>>{
+    result: true,
+    message: getResponsePhrase(STATUS_CODES.OK),
+    data,
+  };
+};
+
 const modify = async (req: Request) => {
   const data = await postService.modify(req);
 
@@ -78,4 +90,12 @@ const erase = async (req: Request) => {
   };
 };
 
-export default { write, readOne, readSlug, readAll, modify, erase };
+export default {
+  write,
+  readOne,
+  readSlug,
+  readAll,
+  changeStatus,
+  modify,
+  erase,
+};

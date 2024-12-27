@@ -63,6 +63,32 @@ const readAll = async (
   return Blog.Post.readAll(query);
 };
 
+const changeStatus = async (
+  req: Request<
+    ParamsDictionary,
+    unknown,
+    { status: boolean },
+    unknown
+  >
+) => {
+  const { params, body } = req;
+  const { id } = params;
+  const { status } = body;
+
+  const transaction = await seq.transaction();
+
+  try {
+    const post = await Blog.Post.changeStatus(id, status, {
+      transaction,
+    });
+    await transaction.commit();
+    return post;
+  } catch (error) {
+    await transaction.rollback();
+    throw error;
+  }
+};
+
 const modify = async (
   req: Request<
     ParamsDictionary,
@@ -96,4 +122,12 @@ const erase = async (
   return Blog.Post.delete(postId);
 };
 
-export default { write, readOne, readSlug, readAll, modify, erase };
+export default {
+  write,
+  readOne,
+  readSlug,
+  readAll,
+  changeStatus,
+  modify,
+  erase,
+};

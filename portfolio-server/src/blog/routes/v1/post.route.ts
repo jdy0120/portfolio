@@ -13,6 +13,7 @@ postRouter
   .route("/posts/:id")
   .get(tryCatchAsync(postController.readOne))
   .put(tryCatchAsync(postController.modify))
+  .patch(tryCatchAsync(postController.changeStatus))
   .delete(tryCatchAsync(postController.erase));
 
 postRouter

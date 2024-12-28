@@ -2,7 +2,6 @@ import { Request } from "express";
 
 import s3 from "../../shared/configs/aws.config";
 import fs from "fs/promises";
-import { parseFormData } from "../utils/file";
 import { seq } from "../../shared/configs/sequelize.config";
 import {
   AttachmentTemp,
@@ -13,7 +12,9 @@ import {
   PutObjectCommandInput,
 } from "@aws-sdk/client-s3";
 import formidable from "formidable";
-import { filename } from "../utils/file";
+import * as UTILS from "../utils/file";
+import { Domain } from "../types";
+import { Transaction } from "sequelize";
 
 const uploadToS3 = async (
   file: formidable.File,
@@ -32,49 +33,95 @@ const uploadToS3 = async (
   await s3.send(command);
 };
 
-const uploads = async (req: Request) => {
-  const { files } = await parseFormData(req);
+const uploadsTemp = async (req: Request) => {
+  const { user } = req;
+  const { files } = await UTILS.uploadsTemp(req);
   const transaction = await seq.transaction();
 
   try {
     const attachmentTempList: AttachmentTempCreationAttributes[] = [];
 
-    for (const file of Array.isArray(files["files"])
-      ? files["files"]
-      : [files["files"]]) {
-      const newFilename = file.newFilename;
-      const extension = file.mimetype?.split("/")[1];
-
-      const uniqueFilename = filename(
-        file.originalFilename as string,
-        extension as string
-      );
-
-      const path = `https://${process.env.AWS_S3_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/assets/images/${uniqueFilename}`;
-
-      await uploadToS3(file, uniqueFilename);
+    for (const file of files["files"]) {
+      const filename = file.newFilename;
+      const path = `${UTILS.getStaticTempPath()}/${filename}`;
 
       attachmentTempList.push({
-        filename: newFilename,
+        filename,
         originalFilename: file.originalFilename as string,
-        path,
         mimetype: file.mimetype as string,
         size: file.size,
+        path,
+        userId: user.id,
       });
     }
 
-    const attachmentTemp = await AttachmentTemp.bulkCreate(
+    const attachmentTemps = await AttachmentTemp.bulkWrite(
       attachmentTempList,
       { transaction }
     );
 
     await transaction.commit();
 
-    return attachmentTemp;
-  } catch (error) {
+    return attachmentTemps;
+  } catch (err) {
     await transaction.rollback();
-    throw error;
+    throw err;
   }
 };
 
-export default { uploads };
+interface MoveFileOptions {
+  attachmentTempList: { id: number }[];
+  domain: Domain;
+  newPath: string;
+  transaction?: Transaction;
+  beforeMove?: (attachmentTemps: AttachmentTemp[]) => Promise<void>;
+}
+
+const moveTempsToUploads = async (options: MoveFileOptions) => {
+  const {
+    attachmentTempList,
+    domain,
+    newPath,
+    transaction,
+    beforeMove,
+  } = options;
+  const attachmentTempsIds = attachmentTempList.map(
+    (attachment) => attachment.id
+  );
+  const attachmentTemps = await AttachmentTemp.readAll({
+    where: { id: attachmentTempsIds },
+    raw: true,
+    transaction,
+  });
+
+  if (beforeMove) {
+    await beforeMove(attachmentTemps);
+  }
+
+  await UTILS.moveFiles(
+    domain,
+    attachmentTemps.map((attachmentTemp) => attachmentTemp.path),
+    newPath
+  );
+
+  await eraseTemps({ attachmentTemps, transaction });
+};
+
+interface EraseTempsOptions {
+  attachmentTemps: AttachmentTemp[];
+  transaction?: Transaction;
+}
+
+const eraseTemps = async (options: EraseTempsOptions) => {
+  const { attachmentTemps, transaction } = options;
+
+  for (const attachmentTemp of attachmentTemps) {
+    await UTILS.removeFiles(attachmentTemp.path);
+    await AttachmentTemp.erase(attachmentTemp.id, {
+      force: true,
+      transaction,
+    });
+  }
+};
+
+export default { uploadsTemp, moveTempsToUploads };

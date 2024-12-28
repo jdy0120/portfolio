@@ -1,5 +1,6 @@
 import * as SQLZ_TS from "sequelize-typescript";
 import * as SQLZ from "sequelize";
+import { User } from "./user.model";
 
 export interface AttachmentTempAttributes {
   id: number;
@@ -8,6 +9,7 @@ export interface AttachmentTempAttributes {
   path: string;
   mimetype: string;
   size: number;
+  userId: number;
   createdAt: Date;
   updatedAt: Date;
   deletedAt?: Date;
@@ -54,6 +56,11 @@ export class AttachmentTemp extends SQLZ_TS.Model<
   @SQLZ_TS.AllowNull(false)
   @SQLZ_TS.Column(SQLZ_TS.DataType.INTEGER)
   readonly size!: number;
+
+  @SQLZ_TS.AllowNull(false)
+  @SQLZ_TS.ForeignKey(() => User)
+  @SQLZ_TS.Column(SQLZ_TS.DataType.INTEGER)
+  readonly userId!: number;
 
   @SQLZ_TS.CreatedAt
   override readonly createdAt!: Date;

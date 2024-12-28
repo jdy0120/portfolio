@@ -8,5 +8,5 @@ export type DefaultProps = {
 };
 
 export type DefaultButtonProps = ButtonProps &
-  React.RefAttributes<HTMLButtonElement> &
+  React.RefAttributes<DefaultButtonRef> &
   DefaultProps;

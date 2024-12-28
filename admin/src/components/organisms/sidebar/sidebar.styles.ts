@@ -5,7 +5,7 @@ const SidebarStyles = {
     width: 212px;
     height: 100%;
 
-    border-right: 0.5px solid #0000001a;
+    border-right: 1px solid ${({ theme }) => theme.colors.black[10]};
 
     display: flex;
     flex-direction: column;

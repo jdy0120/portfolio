@@ -117,4 +117,15 @@ export class AttachmentImage extends SQLZ_TS.Model<
       throw error;
     });
   }
+
+  static async eraseAll(
+    options?: SQLZ.DestroyOptions<SQLZ.Attributes<AttachmentImage>>
+  ) {
+    return this.destroy({
+      ...options,
+    }).catch((error) => {
+      console.error(error);
+      throw error;
+    });
+  }
 }

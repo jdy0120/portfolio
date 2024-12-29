@@ -122,6 +122,16 @@ export class Post extends SQLZ_TS.Model<
     return this.findByPk(id, {
       nest: true,
       raw: false,
+      include: [
+        {
+          model: AttachmentThumbnail,
+          as: "thumbnails",
+        },
+        {
+          model: AttachmentImage,
+          as: "attachmentImages",
+        },
+      ],
       ...options,
     }).catch((error) => {
       console.error(error);
@@ -135,6 +145,16 @@ export class Post extends SQLZ_TS.Model<
   ) {
     return this.findOne({
       where: { slug },
+      include: [
+        {
+          model: AttachmentThumbnail,
+          as: "thumbnails",
+        },
+        {
+          model: AttachmentImage,
+          as: "attachmentImages",
+        },
+      ],
       ...options,
     }).catch((error) => {
       console.error(error);
@@ -163,6 +183,12 @@ export class Post extends SQLZ_TS.Model<
       offset: (page - 1) * count,
       order: [[sort, dir]],
       where,
+      include: [
+        {
+          model: AttachmentThumbnail,
+          as: "thumbnails",
+        },
+      ],
       ...options,
     }).catch((error) => {
       console.error(error);

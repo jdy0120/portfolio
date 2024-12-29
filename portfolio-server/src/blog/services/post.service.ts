@@ -1,7 +1,11 @@
 import { Request } from "express";
 import { ParamsDictionary } from "express-serve-static-core";
 
-import * as Blog from "../models";
+import {
+  Post,
+  PostCreationAttributes,
+  PostAttributes,
+} from "../models";
 import { seq } from "../../shared/configs/sequelize.config";
 import { ListQuery } from "../../shared/dtos/common.dto";
 import { isNotEmpty } from "../../shared/utils";
@@ -10,7 +14,7 @@ import { AttachmentThumbnail, AttachmentImage } from "../models";
 import { getStaticUploadPath } from "../../shared/utils/file";
 
 const write = async (
-  req: Request<unknown, unknown, Blog.PostCreationAttributes, unknown>
+  req: Request<unknown, unknown, PostCreationAttributes, unknown>
 ) => {
   const { user, body } = req;
   const {
@@ -22,10 +26,7 @@ const write = async (
   const transaction = await seq.transaction();
 
   try {
-    const post = await Blog.Post.write(
-      { ...bodyRest },
-      { transaction }
-    );
+    const post = await Post.write({ ...bodyRest }, { transaction });
 
     const now = new Date();
 
@@ -106,14 +107,14 @@ const readOne = async (req: Request) => {
   const { params } = req;
   const { id } = params;
 
-  return Blog.Post.findOne({ where: { id } });
+  return Post.readOne(id);
 };
 
 const readSlug = async (req: Request) => {
   const { params } = req;
   const { slug } = params;
 
-  return Blog.Post.readSlug(slug);
+  return Post.readSlug(slug);
 };
 
 const readAll = async (
@@ -121,7 +122,7 @@ const readAll = async (
 ) => {
   const { query } = req;
 
-  return Blog.Post.readAll(query);
+  return Post.readAll(query);
 };
 
 const changeStatus = async (
@@ -139,7 +140,7 @@ const changeStatus = async (
   const transaction = await seq.transaction();
 
   try {
-    const post = await Blog.Post.changeStatus(id, status, {
+    const post = await Post.changeStatus(id, status, {
       transaction,
     });
     await transaction.commit();
@@ -154,18 +155,108 @@ const modify = async (
   req: Request<
     ParamsDictionary,
     unknown,
-    Partial<Blog.PostAttributes>,
+    Partial<PostAttributes>,
     unknown
   >
 ) => {
   const { params, body } = req;
   const postId = params.id;
+  const {
+    thumbnails = [],
+    attachmentImages = [],
+    ...bodyRest
+  } = body;
   const transaction = await seq.transaction();
 
   try {
-    const post = await Blog.Post.modify(postId, body, {
-      transaction,
-    });
+    const post = await Post.modify(
+      postId,
+      { ...bodyRest },
+      {
+        transaction,
+      }
+    );
+
+    if (isNotEmpty(thumbnails)) {
+      await AttachmentThumbnail.bulkWrite(thumbnails, {
+        transaction,
+      });
+
+      await AttachmentThumbnail.eraseAll({
+        where: { postId: post.id },
+        transaction,
+      });
+
+      const now = new Date();
+      const newPath = `thumbnails/${now.getFullYear()}/${
+        now.getMonth() + 1
+      }/${post.id}`;
+
+      await fileService.moveTempsToUploads({
+        attachmentTempList: thumbnails,
+        domain: "blog",
+        newPath,
+        transaction,
+        beforeMove: async (attachmentTemps) => {
+          await AttachmentThumbnail.bulkWrite(
+            attachmentTemps.map((attachmentTemp) => {
+              const { id, path, ...data } = attachmentTemp;
+              const clientPath = `${getStaticUploadPath(
+                "blog"
+              )}/${newPath}/${data.filename}`;
+
+              return {
+                ...data,
+                path: clientPath,
+                postId: post.id,
+              };
+            }),
+            { transaction }
+          );
+        },
+      });
+    }
+
+    if (isNotEmpty(attachmentImages)) {
+      await AttachmentImage.bulkWrite(attachmentImages, {
+        transaction,
+      });
+
+      await AttachmentImage.eraseAll({
+        where: { postId: post.id },
+        transaction,
+      });
+
+      const now = new Date();
+      const newPath = `attachmentimages/${now.getFullYear()}/${
+        now.getMonth() + 1
+      }/${post.id}`;
+
+      await fileService.moveTempsToUploads({
+        attachmentTempList: attachmentImages,
+        domain: "blog",
+        newPath,
+        transaction,
+        beforeMove: async (attachmentTemps) => {
+          await AttachmentImage.bulkWrite(
+            attachmentTemps.map((attachmentTemp) => {
+              const { id, path, ...data } = attachmentTemp;
+              const clientPath = `${getStaticUploadPath(
+                "blog"
+              )}/${newPath}/${data.filename}`;
+
+              return {
+                ...data,
+                path: clientPath,
+                postId: post.id,
+              };
+            }),
+            { transaction }
+          );
+        },
+      });
+    }
+
     await transaction.commit();
     return post;
   } catch (error) {
@@ -180,7 +271,7 @@ const erase = async (
   const { params } = req;
   const postId = params.id;
 
-  return Blog.Post.delete(postId);
+  return Post.delete(postId);
 };
 
 export default {

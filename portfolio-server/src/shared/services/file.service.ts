@@ -94,6 +94,7 @@ const moveTempsToUploads = async (options: MoveFileOptions) => {
     transaction,
   });
 
+  console.log("doyeon1", attachmentTemps);
   if (beforeMove) {
     await beforeMove(attachmentTemps);
   }

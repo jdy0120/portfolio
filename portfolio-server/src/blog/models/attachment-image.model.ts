@@ -1,37 +1,41 @@
 import * as SQLZ_TS from "sequelize-typescript";
 import * as SQLZ from "sequelize";
-import { User } from "./user.model";
 
-export interface AttachmentTempAttributes {
+import { Post } from "./post.model";
+
+export interface AttachmentImageAttributes {
   id: number;
   filename: string;
   originalFilename: string;
   path: string;
   mimetype: string;
   size: number;
-  userId: number;
+  postId: number;
   createdAt: Date;
   updatedAt: Date;
   deletedAt?: Date;
+  post: Post;
 }
 
-export type AttachmentTempOmitAttributes =
+export type AttachmentImageOmitAttributes =
   | "id"
   | "createdAt"
   | "updatedAt"
-  | "deletedAt";
-export type AttachmentTempCreationAttributes = SQLZ.Optional<
-  AttachmentTempAttributes,
-  AttachmentTempOmitAttributes
+  | "deletedAt"
+  | "post";
+export type AttachmentImageCreationAttributes = SQLZ.Optional<
+  AttachmentImageAttributes,
+  AttachmentImageOmitAttributes
 >;
 
 @SQLZ_TS.Table({
-  tableName: "attachment_temp",
-  modelName: "attachmentTemp",
+  tableName: "attachment_image",
+  timestamps: true,
+  paranoid: true,
 })
-export class AttachmentTemp extends SQLZ_TS.Model<
-  AttachmentTempAttributes,
-  AttachmentTempCreationAttributes
+export class AttachmentImage extends SQLZ_TS.Model<
+  AttachmentImageAttributes,
+  AttachmentImageCreationAttributes
 > {
   @SQLZ_TS.PrimaryKey
   @SQLZ_TS.AutoIncrement
@@ -59,24 +63,27 @@ export class AttachmentTemp extends SQLZ_TS.Model<
   readonly size!: number;
 
   @SQLZ_TS.AllowNull(false)
-  @SQLZ_TS.ForeignKey(() => User)
+  @SQLZ_TS.ForeignKey(() => Post)
   @SQLZ_TS.Column(SQLZ_TS.DataType.INTEGER)
-  readonly userId!: number;
+  readonly postId!: number;
 
   @SQLZ_TS.CreatedAt
-  override readonly createdAt!: Date;
+  readonly createdAt!: Date;
 
   @SQLZ_TS.UpdatedAt
-  override readonly updatedAt!: Date;
+  readonly updatedAt!: Date;
 
   @SQLZ_TS.DeletedAt
-  override readonly deletedAt!: Date;
+  readonly deletedAt!: Date;
+
+  @SQLZ_TS.BelongsTo(() => Post)
+  readonly post!: Post;
 
   static async bulkWrite(
-    values: AttachmentTempCreationAttributes[],
-    options?: SQLZ.CreateOptions<SQLZ.Attributes<AttachmentTemp>>
+    values: AttachmentImageCreationAttributes[],
+    options?: SQLZ.CreateOptions<SQLZ.Attributes<AttachmentImage>>
   ) {
-    return this.bulkCreate(values, {
+    return await this.bulkCreate(values, {
       returning: true,
       ...options,
     }).catch((error) => {
@@ -86,9 +93,9 @@ export class AttachmentTemp extends SQLZ_TS.Model<
   }
 
   static async readAll(
-    options?: SQLZ.FindOptions<SQLZ.Attributes<AttachmentTemp>>
+    options?: SQLZ.FindOptions<SQLZ.Attributes<AttachmentImage>>
   ) {
-    return this.findAll({
+    return await this.findAll({
       nest: true,
       raw: false,
       ...options,
@@ -100,7 +107,7 @@ export class AttachmentTemp extends SQLZ_TS.Model<
 
   static async erase(
     id: number,
-    options?: SQLZ.DestroyOptions<SQLZ.Attributes<AttachmentTemp>>
+    options?: SQLZ.DestroyOptions<SQLZ.Attributes<AttachmentImage>>
   ) {
     return this.destroy({
       where: { id },

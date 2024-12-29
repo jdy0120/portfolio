@@ -2,6 +2,8 @@ import * as SQLZ_TS from "sequelize-typescript";
 import * as SQLZ from "sequelize";
 import { generateHash } from "../../utils";
 import { ListQuery } from "../../dtos/common.dto";
+import { HttpError } from "../../errors/http-error";
+import { STATUS_CODES } from "../../constants";
 
 export interface UserAttributes {
   id: number;
@@ -91,15 +93,21 @@ export class User extends SQLZ_TS.Model<
     userId: string,
     options?: Omit<SQLZ.FindOptions<UserAttributes>, "where">
   ) {
-    return this.findOne({
-      where: { userId },
+    const userInfo = await this.findOne({
       nest: true,
       raw: false,
+      where: { userId },
       ...options,
     }).catch((error) => {
       console.error(error);
       throw error;
     });
+
+    if (!userInfo) {
+      throw new HttpError(STATUS_CODES.FORBIDDEN, "User not found");
+    }
+
+    return userInfo;
   }
 
   static async readAll(

@@ -5,6 +5,14 @@ import { Category } from "./category.model";
 import { isUndefined } from "../../shared/utils";
 import { HttpError } from "../../shared/errors/http-error";
 import { STATUS_CODES } from "../../shared/constants";
+import {
+  AttachmentThumbnail,
+  AttachmentThumbnailAttributes,
+} from "./attachment-thumbnail.model";
+import {
+  AttachmentImage,
+  AttachmentImageAttributes,
+} from "./attachment-image.model";
 
 export interface PostAttributes {
   id: number;
@@ -13,16 +21,21 @@ export interface PostAttributes {
   filePath: string;
   slug: string;
   categoryId: number;
-  imageUrl: string;
   metaDescription: string;
   viewCount?: number;
   status?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;
+  thumbnails?: AttachmentThumbnailAttributes[];
+  attachmentImages?: AttachmentImageAttributes[];
 }
 
-export type PostOmitAttributes = "id" | "createdAt" | "updatedAt";
+export type PostOmitAttributes =
+  | "id"
+  | "createdAt"
+  | "updatedAt"
+  | "deletedAt";
 export type PostCreationAttributes = SQLZ.Optional<
   PostAttributes,
   PostOmitAttributes
@@ -61,9 +74,6 @@ export class Post extends SQLZ_TS.Model<
   readonly categoryId!: number;
 
   @SQLZ_TS.Column(SQLZ_TS.DataType.STRING)
-  readonly imageUrl!: string;
-
-  @SQLZ_TS.Column(SQLZ_TS.DataType.STRING)
   readonly metaDescription!: string;
 
   @SQLZ_TS.Default(0)
@@ -85,6 +95,12 @@ export class Post extends SQLZ_TS.Model<
 
   @SQLZ_TS.BelongsTo(() => Category)
   readonly category!: Category;
+
+  @SQLZ_TS.HasMany(() => AttachmentThumbnail)
+  readonly thumbnails!: AttachmentThumbnail[];
+
+  @SQLZ_TS.HasMany(() => AttachmentImage)
+  readonly attachmentImages!: AttachmentImage[];
 
   static async write(
     values: PostCreationAttributes,

@@ -1,20 +1,30 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { CreateBlogPageStyles, ContentStyles } from "./page.styles";
-import DefaultInput from "../../../../../../components/molecules/input/input";
+import DefaultInput from "../../../../../../../components/molecules/input/input";
 import { useForm, Controller } from "react-hook-form";
-import DefaultSelect from "../../../../../../components/molecules/select/select";
-import { Image } from "antd";
-
-const categoryOptions = [
-  { label: "카테고리 1", value: "1" },
-  { label: "카테고리 2", value: "2" },
-  { label: "카테고리 3", value: "3" },
-];
+import DefaultSelect from "../../../../../../../components/molecules/select/select";
+import { Image, Radio } from "antd";
+import { useParams } from "next/navigation";
+import { usePostItem } from "../../../../../../apis/v1/blog/blog.query";
+import { useCategoryList } from "../../../../../../apis/v1/category/category.query";
+import { Category } from "../../../../../../../types/models/v1/category/category.types";
 
 const page = () => {
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit, setValue } = useForm();
+  const { id } = useParams();
+  const { data: postData } = usePostItem(id as string);
+  const { data: categoryList } = useCategoryList();
+
+  useEffect(() => {
+    if (postData) {
+      setValue("title", postData.data.title);
+      setValue("slug", postData.data.slug);
+      setValue("categoryId", postData.data.categoryId);
+      setValue("status", postData.data.status);
+    }
+  }, [postData]);
 
   return (
     <CreateBlogPageStyles.Container>
@@ -61,7 +71,12 @@ const page = () => {
               render={({ field: { onChange, value } }) => (
                 <DefaultSelect
                   variant="borderless"
-                  options={categoryOptions}
+                  options={categoryList?.data.map(
+                    (category: Category) => ({
+                      label: category.name,
+                      value: category.id,
+                    })
+                  )}
                   placeholder="카테고리를 선택해주세요."
                   onChange={onChange}
                   value={value}
@@ -70,16 +85,15 @@ const page = () => {
             />
           </ContentStyles.Container>
           <ContentStyles.Container>
-            <ContentStyles.Label>썸네일 업로드</ContentStyles.Label>
+            <ContentStyles.Label>Post 상태</ContentStyles.Label>
             <Controller
               control={control}
-              name="imageUrl"
+              name="status"
               render={({ field: { onChange, value } }) => (
-                <Image
-                  src={value}
-                  placeholder="카테고리를 선택해주세요."
-                  onChange={onChange}
-                />
+                <Radio.Group onChange={onChange} value={value}>
+                  <Radio value={true}>배포</Radio>
+                  <Radio value={false}>미배포</Radio>
+                </Radio.Group>
               )}
             />
           </ContentStyles.Container>

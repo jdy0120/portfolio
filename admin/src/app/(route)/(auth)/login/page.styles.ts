@@ -12,7 +12,7 @@ export const LoginPageStyles = {
 
     gap: 28px;
 
-    background-color: ${({ theme }) => theme.colors.white.default};
+    background-color: ${({ theme }) => theme.colors.white[100]};
   `,
 
   TitleContainer: styled.div`

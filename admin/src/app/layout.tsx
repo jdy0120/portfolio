@@ -4,7 +4,6 @@ import ReactQueryProvider from "../lib/providers/ReactQueryProvider";
 import EmotionTheme from "../lib/providers/EmotionTheme";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
-import LoginCheck from "../lib/providers/LoginCheck";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

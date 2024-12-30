@@ -3,5 +3,6 @@ export type CommonResponse<T> = {
   message: string;
   debug: string;
   data: T;
-  timestamp: number;
+  count?: number;
+  timestamp?: number;
 };

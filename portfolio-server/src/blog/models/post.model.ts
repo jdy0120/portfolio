@@ -176,7 +176,7 @@ export class Post extends SQLZ_TS.Model<
 
     const where = categoryId ? { categoryId } : {};
 
-    return this.findAll({
+    return this.findAndCountAll({
       nest: true,
       raw: false,
       limit: count,

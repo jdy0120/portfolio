@@ -33,9 +33,15 @@ const uploadToS3 = async (
   await s3.send(command);
 };
 
-const uploadsTemp = async (req: Request) => {
+const uploadsTemp = async (
+  req: Request,
+  options?: { isUseOriginalFilename?: boolean }
+) => {
   const { user } = req;
-  const { files } = await UTILS.uploadsTemp(req);
+  const { files } = await UTILS.uploadsTemp(
+    req,
+    options?.isUseOriginalFilename
+  );
   const transaction = await seq.transaction();
 
   try {
@@ -94,7 +100,6 @@ const moveTempsToUploads = async (options: MoveFileOptions) => {
     transaction,
   });
 
-  console.log("doyeon1", attachmentTemps);
   if (beforeMove) {
     await beforeMove(attachmentTemps);
   }

@@ -2,7 +2,7 @@ import { Request } from "express";
 
 import postService from "../services/post.service";
 import { STATUS_CODES } from "../../shared/constants";
-import { BasicResponse } from "../../shared/types";
+import { BasicResponse, ListResponse } from "../../shared/types";
 import { getResponsePhrase } from "../../shared/utils/http";
 import { Post } from "../models";
 
@@ -43,13 +43,14 @@ const readSlug = async (req: Request) => {
 };
 
 const readAll = async (req: Request) => {
-  const data = await postService.readAll(req);
+  const { rows: data, count } = await postService.readAll(req);
 
   req.statusCode = STATUS_CODES.OK;
 
-  return <BasicResponse<Post[]>>{
+  return <ListResponse<Post>>{
     result: true,
     message: getResponsePhrase(STATUS_CODES.OK),
+    count,
     data,
   };
 };

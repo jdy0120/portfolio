@@ -30,14 +30,10 @@ const write = async (
 
     const now = new Date();
 
-    console.log("doyeon", thumbnails);
-
     if (isNotEmpty(thumbnails)) {
       const newPath = `thumbnails/${now.getFullYear()}/${
         now.getMonth() + 1
       }/${post.id}`;
-
-      console.log("doyeon", newPath, thumbnails);
 
       await fileService.moveTempsToUploads({
         attachmentTempList: thumbnails,

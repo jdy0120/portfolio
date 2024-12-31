@@ -18,4 +18,18 @@ const uploadsTemp = async (req: Request) => {
   };
 };
 
-export { uploadsTemp };
+const uploadsTempUseOriginalFilename = async (req: Request) => {
+  const data = await fileService.uploadsTemp(req, {
+    isUseOriginalFilename: true,
+  });
+
+  req.statusCode = STATUS_CODES.CREATED;
+
+  return <BasicResponse<AttachmentTemp[]>>{
+    result: true,
+    message: getResponsePhrase(STATUS_CODES.CREATED),
+    data,
+  };
+};
+
+export { uploadsTemp, uploadsTempUseOriginalFilename };

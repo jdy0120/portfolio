@@ -62,10 +62,14 @@ const parseFormData = (
 
 export const uploadsTemp = (
   req: Request,
+  isUseOriginalFilename?: boolean,
   options?: formidable.Options
 ): Promise<{
   fields: formidable.Fields;
-  files: { files: formidable.File[] };
+  files: {
+    files: formidable.File[];
+    isUseOriginalFilename?: boolean;
+  };
 }> => {
   return new Promise((resolve, reject) => {
     const form = formidable({
@@ -76,7 +80,10 @@ export const uploadsTemp = (
       maxFiles: DEFAULT_MAX_FILES,
       maxFileSize: DEFAULT_MAX_FILE_SIZE,
       uploadDir: getTempPath(),
-      filename,
+      filename: (name, ext, _, __) => {
+        console.log(`doyeon` + isUseOriginalFilename);
+        return isUseOriginalFilename ? name : filename(name, ext);
+      },
       ...options,
     });
 

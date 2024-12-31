@@ -24,6 +24,7 @@ const nextConfig = {
     });
     return config;
   },
+  plugins: ["@emotion/babel-plugin"],
 };
 
 export default withNextIntl(nextConfig);

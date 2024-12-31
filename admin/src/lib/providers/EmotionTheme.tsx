@@ -131,10 +131,8 @@ const EmotionThemeProvider = ({
         }}
       >
         <App>
-          <AntdRegistry>
-            <GlobalStyle />
-            {children}
-          </AntdRegistry>
+          <GlobalStyle />
+          {children}
         </App>
       </ConfigProvider>
     </ThemeProvider>

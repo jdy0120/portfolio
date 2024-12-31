@@ -1,5 +1,5 @@
 {
-  "name": "step_earth_bo",
+  "name": "portfolio_bo",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -19,6 +19,13 @@
   },
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.2",
+    "@editorjs/editorjs": "^2.30.7",
+    "@editorjs/embed": "^2.7.6",
+    "@editorjs/header": "^2.8.8",
+    "@editorjs/image": "^2.10.1",
+    "@editorjs/inline-code": "^1.5.1",
+    "@editorjs/list": "^2.0.2",
+    "@editorjs/paragraph": "^2.11.7",
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.13.3",
     "@emotion/server": "^11.11.0",

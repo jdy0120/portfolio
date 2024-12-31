@@ -30,6 +30,7 @@ const MenuItem = ({ menu }: MenuItemProps) => {
         <>
           {menu.children.map((child) => (
             <MenuItemStyles.MenuItem
+              key={child.key}
               active={isActiveChild(child)}
               onClick={moveToChild(child)}
             >

@@ -4,6 +4,7 @@ import ReactQueryProvider from "../lib/providers/ReactQueryProvider";
 import EmotionTheme from "../lib/providers/EmotionTheme";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
+import RootStyleRegistry from "../lib/providers/RootStyleRegistry";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -38,17 +39,19 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable}`}
         suppressHydrationWarning
       >
-        <ReactQueryProvider>
-          <EmotionTheme>
-            <NextIntlClientProvider
-              locale={locale}
-              messages={messages}
-              timeZone="Asia/Seoul"
-            >
-              {children}
-            </NextIntlClientProvider>
-          </EmotionTheme>
-        </ReactQueryProvider>
+        <RootStyleRegistry>
+          <ReactQueryProvider>
+            <EmotionTheme>
+              <NextIntlClientProvider
+                locale={locale}
+                messages={messages}
+                timeZone="Asia/Seoul"
+              >
+                {children}
+              </NextIntlClientProvider>
+            </EmotionTheme>
+          </ReactQueryProvider>
+        </RootStyleRegistry>
       </body>
     </html>
   );

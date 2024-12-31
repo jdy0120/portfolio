@@ -10,6 +10,7 @@ import { useParams } from "next/navigation";
 import { usePostItem } from "../../../../../../apis/v1/blog/blog.query";
 import { useCategoryList } from "../../../../../../apis/v1/category/category.query";
 import { Category } from "../../../../../../../types/models/v1/category/category.types";
+import Content from "../../components/content/Content";
 
 const page = () => {
   const { control, handleSubmit, setValue } = useForm();
@@ -99,6 +100,9 @@ const page = () => {
           </ContentStyles.Container>
         </CreateBlogPageStyles.Divider>
       </CreateBlogPageStyles.DescriptionContainer>
+      <CreateBlogPageStyles.ContentContainer>
+        <Content />
+      </CreateBlogPageStyles.ContentContainer>
     </CreateBlogPageStyles.Container>
   );
 };

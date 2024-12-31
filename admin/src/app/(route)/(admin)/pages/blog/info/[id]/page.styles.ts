@@ -33,6 +33,16 @@ const CreateBlogPageStyles = {
     display: flex;
     gap: 16px;
   `,
+
+  ContentContainer: styled.div`
+    width: 100%;
+
+    padding: 24px;
+
+    background-color: ${({ theme }) => theme.colors.background.bg2};
+
+    border-radius: 16px;
+  `,
 };
 
 const ContentStyles = {

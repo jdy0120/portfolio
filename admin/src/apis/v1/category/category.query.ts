@@ -1,6 +1,6 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { createCategory, getCategoryList } from "./category.api";
-import { CreateCategory } from "../../../../types/models/v1/category/category.types";
+import { CreateCategory } from "../../../types/models/v1/category/category.types";
 
 export const useCategoryList = () => {
   return useQuery({

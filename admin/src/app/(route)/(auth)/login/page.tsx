@@ -11,7 +11,7 @@ import {
 import { LoginPageStyles } from "./page.styles";
 import LoginInput from "../../../../components/molecules/input/input";
 import DefaultButton from "../../../../components/molecules/button/button";
-import { useLogin } from "../../../apis/v1/auth/auth.query";
+import { useLogin } from "../../../../apis/v1/auth/auth.query";
 import {
   LoginRequest,
   LoginResponse,

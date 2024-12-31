@@ -1,5 +1,5 @@
-import { Post } from "../../../../lib/axios/request";
-import { Attachment } from "../../../../types/models/common/attachment/attachment.types";
+import { Post } from "../../../lib/axios/request";
+import { Attachment } from "../../../types/models/common/attachment/attachment.types";
 
 export const uploadToTemp = async (file: File) => {
   const formData = new FormData();

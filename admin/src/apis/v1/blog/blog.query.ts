@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getPostItem, getPostList } from "./blog.api";
-import { Query } from "../../../../types/http/Request.type";
+import { Query } from "../../../types/http/Request.type";
 
 export const usePostList = (query: Query) => {
   return useQuery({

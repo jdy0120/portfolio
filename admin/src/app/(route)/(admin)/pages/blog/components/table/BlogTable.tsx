@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 import { Controller, useForm } from "react-hook-form";
-import { usePostList } from "../../../../../../apis/v1/blog/blog.query";
+import { usePostList } from "../../../../../../../apis/v1/blog/blog.query";
 import { columns, DataType } from "./tabledata";
 import { useRouter } from "next/navigation";
 import { Pagination, Table } from "antd";

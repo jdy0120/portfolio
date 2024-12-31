@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+
 import EditorJS, {
   OutputData,
   API,
@@ -6,6 +7,7 @@ import EditorJS, {
 } from "@editorjs/editorjs";
 import { MarkdownEditorStyles } from "./MarkdownEditor.styles";
 import { EDITOR_JS_TOOLS } from "./tools";
+
 import "./editor.css";
 
 interface MarkdownEditorProps {

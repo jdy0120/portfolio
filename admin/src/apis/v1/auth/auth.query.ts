@@ -6,7 +6,7 @@ import { login } from "./auth";
 import {
   LoginRequest,
   LoginResponse,
-} from "../../../../types/models/v1/auth/auth.types";
+} from "../../../types/models/v1/auth/auth.types";
 
 const useLogin = (
   options?: UseMutationOptions<LoginResponse, unknown, LoginRequest>

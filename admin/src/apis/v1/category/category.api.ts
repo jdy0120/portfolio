@@ -1,8 +1,8 @@
-import { Get, Post } from "../../../../lib/axios/request";
+import { Get, Post } from "../../../lib/axios/request";
 import {
   Category,
   CreateCategory,
-} from "../../../../types/models/v1/category/category.types";
+} from "../../../types/models/v1/category/category.types";
 
 export const getCategoryList = async () => {
   try {
@@ -10,6 +10,7 @@ export const getCategoryList = async () => {
     return response.data;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
@@ -19,5 +20,6 @@ export const createCategory = async (data: CreateCategory) => {
     return response.data;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };

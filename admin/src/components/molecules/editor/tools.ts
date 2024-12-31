@@ -1,5 +1,5 @@
 import { ToolConstructable, ToolSettings } from "@editorjs/editorjs";
-import { uploadToTemp } from "../../../app/apis/v1/upload/uploadtotemp.api";
+import { uploadToTemp } from "../../../apis/v1/upload/uploadtotemp.api";
 
 import Image from "@editorjs/image";
 import Paragraph from "@editorjs/paragraph";

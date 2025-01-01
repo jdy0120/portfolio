@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { HeaderStyles } from "./Header.styles";
-import { useForm, Controller } from "react-hook-form";
+import {
+  useForm,
+  Controller,
+  Control,
+  UseFormSetValue,
+} from "react-hook-form";
 import { Radio } from "antd";
 import DefaultInput from "../../../../../../../../../components/molecules/input/input";
 import DefaultSelect from "../../../../../../../../../components/molecules/select/select";
@@ -14,11 +19,11 @@ import DefaultButton from "../../../../../../../../../components/molecules/butto
 import createSlug from "../../../../../../../../../utils/slug";
 
 interface HeaderProps {
-  postHeadData?: Partial<Post>;
+  control: Control<any>;
+  setValue: UseFormSetValue<any>;
 }
 
-const Header = ({ postHeadData }: HeaderProps) => {
-  const { control, handleSubmit, setValue } = useForm();
+const Header = ({ control, setValue }: HeaderProps) => {
   const { mutate: createCategory } = useCreateCategory();
   const { data: categoryList, refetch } = useCategoryList();
 
@@ -35,15 +40,6 @@ const Header = ({ postHeadData }: HeaderProps) => {
       }
     );
   };
-
-  useEffect(() => {
-    if (postHeadData) {
-      setValue("title", postHeadData.title);
-      setValue("slug", postHeadData.slug);
-      setValue("categoryId", postHeadData.categoryId);
-      setValue("status", postHeadData.status);
-    }
-  }, [postHeadData]);
 
   return (
     <>

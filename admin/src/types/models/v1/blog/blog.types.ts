@@ -4,17 +4,22 @@ interface Post {
   id: number;
   title: string;
   description: string;
-  filePath: string;
   slug: string;
   categoryId: number;
   metaDescription: string;
-  viewCount: number;
+  viewCount?: number;
   status: boolean;
-  attachments?: Attachment[];
-  thumbnails?: Attachment[];
+  contentFile: Partial<Attachment>;
+  attachmentImages?: Partial<Attachment>[];
+  thumbnails?: Partial<Attachment>[];
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;
 }
 
-export type { Post };
+type RequestPostType = Omit<
+  Post,
+  "id" | "viewCount" | "createdAt" | "updatedAt" | "deletedAt"
+>;
+
+export type { Post, RequestPostType };

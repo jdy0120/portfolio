@@ -5,3 +5,4 @@ export * from "./jwt";
 export * from "./stream";
 export * from "./xlsx";
 export * from "./http";
+export * from "./file";

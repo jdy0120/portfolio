@@ -12,12 +12,14 @@ import { isNotEmpty } from "../../shared/utils";
 import fileService from "../../shared/services/file.service";
 import { AttachmentThumbnail, AttachmentImage } from "../models";
 import { getStaticUploadPath } from "../../shared/utils/file";
+import { AttachmentContent } from "../models/attachment-content.model";
 
 const write = async (
   req: Request<unknown, unknown, PostCreationAttributes, unknown>
 ) => {
   const { user, body } = req;
   const {
+    contentFile,
     thumbnails = [],
     attachmentImages = [],
     ...bodyRest
@@ -29,6 +31,32 @@ const write = async (
     const post = await Post.write({ ...bodyRest }, { transaction });
 
     const now = new Date();
+
+    if (isNotEmpty(contentFile) && contentFile !== undefined) {
+      const newPath = `posts/${now.getFullYear()}/${
+        now.getMonth() + 1
+      }/${post.id}`;
+
+      await fileService.moveTempsToUploads({
+        attachmentTempList: [contentFile],
+        domain: "blog",
+        newPath,
+        transaction,
+        beforeMove: async (attachmentTemps) => {
+          await AttachmentContent.bulkWrite(
+            attachmentTemps.map((attachmentTemp) => {
+              const { id, path, ...data } = attachmentTemp;
+              const clientPath = `${getStaticUploadPath(
+                "blog"
+              )}/${newPath}/${data.filename}`;
+
+              return { ...data, path: clientPath, postId: post.id };
+            }),
+            { transaction }
+          );
+        },
+      });
+    }
 
     if (isNotEmpty(thumbnails)) {
       const newPath = `thumbnails/${now.getFullYear()}/${

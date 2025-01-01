@@ -30,11 +30,17 @@ export const makeDirectory = (path: string) => {
   }
 };
 
-const filename = (_name: string, extension: string) => {
+const filename = (
+  name: string,
+  extension: string,
+  isUseOriginalFilename?: boolean
+) => {
   const today = Date.now();
   const random = randomBytes(16).toString("hex");
 
-  return `${today}_${random}${extension}`;
+  return isUseOriginalFilename
+    ? `${name}${extension}`
+    : `${today}_${random}${extension}`;
 };
 
 const parseFormData = (
@@ -81,8 +87,7 @@ export const uploadsTemp = (
       maxFileSize: DEFAULT_MAX_FILE_SIZE,
       uploadDir: getTempPath(),
       filename: (name, ext, _, __) => {
-        console.log(`doyeon` + isUseOriginalFilename);
-        return isUseOriginalFilename ? name : filename(name, ext);
+        return filename(name, ext, isUseOriginalFilename);
       },
       ...options,
     });

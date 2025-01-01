@@ -1,9 +1,11 @@
 export function isEmpty(value: object | string | null | undefined) {
   if (
-    value == '' ||
+    value == "" ||
     value == null ||
     value == undefined ||
-    (value != null && typeof value == 'object' && !Object.keys(value).length)
+    (value != null &&
+      typeof value == "object" &&
+      !Object.keys(value).length)
   ) {
     return true;
   }
@@ -11,7 +13,9 @@ export function isEmpty(value: object | string | null | undefined) {
   return false;
 }
 
-export function isNotEmpty(value: object | string | null | undefined) {
+export function isNotEmpty(
+  value: object | string | null | undefined
+) {
   return !isEmpty(value);
 }
 

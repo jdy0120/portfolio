@@ -12,6 +12,7 @@ import {
   errorConverter,
   errorHandler,
 } from "../middlewares/error.middleware";
+import { resourcePath } from "../utils";
 
 const app = express();
 
@@ -29,6 +30,7 @@ passport.use("validate-refresh-jwt", refreshJwtStrategy);
 
 // Routes
 app.use("/", sharedRouter);
+app.use("/resources", express.static(resourcePath));
 
 app.use(errorConverter);
 app.use(errorHandler);

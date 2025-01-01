@@ -13,12 +13,15 @@ import {
   AttachmentImage,
   AttachmentImageAttributes,
 } from "./attachment-image.model";
+import {
+  AttachmentContent,
+  AttachmentContentAttributes,
+} from "./attachment-content.model";
 
 export interface PostAttributes {
   id: number;
   title: string;
   description: string;
-  filePath: string;
   slug: string;
   categoryId: number;
   metaDescription: string;
@@ -27,6 +30,7 @@ export interface PostAttributes {
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;
+  contentFile?: AttachmentContentAttributes;
   thumbnails?: AttachmentThumbnailAttributes[];
   attachmentImages?: AttachmentImageAttributes[];
 }
@@ -61,9 +65,6 @@ export class Post extends SQLZ_TS.Model<
   @SQLZ_TS.Column(SQLZ_TS.DataType.STRING)
   readonly description!: string;
 
-  @SQLZ_TS.Column(SQLZ_TS.DataType.STRING)
-  readonly filePath!: string;
-
   @SQLZ_TS.Index
   @SQLZ_TS.Unique
   @SQLZ_TS.Column(SQLZ_TS.DataType.STRING)
@@ -95,6 +96,9 @@ export class Post extends SQLZ_TS.Model<
 
   @SQLZ_TS.BelongsTo(() => Category)
   readonly category!: Category;
+
+  @SQLZ_TS.HasOne(() => AttachmentContent)
+  readonly contentFile!: AttachmentContent;
 
   @SQLZ_TS.HasMany(() => AttachmentThumbnail)
   readonly thumbnails!: AttachmentThumbnail[];
@@ -131,6 +135,10 @@ export class Post extends SQLZ_TS.Model<
           model: AttachmentImage,
           as: "attachmentImages",
         },
+        {
+          model: AttachmentContent,
+          as: "contentFile",
+        },
       ],
       ...options,
     }).catch((error) => {
@@ -153,6 +161,10 @@ export class Post extends SQLZ_TS.Model<
         {
           model: AttachmentImage,
           as: "attachmentImages",
+        },
+        {
+          model: AttachmentContent,
+          as: "contentFile",
         },
       ],
       ...options,

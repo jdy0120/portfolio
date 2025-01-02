@@ -6,10 +6,12 @@ import { path } from "app-root-path";
 import { randomBytes } from "crypto";
 import { Request } from "express";
 import { join } from "path";
+import { connectAzure } from "../configs/azure.config";
 
 export const resourcePath = join(path, "resources");
 export const tempPath = () => join(resourcePath, "temps");
 export const uploadPath = () => join(resourcePath, "uploads");
+export const azurePath = () => join("resources", "uploads");
 
 export const DEFAULT_MAX_FILES = 10;
 export const DEFAULT_MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
@@ -18,6 +20,8 @@ export const DEFAULT_MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 export const getTempPath = () => join(tempPath());
 export const getUploadPath = (domain: Domain) =>
   join(uploadPath(), domain);
+export const getAzurePath = (domain: Domain) =>
+  join(azurePath(), domain);
 
 // this for client, client may request file by this path.
 export const getStaticTempPath = () => join("resources", "temps");
@@ -114,9 +118,11 @@ export const moveFiles = async (
   from: string[],
   to: string
 ) => {
-  const directoryPath = join(getUploadPath(domain), to);
+  // const directoryPath = join(getUploadPath(domain), to);
 
-  makeDirectory(directoryPath);
+  const directoryPath = join(getAzurePath(domain), to);
+
+  // makeDirectory(directoryPath);
 
   for (const oldPath of from) {
     const filename = oldPath.split("/temps/")[1];
@@ -128,7 +134,8 @@ export const moveFiles = async (
 
     const newPath = join(directoryPath, filename);
 
-    await fs.promises.rename(join(path, oldPath), newPath);
+    // await fs.promises.rename(join(path, oldPath), newPath);
+    await uploadToAzure(newPath, oldPath);
   }
 };
 
@@ -136,6 +143,20 @@ export const removeFiles = async (removePath: string) => {
   const targetPath = join(path, removePath);
   if (fs.existsSync(targetPath)) {
     await fs.promises.unlink(targetPath);
+  }
+};
+
+export const uploadToAzure = async (
+  newPath: string,
+  oldPath: string
+) => {
+  try {
+    const blobClient = connectAzure().getBlobClient(`${newPath}`);
+    const blockBlobClient = blobClient.getBlockBlobClient();
+
+    await blockBlobClient.uploadFile(oldPath);
+  } catch (error) {
+    console.error("Error uploading to Azure:", error);
   }
 };
 

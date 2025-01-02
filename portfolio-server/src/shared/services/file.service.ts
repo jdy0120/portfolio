@@ -1,37 +1,14 @@
 import { Request } from "express";
 
-import s3 from "../../shared/configs/aws.config";
-import fs from "fs/promises";
 import { seq } from "../../shared/configs/sequelize.config";
 import {
   AttachmentTemp,
   AttachmentTempCreationAttributes,
 } from "../models/main/attachment.model";
-import {
-  PutObjectCommand,
-  PutObjectCommandInput,
-} from "@aws-sdk/client-s3";
-import formidable from "formidable";
+
 import * as UTILS from "../utils/file";
 import { Domain } from "../types";
 import { Transaction } from "sequelize";
-
-const uploadToS3 = async (
-  file: formidable.File,
-  uniqueFilename: string
-) => {
-  const buffer = await fs.readFile(file.filepath);
-
-  const s3Params: PutObjectCommandInput = {
-    Bucket: process.env.AWS_S3_BUCKET_NAME || "",
-    Key: `assets/images/${uniqueFilename}`,
-    Body: buffer,
-    ContentType: file.mimetype as string,
-  };
-
-  const command = new PutObjectCommand(s3Params);
-  await s3.send(command);
-};
 
 const uploadsTemp = async (
   req: Request,

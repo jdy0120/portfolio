@@ -10,9 +10,6 @@ services:
       - /usr/src/app/node_modules
     ports:
       - ${APP_DOCKER_HOST_PORT}:${PORT}
-    depends_on:
-      database:
-        condition: service_healthy
 
   nginx:
     image: nginx:latest

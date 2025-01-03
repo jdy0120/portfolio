@@ -20,4 +20,5 @@ ENV NODE_ENV=production
 COPY ["package.json", "package-lock.json", "./"]
 RUN npm ci --omit=dev --production
 COPY . .
+RUN npm run build
 CMD ["npm", "run", "start"]

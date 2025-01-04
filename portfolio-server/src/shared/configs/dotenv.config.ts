@@ -17,7 +17,8 @@ export const configDotenv = () => {
   switch (env) {
     case "production":
       // use environment variables injected by hashicorp vault.
-      return;
+      envPath = join(path, "./envs/.env.production");
+      break;
 
     case "development":
       // use environment variables injected by hashicorp vault.

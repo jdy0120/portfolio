@@ -7,6 +7,8 @@ const runServer = async () => {
   const app = (await import("./shared/configs/express.config"))
     .default;
 
+  console.log("update azure ssh key");
+
   // Start Server
   const PORT = process.env.PORT;
   app.listen(PORT, async () => {

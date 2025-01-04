@@ -4,9 +4,13 @@ import {
   getPostItem,
   getPostList,
   updatePost,
+  updatePostStatus,
 } from "./blog.api";
 import { Query } from "../../../types/http/Request.type";
-import { RequestPostType } from "../../../types/models/v1/blog/blog.types";
+import {
+  Post as PostType,
+  RequestPostType,
+} from "../../../types/models/v1/blog/blog.types";
 
 export const usePostList = (query: Query) => {
   return useQuery({
@@ -41,4 +45,18 @@ export const usePostCreate = (id: string | "undefined") => {
       },
     });
   }
+};
+
+export const useUpdatePostStatus = () => {
+  return useMutation({
+    mutationFn: ({
+      id,
+      data,
+    }: {
+      id: string;
+      data: Partial<PostType>;
+    }) => {
+      return updatePostStatus(id, data);
+    },
+  });
 };

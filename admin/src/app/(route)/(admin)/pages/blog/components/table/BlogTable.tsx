@@ -1,11 +1,15 @@
 import React, { useEffect } from "react";
 
 import { Controller, useForm } from "react-hook-form";
-import { usePostList } from "../../../../../../../apis/v1/blog/blog.query";
+import {
+  usePostList,
+  useUpdatePostStatus,
+} from "../../../../../../../apis/v1/blog/blog.query";
 import { columns, DataType } from "./tabledata";
 import { useRouter } from "next/navigation";
-import { Pagination, Table } from "antd";
+import { Pagination, Radio, RadioChangeEvent, Table } from "antd";
 import DefaultButton from "../../../../../../../components/molecules/button/button";
+import { BlogTableStyles } from "./BlogTable.styles";
 
 const BlogTable = () => {
   const router = useRouter();
@@ -16,6 +20,7 @@ const BlogTable = () => {
       count: 10,
     },
   });
+  const { mutate: updatePostStatus } = useUpdatePostStatus();
   const { page, count } = watch();
   const {
     data: postList,
@@ -25,6 +30,18 @@ const BlogTable = () => {
     page,
     count,
   });
+
+  const handleChangeStatus =
+    (id: string) => (e: RadioChangeEvent) => {
+      updatePostStatus(
+        { id, data: { status: e.target.value } },
+        {
+          onSuccess: () => {
+            refetch();
+          },
+        }
+      );
+    };
 
   const renderColumn = columns?.map((column) => {
     if (column.key === "update") {
@@ -40,6 +57,22 @@ const BlogTable = () => {
             수정
           </DefaultButton>
         ),
+      };
+    }
+    if (column.key === "status") {
+      return {
+        ...column,
+        render: (status: boolean, data: any) => {
+          return (
+            <Radio.Group
+              value={status}
+              onChange={handleChangeStatus(data.id)}
+            >
+              <Radio value={true}>배포</Radio>
+              <Radio value={false}>대기</Radio>
+            </Radio.Group>
+          );
+        },
       };
     }
     return column;
@@ -60,7 +93,7 @@ const BlogTable = () => {
   }, [page, count]);
 
   return (
-    <>
+    <BlogTableStyles.Container>
       <DefaultButton
         type="primary"
         width="384"
@@ -73,7 +106,6 @@ const BlogTable = () => {
         dataSource={postList?.data.map((post) => ({
           ...post,
           key: post.id.toString(),
-          statusLabel: post.status ? "배포" : "미배포",
           update: post.id.toString(),
         }))}
         columns={renderColumn}
@@ -92,7 +124,7 @@ const BlogTable = () => {
           />
         )}
       />
-    </>
+    </BlogTableStyles.Container>
   );
 };
 

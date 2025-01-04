@@ -5,7 +5,6 @@ type ColumnsType<T extends object> = TableProps<T>["columns"];
 
 type DataType = {
   key: string;
-  statusLabel: "배포" | "미배포";
   update: React.ReactNode;
 } & Partial<Post>;
 
@@ -35,9 +34,9 @@ const columns: ColumnsType<DataType> = [
     align: "center",
   },
   {
-    title: "statusLabel",
-    dataIndex: "statusLabel",
-    key: "statusLabel",
+    title: "status",
+    dataIndex: "status",
+    key: "status",
     align: "center",
   },
   {

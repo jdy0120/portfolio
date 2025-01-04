@@ -1,4 +1,4 @@
-import { Get, Post, Put } from "../../../lib/axios/request";
+import { Get, Patch, Post, Put } from "../../../lib/axios/request";
 import { Query } from "../../../types/http/Request.type";
 import {
   Post as PostType,
@@ -46,4 +46,21 @@ export const updatePost = async (
   } catch (error) {
     throw error;
   }
+};
+
+export const updatePostStatus = async (
+  id: string,
+  data: Partial<PostType>
+) => {
+  try {
+    const response = await Patch<PostType>(`/v1/posts/${id}`, data);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const fetchPostContent = async (filePath: string) => {
+  const response = await fetch(`http://localhost:3333/${filePath}`);
+  return response.json();
 };

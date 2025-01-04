@@ -19,11 +19,12 @@ import DefaultButton from "../../../../../../../../../components/molecules/butto
 import createSlug from "../../../../../../../../../utils/slug";
 
 interface HeaderProps {
+  isUpdate: boolean;
   control: Control<any>;
   setValue: UseFormSetValue<any>;
 }
 
-const Header = ({ control, setValue }: HeaderProps) => {
+const Header = ({ isUpdate, control, setValue }: HeaderProps) => {
   const { mutate: createCategory } = useCreateCategory();
   const { data: categoryList, refetch } = useCategoryList();
 
@@ -57,6 +58,7 @@ const Header = ({ control, setValue }: HeaderProps) => {
                 onChange(e.target.value);
                 setValue("slug", createSlug(e.target.value));
               }}
+              disabled={isUpdate}
             />
           )}
         />
@@ -72,6 +74,7 @@ const Header = ({ control, setValue }: HeaderProps) => {
               placeholder="Slug을 입력해주세요."
               value={value}
               onChange={onChange}
+              disabled={isUpdate}
             />
           )}
         />
@@ -124,7 +127,7 @@ const Header = ({ control, setValue }: HeaderProps) => {
             render={({ field: { onChange, value } }) => (
               <Radio.Group onChange={onChange} value={value}>
                 <Radio value={true}>배포</Radio>
-                <Radio value={false}>미배포</Radio>
+                <Radio value={false}>대기</Radio>
               </Radio.Group>
             )}
           />

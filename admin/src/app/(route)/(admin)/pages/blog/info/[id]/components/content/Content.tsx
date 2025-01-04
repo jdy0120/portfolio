@@ -27,14 +27,14 @@ interface ContentProps {
   control: Control<any>;
   setValue: UseFormSetValue<any>;
   getValues: UseFormGetValues<any>;
-  contentRef: React.RefObject<OutputData | null>;
+  content: OutputData;
 }
 
 const Content = ({
   control,
   setValue,
   getValues,
-  contentRef,
+  content,
 }: ContentProps) => {
   const uploadByFile = async (file: File) => {
     const res = await uploadToTemp(file);
@@ -56,10 +56,10 @@ const Content = ({
   return (
     <>
       <MarkdownEditor
-        data={contentRef.current as OutputData}
+        data={content}
         onChange={(data) => {
-          if (contentRef.current) {
-            contentRef.current.blocks = data.blocks;
+          if (content) {
+            content.blocks = data.blocks;
           }
         }}
         holder="editorjs"

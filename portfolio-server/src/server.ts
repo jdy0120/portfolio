@@ -1,4 +1,3 @@
-import { connectAzure } from "./shared/configs/azure.config";
 import { configDotenv } from "./shared/configs/dotenv.config";
 import { connectPostgres } from "./shared/configs/sequelize.config";
 configDotenv();

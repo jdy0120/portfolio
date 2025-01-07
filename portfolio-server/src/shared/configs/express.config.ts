@@ -18,7 +18,8 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:3003", "http://admin.doyeonism.com"],
+    origin: "*",
+    credentials: true,
   })
 );
 app.use(compression());

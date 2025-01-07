@@ -17,6 +17,9 @@ const nextConfig = {
   compiler: {
     emotion: true,
   },
+  headers: {
+    "Access-Control-Allow-Origin": "http://api.doyeonism.com",
+  },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,

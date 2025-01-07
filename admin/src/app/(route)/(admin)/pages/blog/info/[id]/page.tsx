@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, CreateBlogPageStyles } from "./page.styles";
 import { useParams, useRouter } from "next/navigation";
 import {
@@ -25,6 +25,8 @@ const page = () => {
     blocks: [],
     version: "0",
   });
+
+  const isUpdate = !!(id === "undefined" ? undefined : id);
 
   const { control, handleSubmit, setValue, getValues, reset } =
     useForm();
@@ -85,7 +87,7 @@ const page = () => {
           <Header
             control={control}
             setValue={setValue}
-            isUpdate={!!id}
+            isUpdate={isUpdate}
           />
         </CreateBlogPageStyles.DescriptionContainer>
         <CreateBlogPageStyles.ContentContainer>

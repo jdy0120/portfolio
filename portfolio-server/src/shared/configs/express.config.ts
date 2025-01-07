@@ -16,9 +16,11 @@ import { resourcePath } from "../utils";
 
 const app = express();
 
+const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(",") || [];
+
 app.use(
   cors({
-    origin: "*",
+    origin: allowedOrigins,
     credentials: true,
   })
 );

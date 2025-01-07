@@ -24,6 +24,14 @@ const nextConfig = {
     });
     return config;
   },
+  async rewrites() {
+    return [
+      {
+        source: "/",
+        destination: "/dashboard/overview",
+      },
+    ];
+  },
   plugins: ["@emotion/babel-plugin"],
 };
 

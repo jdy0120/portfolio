@@ -18,7 +18,7 @@ const nextConfig = {
     emotion: true,
   },
   headers: {
-    "Access-Control-Allow-Origin": "http://api.doyeonism.com",
+    "Access-Control-Allow-Origin": "http://admin.doyeonism.com",
   },
   webpack: (config) => {
     config.module.rules.push({

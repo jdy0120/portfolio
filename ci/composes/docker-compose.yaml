@@ -1,0 +1,51 @@
+name: portfolio-production
+services:
+  # portfolio:
+  #   image: portfolio:latest
+  #   ports:
+  #     - ${BLOG_DOCKER_HOST_PORT}:${BLOG_PORT}
+  admin:
+    build:
+      context: ../../admin
+      dockerfile: ./ci/dockerfiles/Dockerfile
+      target: production
+    volumes:
+      - ../../admin:/usr/src/app/admin
+    ports:
+      - ${ADMIN_DOCKER_HOST_PORT}:${ADMIN_PORT}
+    environment:
+      - PORT=${ADMIN_PORT}
+
+  server:
+    build:
+      context: ../../portfolio-server
+      dockerfile: ./ci/dockerfiles/Dockerfile
+      target: production
+    volumes:
+      - ../../portfolio-server:/usr/src/app/server
+      - /usr/src/app/node_modules
+    ports:
+      - ${SERVER_DOCKER_HOST_PORT}:${SERVER_PORT}
+    environment:
+      - PORT=${SERVER_PORT}
+      - NODE_ENV=production
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ../../nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - ${NGINX_DOCKER_HOST_PORT}:${NGINX_PORT}
+    # extra_hosts:
+    #   - "host.docker.internal:host-gateway"
+    depends_on:
+      - server
+    networks:
+      - server-network
+    environment:
+      - SERVER_DOCKER_HOST_PORT=${SERVER_DOCKER_HOST_PORT}
+      - ADMIN_DOCKER_HOST_PORT=${ADMIN_DOCKER_HOST_PORT}
+
+networks:
+  server-network:
+    driver: bridge

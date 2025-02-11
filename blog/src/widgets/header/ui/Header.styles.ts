@@ -11,7 +11,12 @@ const HeaderStyles = {
     background-color: ${({ theme }) => theme.colors.white.default};
   `,
 
-  LeftWrapper: styled.div``,
+  LeftWrapper: styled.div`
+    display: flex;
+    height: 100%;
+
+    gap: 24px;
+  `,
   RightWrapper: styled.div``,
 };
 

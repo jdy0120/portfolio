@@ -1,3 +1,18 @@
+import { css } from "@emotion/react";
+
+const typography = {
+  HomePageTitle: css`
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24px;
+  `,
+  MenuText: css`
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+  `,
+};
+
 const theme = {
   colors: {
     primary: {
@@ -31,6 +46,7 @@ const theme = {
       900: "#101C33",
     },
   },
+  typography,
 };
 
 export { theme };

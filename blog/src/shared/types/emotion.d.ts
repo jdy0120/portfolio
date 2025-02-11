@@ -31,6 +31,10 @@ interface MonoColor {
   info: string;
 }
 
+interface Typography {
+  [key: string]: SerializedStyles;
+}
+
 declare module "@emotion/react" {
   export interface Theme {
     colors: {
@@ -40,5 +44,6 @@ declare module "@emotion/react" {
       gray: Gradient;
       negative: string;
     };
+    typography: Typography;
   }
 }

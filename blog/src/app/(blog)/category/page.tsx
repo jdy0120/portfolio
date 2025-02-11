@@ -1,11 +1,15 @@
+"use client";
 import React from "react";
 import { CategoryPageStyles } from "./page.styles";
+import PageMotion from "@/shared/animation/page/page.motion";
 
 const page = () => {
   return (
-    <CategoryPageStyles.Container>
-      category
-    </CategoryPageStyles.Container>
+    <PageMotion>
+      <CategoryPageStyles.Container>
+        category
+      </CategoryPageStyles.Container>
+    </PageMotion>
   );
 };
 

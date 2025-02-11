@@ -1,9 +1,16 @@
+"use client";
+
 import React from "react";
 import { ContactPageStyles } from "./page.styles";
+import PageMotion from "@/shared/animation/page/page.motion";
 
 const page = () => {
   return (
-    <ContactPageStyles.Container>contact</ContactPageStyles.Container>
+    <PageMotion>
+      <ContactPageStyles.Container>
+        contact
+      </ContactPageStyles.Container>
+    </PageMotion>
   );
 };
 

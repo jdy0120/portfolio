@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { motion } from "motion/react";
 import Link from "next/link";
 
 const MenuStyles = {
@@ -11,17 +12,20 @@ const MenuStyles = {
     gap: 32px;
   `,
 
+  MenuList: styled(motion.ul)`
+    position: relative;
+
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  `,
+
   MenuItemLink: styled(Link)`
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    border-bottom: 2px solid transparent;
-
-    &:hover {
-      border-bottom: 2px solid ${({ theme }) => theme.colors.black};
-    }
 
     text-decoration: none;
   `,
@@ -32,4 +36,13 @@ const MenuStyles = {
   `,
 };
 
-export { MenuStyles };
+const BoderBottom = styled(motion.div)`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: transparent;
+`;
+
+export { MenuStyles, BoderBottom };

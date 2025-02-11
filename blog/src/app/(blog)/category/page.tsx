@@ -1,7 +1,12 @@
 import React from "react";
+import { CategoryPageStyles } from "./page.styles";
 
 const page = () => {
-  return <div>page</div>;
+  return (
+    <CategoryPageStyles.Container>
+      category
+    </CategoryPageStyles.Container>
+  );
 };
 
 export default page;

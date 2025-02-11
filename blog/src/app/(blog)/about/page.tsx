@@ -1,7 +1,8 @@
 import React from "react";
+import { AboutPageStyles } from "./page.styles";
 
 const page = () => {
-  return <div>page</div>;
+  return <AboutPageStyles.Container>about</AboutPageStyles.Container>;
 };
 
 export default page;

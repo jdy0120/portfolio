@@ -13,6 +13,7 @@ const Avatar = ({ size }: AvatarProps) => {
         alt="avatar"
         width={size === "small" ? 32 : size === "medium" ? 48 : 96}
         height={size === "small" ? 32 : size === "medium" ? 48 : 96}
+        priority
       />
     </AvatarStyles.Container>
   );

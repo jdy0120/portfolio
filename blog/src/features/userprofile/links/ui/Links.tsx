@@ -7,13 +7,12 @@ import SVGIcon from "@/shared/utils/SVGIcon";
 import { theme } from "@/shared/theme";
 
 const LinkAnimationVariants = {
-  hidden: { width: 0, opacity: 0 },
+  hidden: { width: 0, opacity: 0.1 },
   visible: {
     width: "auto",
     opacity: 1,
-    transition: { delay: 0.4, duration: 0.5 },
+    transition: { delay: 0.3, duration: 0.3 },
   },
-  exit: { width: 0, opacity: 0, transition: { duration: 0.5 } },
 };
 
 const Links = () => {

@@ -11,6 +11,7 @@ const HomePageStyles = {
     display: flex;
     flex-direction: column;
     gap: 32px;
+    flex: 1;
   `,
 };
 

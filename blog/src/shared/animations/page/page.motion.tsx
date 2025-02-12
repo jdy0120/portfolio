@@ -18,24 +18,14 @@ const PageMotion = ({
       ...(direction === "down" && { y: "-10%" }),
       ...(direction === "left" && { x: "10%" }),
       ...(direction === "right" && { x: "-10%" }),
-      opacity: 0,
+      opacity: 0.1,
     },
     visible: {
       y: 0,
       x: 0,
       opacity: 1,
       transition: {
-        duration: 0.4,
-      },
-    },
-    exit: {
-      ...(direction === "up" && { y: "-10%" }),
-      ...(direction === "down" && { y: "10%" }),
-      ...(direction === "left" && { x: "-10%" }),
-      ...(direction === "right" && { x: "10%" }),
-      opacity: 0,
-      transition: {
-        duration: 0.4,
+        duration: 0.3,
       },
     },
   };
@@ -45,7 +35,6 @@ const PageMotion = ({
       key="page"
       initial="hidden"
       animate="visible"
-      exit="exit"
       variants={animationVariants}
       style={style}
     >

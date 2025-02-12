@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 import createNextIntlPlugin from "next-intl/plugin";
+import type { NextConfig } from "next";
 
 const withNextIntl = createNextIntlPlugin(
   "./src/shared/libs/i18n/request.ts"
@@ -11,7 +12,11 @@ dotenv.config({
   path: `./envs/.env.${process.env.NODE_ENV}`,
 });
 
-const nextConfig = {
+const nextConfig: NextConfig = {
+  images: {
+    formats: ["image/avif", "image/webp"],
+    domains: ["localhost"],
+  },
   reactStrictMode: true,
   env: {
     MODE: process.env.MODE,

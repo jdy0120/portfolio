@@ -4,23 +4,16 @@ import React from "react";
 import { HomePageStyles } from "./page.styles";
 import Sidebar from "@/widgets/sidebar/ui/Sidebar";
 import User from "@/entities/user/ui/User";
-import PageMotion from "@/shared/animations/page/page.motion";
+import PostList from "@/entities/post/ui/PostList";
 
 const page = () => {
   return (
     <HomePageStyles.Container>
-      <PageMotion
-        style={{
-          flex: 1,
-        }}
-      >
-        <HomePageStyles.Content>
-          <User size="large" />
-        </HomePageStyles.Content>
-      </PageMotion>
-      <PageMotion direction="left">
-        <Sidebar />
-      </PageMotion>
+      <HomePageStyles.Content>
+        <User size="large" />
+        <PostList title="최근 게시글" />
+      </HomePageStyles.Content>
+      <Sidebar />
     </HomePageStyles.Container>
   );
 };

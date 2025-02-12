@@ -4,7 +4,7 @@ const UserStyles = {
   Container: styled.div`
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 24px;
 
     padding: 24px;
 

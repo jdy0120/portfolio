@@ -4,7 +4,7 @@ import React from "react";
 import { HomePageStyles } from "./page.styles";
 import Sidebar from "@/widgets/sidebar/ui/Sidebar";
 import User from "@/entities/user/ui/User";
-import PageMotion from "@/shared/animation/page/page.motion";
+import PageMotion from "@/shared/animations/page/page.motion";
 
 const page = () => {
   return (

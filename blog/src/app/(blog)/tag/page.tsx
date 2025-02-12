@@ -2,7 +2,7 @@
 
 import React from "react";
 import { TagPageStyles } from "./page.styles";
-import PageMotion from "@/shared/animation/page/page.motion";
+import PageMotion from "@/shared/animations/page/page.motion";
 
 const page = () => {
   return (

@@ -2,14 +2,28 @@ import { css } from "@emotion/react";
 
 const typography = {
   HomePageTitle: css`
+    font-family: "Pretendard";
     font-size: 18px;
     font-weight: 600;
     line-height: 24px;
   `,
   MenuText: css`
+    font-family: "Pretendard";
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
+  `,
+  NameText: css`
+    font-family: "Pretendard";
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+  `,
+  InfoText: css`
+    font-family: "Pretendard";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
   `,
 };
 

@@ -12,32 +12,41 @@ const PageMotion = ({
   direction = "up",
   style,
 }: PageMotionProps) => {
-  const initial = {
-    ...(direction === "up" && { y: "10%" }),
-    ...(direction === "down" && { y: "-10%" }),
-    ...(direction === "left" && { x: "10%" }),
-    ...(direction === "right" && { x: "-10%" }),
-    opacity: 0,
+  const animationVariants = {
+    hidden: {
+      ...(direction === "up" && { y: "10%" }),
+      ...(direction === "down" && { y: "-10%" }),
+      ...(direction === "left" && { x: "10%" }),
+      ...(direction === "right" && { x: "-10%" }),
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.4,
+      },
+    },
+    exit: {
+      ...(direction === "up" && { y: "-10%" }),
+      ...(direction === "down" && { y: "10%" }),
+      ...(direction === "left" && { x: "-10%" }),
+      ...(direction === "right" && { x: "10%" }),
+      opacity: 0,
+      transition: {
+        duration: 0.4,
+      },
+    },
   };
-  const animate = {
-    y: 0,
-    x: 0,
-    opacity: 1,
-  };
-  const exit = {
-    ...(direction === "up" && { y: "-10%" }),
-    ...(direction === "down" && { y: "10%" }),
-    ...(direction === "left" && { x: "-10%" }),
-    ...(direction === "right" && { x: "10%" }),
-    opacity: 0,
-  };
+
   return (
     <motion.div
       key="page"
-      initial={initial}
-      animate={animate}
-      exit={exit}
-      transition={{ delay: 0, duration: 0.4 }}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      variants={animationVariants}
       style={style}
     >
       {children}

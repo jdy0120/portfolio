@@ -4,13 +4,55 @@ import GithubIcon from "/public/assets/icons/github_icon.svg";
 import YoutubeIcon from "/public/assets/icons/youtube_icon.svg";
 import LinkedinIcon from "/public/assets/icons/linkedin_icon.svg";
 import SVGIcon from "@/shared/utils/SVGIcon";
+import { theme } from "@/shared/theme";
+
+const LinkAnimationVariants = {
+  hidden: { width: 0, opacity: 0 },
+  visible: {
+    width: "auto",
+    opacity: 1,
+    transition: { delay: 0.4, duration: 0.5 },
+  },
+  exit: { width: 0, opacity: 0, transition: { duration: 0.5 } },
+};
 
 const Links = () => {
+  const handleClick =
+    (url: string) => (e: React.MouseEvent<SVGElement>) => {
+      e.stopPropagation();
+      window.open(url, "_blank");
+    };
   return (
-    <LinkStyles>
-      <SVGIcon Icon={GithubIcon} color="#000" />
-      <SVGIcon Icon={YoutubeIcon} color="#000" />
-      <SVGIcon Icon={LinkedinIcon} color="#000" />
+    <LinkStyles
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      variants={LinkAnimationVariants}
+    >
+      <SVGIcon
+        Icon={GithubIcon}
+        color={theme.colors.gray[600]}
+        width={24}
+        height={24}
+        style={{ position: "absolute" }}
+        onClick={handleClick("https://github.com/jdy0120")}
+      />
+      <SVGIcon
+        Icon={YoutubeIcon}
+        color={theme.colors.gray[600]}
+        width={24}
+        height={24}
+        style={{ position: "absolute" }}
+        onClick={handleClick("https://www.youtube.com/@doyeonismdev")}
+      />
+      <SVGIcon
+        Icon={LinkedinIcon}
+        color={theme.colors.gray[600]}
+        width={24}
+        height={24}
+        style={{ position: "absolute" }}
+        onClick={handleClick("https://www.linkedin.com/in/doyeonism")}
+      />
     </LinkStyles>
   );
 };

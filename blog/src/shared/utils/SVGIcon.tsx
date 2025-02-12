@@ -1,33 +1,49 @@
 import React from "react";
 import { SVGProps } from "react";
 import styled from "@emotion/styled";
-import { motion } from "motion/react";
 
 interface SVGIconProps extends SVGProps<SVGSVGElement> {
   Icon: React.FC<SVGProps<SVGSVGElement>>;
   color?: string;
+  onClick?: (e: React.MouseEvent<SVGElement>) => void;
 }
 
-const SVGIcon = ({ Icon, color, ...props }: SVGIconProps) => {
+const SVGIcon = ({
+  Icon,
+  color,
+  onClick,
+  ...props
+}: SVGIconProps) => {
+  const { width, height, ...rest } = props;
   return (
-    <IconStyles
-      color={color}
-      initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
-      exit={{ scale: 0 }}
-      transition={{ duration: 0.3 }}
-    >
-      <Icon {...props} />
+    <IconStyles color={color} width={width} height={height}>
+      <Icon {...rest} onClick={onClick} />
     </IconStyles>
   );
 };
 
 export default SVGIcon;
 
-const IconStyles = styled(motion.div)<{ color?: string }>`
+interface IconStylesProps {
+  color?: string;
+  width?: string | number;
+  height?: string | number;
+}
+
+const IconStyles = styled.div<IconStylesProps>`
+  width: ${({ width }) => width}px;
+  height: ${({ height }) => height}px;
   cursor: pointer;
 
   path {
     fill: ${({ color }) => color};
+
+    transition: all 0.2s ease-in-out;
+  }
+
+  &:hover {
+    path {
+      fill: #000;
+    }
   }
 `;

@@ -12,6 +12,8 @@ const page = () => {
       <HomePageStyles.Content>
         <User size="large" />
         <PostList title="최근 게시글" />
+        <PostList title="인기 게시글" />
+        <PostList title="모든 게시글" />
       </HomePageStyles.Content>
       <Sidebar />
     </HomePageStyles.Container>

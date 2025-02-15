@@ -9,6 +9,8 @@ const UserStyles = {
     padding: 24px;
 
     background-color: ${({ theme }) => theme.colors.white.default};
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+
     border-radius: 8px;
   `,
 

@@ -3,8 +3,6 @@ import Image from "next/image";
 
 const PostCardStyles = {
   Container: styled.div`
-    width: 100%;
-
     border-radius: 8px;
     background-color: ${({ theme }) => theme.colors.white.default};
     box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
@@ -12,9 +10,13 @@ const PostCardStyles = {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    cursor: pointer;
   `,
 
   ImageWrapper: styled.div`
+    width: 100%;
+
     position: relative;
   `,
 
@@ -56,6 +58,8 @@ const PostCardStyles = {
   DateWrapper: styled.div`
     display: flex;
     align-items: center;
+    justify-content: flex-end;
+
     gap: 8px;
   `,
 

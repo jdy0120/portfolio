@@ -12,9 +12,12 @@ const PostListStyles = {
     ${({ theme }) => theme.typography.NameText}
   `,
 
-  PostList: styled.div`
+  PostList: styled.div<{ postCountInRow: number }>`
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(
+      ${({ postCountInRow }) => postCountInRow},
+      1fr
+    );
     gap: 24px;
   `,
 };

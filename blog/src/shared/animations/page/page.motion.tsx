@@ -1,18 +1,22 @@
 import React from "react";
-import { motion } from "motion/react";
+import { motion, Variants, TargetAndTransition } from "motion/react";
 
 interface PageMotionProps {
   children: React.ReactNode;
   direction?: "up" | "down" | "left" | "right";
+  onHoverStart?: TargetAndTransition;
+  onHoverEnd?: TargetAndTransition;
   style?: React.CSSProperties;
 }
 
 const PageMotion = ({
   children,
   direction = "up",
+  onHoverStart,
+  onHoverEnd,
   style,
 }: PageMotionProps) => {
-  const animationVariants = {
+  const animationVariants: Variants = {
     hidden: {
       ...(direction === "up" && { y: "10%" }),
       ...(direction === "down" && { y: "-10%" }),
@@ -35,6 +39,7 @@ const PageMotion = ({
       key="page"
       initial="hidden"
       animate="visible"
+      whileHover={onHoverStart}
       variants={animationVariants}
       style={style}
     >

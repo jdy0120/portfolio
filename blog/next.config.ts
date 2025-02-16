@@ -15,7 +15,16 @@ dotenv.config({
 const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
-    domains: ["localhost"],
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "localhost",
+      },
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
   },
   reactStrictMode: true,
   env: {

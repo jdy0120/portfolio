@@ -35,6 +35,7 @@ const Links = () => {
         height={24}
         style={{ position: "absolute" }}
         onClick={handleClick("https://github.com/jdy0120")}
+        isCursorPointer
       />
       <SVGIcon
         Icon={YoutubeIcon}
@@ -43,6 +44,7 @@ const Links = () => {
         height={24}
         style={{ position: "absolute" }}
         onClick={handleClick("https://www.youtube.com/@doyeonismdev")}
+        isCursorPointer
       />
       <SVGIcon
         Icon={LinkedinIcon}
@@ -51,6 +53,7 @@ const Links = () => {
         height={24}
         style={{ position: "absolute" }}
         onClick={handleClick("https://www.linkedin.com/in/doyeonism")}
+        isCursorPointer
       />
     </LinkStyles>
   );

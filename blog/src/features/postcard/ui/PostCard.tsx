@@ -1,17 +1,44 @@
+"use client";
+
 import React from "react";
 import { PostCardStyles } from "./PostCard.styles";
 import SVGIcon from "@/shared/utils/SVGIcon";
 import CalendarIcon from "/public/assets/icons/calendar_icon.svg";
 import PageMotion from "@/shared/animations/page/page.motion";
+import { useRouter } from "next/navigation";
 
-const PostCard = () => {
+interface PostCardProps {
+  title: string;
+  description: string;
+  date: string;
+  image: string;
+  link: string;
+}
+
+const PostCard = ({
+  title,
+  description,
+  date,
+  image,
+  link,
+}: PostCardProps) => {
+  const router = useRouter();
+
+  const onHoverStart = {
+    y: -5,
+  };
+
+  const handleClick = () => {
+    router.push(link);
+  };
+
   return (
-    <PageMotion>
-      <PostCardStyles.Container>
+    <PageMotion onHoverStart={onHoverStart}>
+      <PostCardStyles.Container onClick={handleClick}>
         <PostCardStyles.ImageWrapper>
           <PostCardStyles.Image
-            src="/assets/images/doyeonism_square.jpg"
-            alt="postcard"
+            src={image}
+            alt={title}
             width={250}
             height={192}
             layout="responsive"
@@ -20,14 +47,14 @@ const PostCard = () => {
 
         <PostCardStyles.Content>
           <PostCardStyles.ContentWrapper>
-            <PostCardStyles.Title>PostCard</PostCardStyles.Title>
+            <PostCardStyles.Title>{title}</PostCardStyles.Title>
             <PostCardStyles.Description>
-              PostCard Description
+              {description}
             </PostCardStyles.Description>
           </PostCardStyles.ContentWrapper>
           <PostCardStyles.DateWrapper>
-            <SVGIcon Icon={CalendarIcon} />
-            <PostCardStyles.Date>2024-01-01</PostCardStyles.Date>
+            <SVGIcon Icon={CalendarIcon} width={14} height={14} />
+            <PostCardStyles.Date>{date}</PostCardStyles.Date>
           </PostCardStyles.DateWrapper>
         </PostCardStyles.Content>
       </PostCardStyles.Container>

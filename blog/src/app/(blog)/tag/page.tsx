@@ -1,15 +1,8 @@
-"use client";
-
 import React from "react";
-import { TagPageStyles } from "./page.styles";
-import PageMotion from "@/shared/animations/page/page.motion";
+import styles from "./page.module.css";
 
 const page = () => {
-  return (
-    <PageMotion>
-      <TagPageStyles.Container>tag</TagPageStyles.Container>
-    </PageMotion>
-  );
+  return <div className={styles.Container}>tag</div>;
 };
 
 export default page;

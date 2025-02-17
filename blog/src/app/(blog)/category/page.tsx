@@ -1,16 +1,8 @@
-"use client";
 import React from "react";
-import { CategoryPageStyles } from "./page.styles";
-import PageMotion from "@/shared/animations/page/page.motion";
+import styles from "./page.module.css";
 
 const page = () => {
-  return (
-    <PageMotion>
-      <CategoryPageStyles.Container>
-        category
-      </CategoryPageStyles.Container>
-    </PageMotion>
-  );
+  return <div className={styles.Container}>category</div>;
 };
 
 export default page;

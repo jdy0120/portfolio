@@ -1,19 +1,17 @@
-"use client";
-
 import React from "react";
-import { PostListWrapper, PostPageStyles } from "./page.styles";
 import PostList from "@/entities/post/card/ui/PostList";
 import PostDetail from "@/entities/post/detail/ui/PostDetail";
+import styles from "./page.module.css";
 
 const page = () => {
   return (
-    <PostPageStyles.Container>
+    <div className={styles.Container}>
       <PostDetail slug="slug" />
 
-      <PostListWrapper>
+      <div className={styles.PostListWrapper}>
         <PostList title="관련 게시물" postCountInRow={5} />
-      </PostListWrapper>
-    </PostPageStyles.Container>
+      </div>
+    </div>
   );
 };
 

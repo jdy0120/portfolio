@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { SidebarStyles } from "./Sidebar.styles";
 import PageMotion from "@/shared/animations/page/page.motion";

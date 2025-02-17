@@ -1,17 +1,8 @@
-"use client";
-
 import React from "react";
-import { ContactPageStyles } from "./page.styles";
-import PageMotion from "@/shared/animations/page/page.motion";
+import styles from "./page.module.css";
 
 const page = () => {
-  return (
-    <PageMotion>
-      <ContactPageStyles.Container>
-        contact
-      </ContactPageStyles.Container>
-    </PageMotion>
-  );
+  return <div className={styles.Container}>contact</div>;
 };
 
 export default page;

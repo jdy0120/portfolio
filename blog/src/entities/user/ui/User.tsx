@@ -1,3 +1,5 @@
+"use client";
+
 import Info from "@/features/userprofile/info/ui/Info";
 import Links from "@/features/userprofile/links/ui/Links";
 import Name from "@/features/userprofile/name/ui/Name";

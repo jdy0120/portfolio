@@ -1,22 +1,20 @@
-"use client";
-
 import React from "react";
-import { HomePageStyles } from "./page.styles";
 import Sidebar from "@/widgets/sidebar/ui/Sidebar";
 import User from "@/entities/user/ui/User";
 import PostList from "@/entities/post/card/ui/PostList";
+import styles from "./page.module.css";
 
 const page = () => {
   return (
-    <HomePageStyles.Container>
-      <HomePageStyles.Content>
+    <div className={styles.Container}>
+      <div className={styles.Content}>
         <User size="large" />
         <PostList title="최근 게시글" postCountInRow={5} />
         <PostList title="인기 게시글" postCountInRow={5} />
         <PostList title="모든 게시글" postCountInRow={5} />
-      </HomePageStyles.Content>
+      </div>
       <Sidebar />
-    </HomePageStyles.Container>
+    </div>
   );
 };
 

@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { PostListStyles } from "./PostList.styles";
 import PostCard from "@/features/postcard/ui/PostCard";

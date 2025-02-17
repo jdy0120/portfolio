@@ -1,12 +1,8 @@
 import React from "react";
-import { PostContentStyles } from "./PostContent.styles";
+import styles from "./PostContent.module.css";
 
 const PostContent = () => {
-  return (
-    <PostContentStyles.Container>
-      PostContent
-    </PostContentStyles.Container>
-  );
+  return <div className={styles.Container}>PostContent</div>;
 };
 
 export default PostContent;

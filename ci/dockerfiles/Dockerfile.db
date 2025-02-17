@@ -3,6 +3,10 @@ FROM postgres:15.1-alpine
 LABEL version="1.0.0"
 LABEL maintainer="Doyeonism"
 
+ENV POSTGRES_USER=doyeonism
+ENV POSTGRES_PASSWORD=th3572410@
+ENV POSTGRES_DB=portfolio_db
+
 WORKDIR /.
 
 ADD database/postgres.d/init.sql /docker-entrypoint-initdb.d/

@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { AdminLayoutStyles } from "./layout.styles";
 import Sidebar from "../../../components/organisms/sidebar/sidebar";

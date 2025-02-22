@@ -1,4 +1,4 @@
-name: ${APP_DOCKER_SERVICE_NAME} # container name
+version: "3.8"
 services:
   frontend:
     container_name: ${APP_DOCKER_SERVICE_NAME} # container unit name

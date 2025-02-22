@@ -7,7 +7,6 @@ const page = () => {
   return (
     <div className={styles.Container}>
       <PostDetail slug="slug" />
-
       <div className={styles.PostListWrapper}>
         <PostList title="관련 게시물" postCountInRow={5} />
       </div>

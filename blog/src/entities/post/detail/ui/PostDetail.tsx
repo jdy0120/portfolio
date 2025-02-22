@@ -1,7 +1,8 @@
 import React from "react";
-import PostContent from "@/features/content/post/ui/PostContent";
-import Comment from "@/features/comment/ui/Comment";
+import Wrapper from "@/entities/post/post/wrapper/ui/Wrapper";
+import Comment from "@/entities/post/comment/ui/Comment";
 import styles from "./PostDetail.module.css";
+import User from "@/entities/user/ui/User";
 
 interface PostDetailProps {
   slug: string;
@@ -10,7 +11,7 @@ interface PostDetailProps {
 const PostDetail = ({ slug }: PostDetailProps) => {
   return (
     <div className={styles.Container}>
-      <PostContent />
+      <Wrapper />
       <Comment />
     </div>
   );

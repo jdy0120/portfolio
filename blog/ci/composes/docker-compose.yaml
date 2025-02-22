@@ -8,6 +8,7 @@ services:
     volumes:
       - ../../src:/usr/src/app/src
     image: ${APP_DOCKER_SERVICE_NAME}:frontend # image name
+    restart: always
     ports:
       - ${APP_DOCKER_HOST_PORT}:${PORT}
     environment:

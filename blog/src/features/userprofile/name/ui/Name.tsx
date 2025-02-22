@@ -2,7 +2,7 @@ import React from "react";
 import { NameStyles } from "./Name.styles";
 
 interface NameProps {
-  size: "small" | "medium" | "large";
+  size?: "small" | "medium" | "large";
 }
 
 const Name = ({ size = "large" }: NameProps) => {

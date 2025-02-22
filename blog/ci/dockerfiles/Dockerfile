@@ -1,35 +1,33 @@
-FROM node:22-alpine as base
+# Stage 1: 빌드 단계
+FROM node:18-alpine AS builder
+WORKDIR /app
 
-FROM base as development
-WORKDIR /usr/src/app
-ENV NODE_ENV=development
-COPY ["package.json", "package-lock.json", "./"]
-RUN apk --no-cache --virtual build-dependencies \
-    add python3 make g++ \
-    && npm ci \
-    && apk del build-dependencies
+# 의존성 설치를 위해 package.json 관련 파일 복사
+COPY package*.json ./
+RUN npm ci
+
+# 전체 소스코드 복사 및 빌드 실행
 COPY . .
-RUN npm install
-CMD ["npm", "run", "dev:dev"]
+RUN npm run build
 
+# Stage 2: 런타임 단계
+FROM node:18-alpine AS runner
+WORKDIR /app
 
-FROM base as production
-WORKDIR /usr/src/app
+# production 모드 설정
 ENV NODE_ENV=production
-COPY ["package.json", "package-lock.json", "./"]
-RUN npm ci --omit=dev --production
-COPY . .
-CMD ["npm", "run", "start:prd"]
 
+# 빌드 결과물과 필요한 파일 복사
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/next.config.ts ./
 
-FROM base as test
-WORKDIR /usr/src/app
-ENV NODE_ENV=test
-COPY ["package.json", "package-lock.json", "./"]
-RUN apk --no-cache --virtual build-dependencies \
-    add python3 make g++ \
-    && npm ci \
-    && apk del build-dependencies
-COPY . .
-RUN npm install
-CMD ["npm", "run", "test"]
+# production 의존성만 설치
+RUN npm ci --only=production
+
+# 컨테이너 외부로 노출할 포트
+EXPOSE 3000
+
+# production 모드로 Next.js 서버 실행 (package.json에 "start": "next start" 스크립트가 정의되어 있어야 함)
+CMD ["npm", "run","start"]

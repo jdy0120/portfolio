@@ -5,11 +5,10 @@ services:
     build:
       context: ../../
       dockerfile: ./ci/dockerfiles/Dockerfile
-      target: production
     volumes:
       - ../../src:/usr/src/app/src
+    image: ${APP_DOCKER_SERVICE_NAME}:frontend # image name
     ports:
       - ${APP_DOCKER_HOST_PORT}:${PORT}
-    image: ${APP_DOCKER_SERVICE_NAME}:frontend # image name
     environment:
       - PORT=${PORT}

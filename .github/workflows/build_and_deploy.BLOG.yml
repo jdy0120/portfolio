@@ -13,10 +13,10 @@ on:
 
 jobs:
   deploy:
-    runs-on: [self-hosted, ubuntu-latest]
+    runs-on: [self-hosted, Linux, X64] # 등록한 runner의 레이블 사용
 
     steps:
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
       - name: Deploy via docker-compose

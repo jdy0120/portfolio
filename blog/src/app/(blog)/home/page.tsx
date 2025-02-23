@@ -8,7 +8,7 @@ const page = () => {
   return (
     <div className={styles.Container}>
       <div className={styles.Content}>
-        1
+        test ci cd
         <User size="large" />
         <PostList title="최근 게시글" postCountInRow={5} />
         <PostList title="인기 게시글" postCountInRow={5} />

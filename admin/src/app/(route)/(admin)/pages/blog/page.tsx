@@ -1,15 +1,7 @@
-"use client";
-
 import React from "react";
 
-import BlogTable from "./components/table/BlogTable";
-
 const page = () => {
-  return (
-    <>
-      <BlogTable />
-    </>
-  );
+  return <div>page</div>;
 };
 
 export default page;

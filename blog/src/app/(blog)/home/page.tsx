@@ -8,6 +8,7 @@ const page = () => {
   return (
     <div className={styles.Container}>
       <div className={styles.Content}>
+        test ci/cd background
         <User size="large" />
         <PostList title="최근 게시글" postCountInRow={5} />
         <PostList title="인기 게시글" postCountInRow={5} />

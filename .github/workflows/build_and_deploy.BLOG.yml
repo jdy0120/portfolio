@@ -28,8 +28,9 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > private_key.pem
           chmod 600 private_key.pem
           ssh -o StrictHostKeyChecking=no -i private_key.pem $SERVER_USER@$SERVER_IP << 'EOF'
-            cd /home/doyeon/portfolio/blog
+            cd /home/doyeon/portfolio
             git fetch origin
             git merge origin/main
+            cd blog
             sudo docker-compose --env-file ./envs/.env.production -f ./ci/composes/docker-compose.yaml up --build -d
           EOF

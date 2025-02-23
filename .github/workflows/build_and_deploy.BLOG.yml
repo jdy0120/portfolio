@@ -32,5 +32,5 @@ jobs:
             git fetch origin
             git merge origin/main
             cd blog
-            sudo docker-compose --env-file ./envs/.env.production -f ./ci/composes/docker-compose.yaml up --build -d
+            docker-compose --env-file ./envs/.env.production -f ./ci/composes/docker-compose.yaml up --build -d
           EOF

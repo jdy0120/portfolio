@@ -32,5 +32,8 @@ jobs:
             git fetch origin
             git merge origin/main
             cd blog
+            docker stop blog_prd
+            docker rm blog_prd
+            docker rmi blog:frontend
             docker compose --env-file ./envs/.env.production -f ./ci/composes/docker-compose.yaml up --build -d
           EOF

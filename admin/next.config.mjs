@@ -27,14 +27,13 @@ const nextConfig = {
     });
     return config;
   },
-  async redirects() {
-    return [
-      {
-        source: "/",
-        destination: "/dashboard/overview",
-      },
-    ];
-  },
+  redirects: async () => [
+    {
+      source: "/",
+      destination: "/dashboard/overview",
+      permanent: true,
+    },
+  ],
   plugins: ["@emotion/babel-plugin"],
 };
 

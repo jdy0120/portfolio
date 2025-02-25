@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p ${PORT:-3003}",
-    "build": "NEXT_NODE_ENV=production next build:prd",
+    "dev": "NEXT_NODE_ENV=development next dev -p ${PORT:-3003}",
+    "build": "NEXT_NODE_ENV=production next build",
     "start": "next start -p ${PORT:-3003}",
     "lint": "next lint"
   },

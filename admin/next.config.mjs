@@ -27,7 +27,7 @@ const nextConfig = {
     });
     return config;
   },
-  async rewrites() {
+  async redirects() {
     return [
       {
         source: "/",

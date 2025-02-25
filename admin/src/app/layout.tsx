@@ -5,17 +5,6 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import RootStyleRegistry from "../lib/providers/RootStyleRegistry";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
-
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -27,10 +16,7 @@ export default async function RootLayout({
   return (
     <html lang="ko">
       <head></head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable}`}
-        suppressHydrationWarning
-      >
+      <body suppressHydrationWarning>
         <RootStyleRegistry>
           <ReactQueryProvider>
             <EmotionTheme>

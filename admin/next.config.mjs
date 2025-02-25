@@ -30,7 +30,7 @@ const nextConfig = {
   redirects: async () => [
     {
       source: "/",
-      destination: "/dashboard/overview",
+      destination: "/dashboards/overview",
       permanent: true,
     },
   ],

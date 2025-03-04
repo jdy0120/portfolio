@@ -12,4 +12,4 @@ RUN chmod 755 /docker-entrypoint-initdb.d/init.sql
 # RUN chmod +x /docker-entrypoint-initdb.d/pg_conf.sh
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD sh -c "postgres -c port=${POSTGRES_PORT}"
+CMD ["sh", "-c", "postgres -c port=${POSTGRES_PORT}"]

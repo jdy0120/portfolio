@@ -11,3 +11,9 @@ services:
     ports:
       - ${APP_DOCKER_HOST_PORT}:${PORT}
     command: ["npm", "run", "start"]
+    networks:
+      - portfolio-backend-network
+
+networks:
+  portfolio-backend-network:
+    external: true

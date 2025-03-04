@@ -35,5 +35,5 @@ jobs:
             docker stop portfolio-server_prd
             docker rm portfolio-server_prd
             docker rmi portfolio-server:backend
-            docker compose --env-file ./envs/.env.production -f ./ci/composes/docker-compose.yaml up --build -d
+            docker-compose --env-file ./envs/.env.production -f ./ci/composes/docker-compose.yaml up -d --build
           EOF

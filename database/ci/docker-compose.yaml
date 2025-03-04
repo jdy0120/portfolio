@@ -17,6 +17,18 @@ services:
       - postgres_data:/var/lib/postgresql/data
     user: "postgres"
     restart: always
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - portfolio-backend-network
+
+networks:
+  portfolio-backend-network:
+    external: true
 
 volumes:
   postgres_data:
+    driver: local

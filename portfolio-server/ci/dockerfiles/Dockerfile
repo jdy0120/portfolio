@@ -1,23 +1,18 @@
-FROM node:22-alpine as base
-
+# 1. 빌드 단계
+FROM node:18-alpine AS BUILDER
 LABEL maintainer="Doyeonism"
-
-FROM base as local
 WORKDIR /usr/src/app
-ENV NODE_ENV=development
-COPY ["package.json", "package-lock.json", "./"]
-RUN apk --no-cache --virtual build-dependencies \
-    add python3 make g++ \
-    && npm ci \
-    && apk del build-dependencies
-COPY . .
+COPY package.json package-lock.json ./
 RUN npm install
-CMD ["npm", "run", "dev"]
+COPY . .
+RUN npm run build
 
-FROM base as production
+# 2. 실행 단계
+FROM node:18-alpine AS PRODUCTION
+LABEL maintainer="Doyeonism"
 WORKDIR /usr/src/app
 ENV NODE_ENV=production
-COPY ["package.json", "package-lock.json", "./"]
-RUN npm ci --omit=dev --production
-COPY . .
+COPY package.json package-lock.json ./
+RUN npm install --production
+COPY --from=BUILDER /usr/src/app/dist ./dist
 CMD ["npm", "run", "start"]

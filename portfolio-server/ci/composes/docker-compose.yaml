@@ -4,9 +4,10 @@ services:
     build:
       context: ../../
       dockerfile: ./ci/dockerfiles/Dockerfile
-      target: production
+    environment:
+      - NODE_ENV=production
     volumes:
-      - ../../:/usr/src/app
-      - /usr/src/app/node_modules
+      - ../../envs:/usr/src/app/envs
     ports:
       - ${APP_DOCKER_HOST_PORT}:${PORT}
+    command: ["npm", "run", "start"]

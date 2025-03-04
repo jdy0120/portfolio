@@ -135,7 +135,7 @@ export const moveFiles = async (
     const newPath = join(directoryPath, filename);
 
     // await fs.promises.rename(join(path, oldPath), newPath);
-    await uploadToAzure(newPath, oldPath);
+    // await uploadToAzure(newPath, oldPath); // TODO: 추후 업로드 기능 추가 시 사용
   }
 };
 

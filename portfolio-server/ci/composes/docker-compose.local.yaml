@@ -3,7 +3,7 @@ services:
   server:
     build:
       context: ../../
-      dockerfile: ./ci/dockerfiles/Dockerfile
+      dockerfile: ./ci/dockerfiles/Dockerfile.local
       target: local
     volumes:
       - ../../:/usr/src/app

@@ -39,6 +39,10 @@ passport.use("validate-refresh-jwt", refreshJwtStrategy);
 app.use("/", sharedRouter);
 app.use("/resources", express.static(resourcePath));
 
+app.get("/test", (req: Request, res: Response) => {
+  res.send("Hello World");
+});
+
 app.use(errorConverter);
 app.use(errorHandler);
 

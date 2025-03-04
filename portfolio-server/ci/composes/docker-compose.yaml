@@ -5,6 +5,7 @@ services:
     build:
       context: ../../
       dockerfile: ./ci/dockerfiles/Dockerfile
+    image: ${APP_DOCKER_SERVICE_NAME}:backend
     environment:
       - NODE_ENV=production
     volumes:

@@ -1,3 +1,4 @@
+
 # 1. 빌드 단계
 FROM node:18-alpine AS BUILDER
 LABEL maintainer="Doyeonism"

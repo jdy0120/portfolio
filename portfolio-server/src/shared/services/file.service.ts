@@ -1,24 +1,15 @@
 import { Request } from "express";
 
 import { seq } from "../../shared/configs/sequelize.config";
-import {
-  AttachmentTemp,
-  AttachmentTempCreationAttributes,
-} from "../models/main/attachment.model";
+import { AttachmentTemp, AttachmentTempCreationAttributes } from "../models/main/attachment.model";
 
 import * as UTILS from "../utils/file";
 import { Domain } from "../types";
 import { Transaction } from "sequelize";
 
-const uploadsTemp = async (
-  req: Request,
-  options?: { isUseOriginalFilename?: boolean }
-) => {
+const uploadsTemp = async (req: Request, options?: { isUseOriginalFilename?: boolean }) => {
   const { user } = req;
-  const { files } = await UTILS.uploadsTemp(
-    req,
-    options?.isUseOriginalFilename
-  );
+  const { files } = await UTILS.uploadsTemp(req, options?.isUseOriginalFilename);
   const transaction = await seq.transaction();
 
   try {
@@ -38,10 +29,7 @@ const uploadsTemp = async (
       });
     }
 
-    const attachmentTemps = await AttachmentTemp.bulkWrite(
-      attachmentTempList,
-      { transaction }
-    );
+    const attachmentTemps = await AttachmentTemp.bulkWrite(attachmentTempList, { transaction });
 
     await transaction.commit();
 
@@ -61,16 +49,8 @@ interface MoveFileOptions {
 }
 
 const moveTempsToUploads = async (options: MoveFileOptions) => {
-  const {
-    attachmentTempList,
-    domain,
-    newPath,
-    transaction,
-    beforeMove,
-  } = options;
-  const attachmentTempsIds = attachmentTempList.map(
-    (attachment) => attachment.id
-  );
+  const { attachmentTempList, domain, newPath, transaction, beforeMove } = options;
+  const attachmentTempsIds = attachmentTempList.map((attachment) => attachment.id);
   const attachmentTemps = await AttachmentTemp.readAll({
     where: { id: attachmentTempsIds },
     raw: true,
@@ -84,7 +64,7 @@ const moveTempsToUploads = async (options: MoveFileOptions) => {
   await UTILS.moveFiles(
     domain,
     attachmentTemps.map((attachmentTemp) => attachmentTemp.path),
-    newPath
+    newPath,
   );
 
   await eraseTemps({ attachmentTemps, transaction });

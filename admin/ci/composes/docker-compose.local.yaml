@@ -1,0 +1,15 @@
+name: portfolio-admin-develop
+services:
+  admin:
+    container_name: admin_dev
+    build:
+      context: ../../
+      dockerfile: ./ci/dockerfiles/Dockerfile.local
+    volumes:
+      - ../../src:/usr/src/app/src
+    image: ${APP_DOCKER_SERVICE_NAME}:frontend # image name
+    restart: always
+    ports:
+      - ${APP_DOCKER_HOST_PORT}:${PORT}
+    environment:
+      - PORT=${PORT}

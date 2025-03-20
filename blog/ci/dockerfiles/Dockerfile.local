@@ -1,0 +1,17 @@
+# 베이스 이미지
+FROM node:18-alpine
+
+# 작업 디렉토리 생성
+WORKDIR /usr/src/app
+
+# 의존성 파일 복사
+COPY package.json package-lock.json* ./
+
+# 의존성 설치
+RUN npm install
+
+# 전체 프로젝트 복사
+COPY . .
+
+# dev 모드 실행
+CMD ["npm", "run", "dev"]

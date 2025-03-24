@@ -1,9 +1,6 @@
 import { Get, Patch, Post, Put } from "../../../lib/axios/request";
 import { Query } from "../../../types/http/Request.type";
-import {
-  Post as PostType,
-  RequestPostType,
-} from "../../../types/models/v1/blog/blog.types";
+import { Post as PostType, RequestPostType } from "../../../types/models/v1/blog/blog.types";
 
 export const getPostList = async (query: Query) => {
   const response = await Get<PostType[]>("/v1/posts", {
@@ -36,10 +33,7 @@ export const createPost = async (data: RequestPostType) => {
   }
 };
 
-export const updatePost = async (
-  id: string,
-  data: RequestPostType
-) => {
+export const updatePost = async (id: string, data: RequestPostType) => {
   try {
     const response = await Put<PostType>(`/v1/posts/${id}`, data);
     return response.data;
@@ -48,10 +42,7 @@ export const updatePost = async (
   }
 };
 
-export const updatePostStatus = async (
-  id: string,
-  data: Partial<PostType>
-) => {
+export const updatePostStatus = async (id: string, data: Partial<PostType>) => {
   try {
     const response = await Patch<PostType>(`/v1/posts/${id}`, data);
     return response.data;
@@ -61,6 +52,11 @@ export const updatePostStatus = async (
 };
 
 export const fetchPostContent = async (filePath: string) => {
-  const response = await fetch(`http://localhost:3333/${filePath}`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_STORAGE_BASE_URL}/${filePath}`, {
+    headers: {
+      "Content-Type": "application/json",
+      "Cache-Control": "no-cache",
+    },
+  });
   return response.json();
 };

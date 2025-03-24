@@ -3,10 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Form, CreateBlogPageStyles } from "./page.styles";
 import { useParams, useRouter } from "next/navigation";
-import {
-  usePostCreate,
-  usePostItem,
-} from "../../../../../../../apis/v1/blog/blog.query";
+import { usePostCreate, usePostItem } from "../../../../../../../apis/v1/blog/blog.query";
 import Content from "./components/content/Content";
 import Header from "./components/header/Header";
 import { useForm } from "react-hook-form";
@@ -28,8 +25,7 @@ const page = () => {
 
   const isUpdate = !!(id === "undefined" ? undefined : id);
 
-  const { control, handleSubmit, setValue, getValues, reset } =
-    useForm();
+  const { control, handleSubmit, setValue, getValues, reset } = useForm();
 
   const onSubmit = async (data: any) => {
     const jsonContent = JSON.stringify(content);
@@ -49,7 +45,7 @@ const page = () => {
         onSuccess: () => {
           router.push("/pages/blog");
         },
-      }
+      },
     );
   };
 
@@ -60,12 +56,9 @@ const page = () => {
   useEffect(() => {
     const fetchContent = async () => {
       if (postData && !isLoading) {
-        const { contentFile, attachmentImages, thumbnails, ...rest } =
-          postData.data;
+        const { contentFile, attachmentImages, thumbnails, ...rest } = postData.data;
 
-        const jsonFileResponse = await fetchPostContent(
-          contentFile?.path || ""
-        );
+        const jsonFileResponse = await fetchPostContent(contentFile?.path || "");
         setContent(jsonFileResponse);
         reset({
           ...rest,
@@ -73,35 +66,22 @@ const page = () => {
       }
     };
     fetchContent();
-  }, [postData]);
+  }, [postData?.data.contentFile?.path]);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit, onCancel)}>
-      <CreateBlogPageStyles.Container
-        onSubmit={handleSubmit(onSubmit, onCancel)}
-      >
+      <CreateBlogPageStyles.Container onSubmit={handleSubmit(onSubmit, onCancel)}>
         <CreateBlogPageStyles.DescriptionContainer>
-          <CreateBlogPageStyles.Title>
-            포스트 글 쓰기
-          </CreateBlogPageStyles.Title>
-          <Header
-            control={control}
-            setValue={setValue}
-            isUpdate={isUpdate}
-          />
+          <CreateBlogPageStyles.Title>포스트 글 쓰기</CreateBlogPageStyles.Title>
+          <Header control={control} setValue={setValue} isUpdate={isUpdate} />
         </CreateBlogPageStyles.DescriptionContainer>
         <CreateBlogPageStyles.ContentContainer>
-          <Content
-            control={control}
-            setValue={setValue}
-            getValues={getValues}
-            content={content}
-          />
+          <Content control={control} setValue={setValue} getValues={getValues} content={content} />
         </CreateBlogPageStyles.ContentContainer>
       </CreateBlogPageStyles.Container>
       <CreateBlogPageStyles.ButtonContainer>
         <DefaultButton>취소</DefaultButton>
-        <DefaultButton type="primary" htmlType="submit">
+        <DefaultButton type='primary' htmlType='submit'>
           저장
         </DefaultButton>
       </CreateBlogPageStyles.ButtonContainer>

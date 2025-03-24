@@ -3,25 +3,16 @@
 import React from "react";
 import dynamic from "next/dynamic";
 
-import { OutputBlockData, OutputData } from "@editorjs/editorjs";
+import { OutputData } from "@editorjs/editorjs";
 import DefaultButton from "../../../../../../../../../components/molecules/button/button";
-import {
-  Control,
-  Controller,
-  UseFormGetValues,
-  UseFormSetValue,
-} from "react-hook-form";
+import { Control, Controller, UseFormGetValues, UseFormSetValue } from "react-hook-form";
 import { uploadToTemp } from "../../../../../../../../../apis/v1/upload/uploadtotemp.api";
 import { ContentStyles } from "./Content.styles";
 import DefaultInput from "../../../../../../../../../components/molecules/input/input";
 
-const MarkdownEditor = dynamic(
-  () =>
-    import(
-      "../../../../../../../../../components/molecules/editor/MarkdownEditor"
-    ),
-  { ssr: false }
-);
+const MarkdownEditor = dynamic(() => import("../../../../../../../../../components/molecules/editor/MarkdownEditor"), {
+  ssr: false,
+});
 
 interface ContentProps {
   control: Control<any>;
@@ -30,23 +21,15 @@ interface ContentProps {
   content: OutputData;
 }
 
-const Content = ({
-  control,
-  setValue,
-  getValues,
-  content,
-}: ContentProps) => {
+const Content = ({ control, setValue, getValues, content }: ContentProps) => {
   const uploadByFile = async (file: File) => {
     const res = await uploadToTemp(file);
-    setValue("attachmentImages", [
-      ...(getValues("attachmentImages") || []),
-      { id: res?.data[0].id },
-    ]);
+    setValue("attachmentImages", [...(getValues("attachmentImages") || []), { id: res?.data[0].id }]);
 
     return {
       success: 1,
       file: {
-        url: `http://localhost:3333/${res?.data[0].path}`,
+        url: `${process.env.NEXT_PUBLIC_STORAGE_BASE_URL}/${res?.data[0].path}`,
       },
     };
   };
@@ -62,21 +45,21 @@ const Content = ({
             content.blocks = data.blocks;
           }
         }}
-        holder="editorjs"
+        holder='editorjs'
         uploadByFile={uploadByFile}
       />
-      <DefaultButton type="text" onClick={handleMetaDescription}>
+      <DefaultButton type='text' onClick={handleMetaDescription}>
         Description 생성
       </DefaultButton>
       <ContentStyles.Container>
         <ContentStyles.Label>Description</ContentStyles.Label>
         <Controller
           control={control}
-          name="description"
+          name='description'
           render={({ field: { onChange, value } }) => (
             <DefaultInput
-              variant="borderless"
-              placeholder="Description을 입력해주세요."
+              variant='borderless'
+              placeholder='Description을 입력해주세요.'
               value={value}
               onChange={onChange}
             />
@@ -87,11 +70,11 @@ const Content = ({
         <ContentStyles.Label>Meta Description</ContentStyles.Label>
         <Controller
           control={control}
-          name="metaDescription"
+          name='metaDescription'
           render={({ field: { onChange, value } }) => (
             <DefaultInput
-              variant="borderless"
-              placeholder="Meta Description을 입력해주세요."
+              variant='borderless'
+              placeholder='Meta Description을 입력해주세요.'
               value={value}
               onChange={onChange}
             />

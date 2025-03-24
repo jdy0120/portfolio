@@ -1,16 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import {
-  createPost,
-  getPostItem,
-  getPostList,
-  updatePost,
-  updatePostStatus,
-} from "./blog.api";
+import { createPost, getPostItem, getPostList, updatePost, updatePostStatus } from "./blog.api";
 import { Query } from "../../../types/http/Request.type";
-import {
-  Post as PostType,
-  RequestPostType,
-} from "../../../types/models/v1/blog/blog.types";
+import { Post as PostType, RequestPostType } from "../../../types/models/v1/blog/blog.types";
 
 export const usePostList = (query: Query) => {
   return useQuery({
@@ -23,7 +14,7 @@ export const usePostList = (query: Query) => {
 
 export const usePostItem = (id: string) => {
   return useQuery({
-    queryKey: ["post-item"],
+    queryKey: ["post-item", id],
     queryFn: () => {
       return getPostItem(id);
     },
@@ -49,13 +40,7 @@ export const usePostCreate = (id: string | "undefined") => {
 
 export const useUpdatePostStatus = () => {
   return useMutation({
-    mutationFn: ({
-      id,
-      data,
-    }: {
-      id: string;
-      data: Partial<PostType>;
-    }) => {
+    mutationFn: ({ id, data }: { id: string; data: Partial<PostType> }) => {
       return updatePostStatus(id, data);
     },
   });

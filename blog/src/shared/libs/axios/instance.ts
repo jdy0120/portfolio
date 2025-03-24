@@ -2,8 +2,7 @@ import axios from "axios";
 import { insertAccessToken, refreshAccessToken } from "./interceptors";
 
 const axiosInstance = axios.create({
-  baseURL: "https://stg.the-dive.io/admin/api",
-  // baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5175",
   headers: {
     "Content-Type": "application/json",
   },

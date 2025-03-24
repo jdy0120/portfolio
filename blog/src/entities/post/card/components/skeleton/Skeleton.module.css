@@ -1,0 +1,60 @@
+.skeleton-container {
+  border-radius: 8px;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  cursor: pointer;
+}
+
+.skeleton {
+  width: 100%;
+
+  position: relative;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.skeleton-thumbnail {
+  width: 100%;
+  min-height: 120px;
+
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-title {
+  background: #e0e0e0;
+  width: 80%;
+  height: 20px;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-description {
+  background: #e0e0e0;
+  width: 60%;
+  height: 12px;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Pulse 애니메이션 */
+@keyframes pulse {
+  0% {
+    background-color: #e0e0e0;
+  }
+  50% {
+    background-color: #d0d0d0;
+  }
+  100% {
+    background-color: #e0e0e0;
+  }
+}

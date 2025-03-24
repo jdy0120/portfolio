@@ -6,9 +6,9 @@ import styles from "./page.module.css";
 const page = () => {
   return (
     <div className={styles.Container}>
-      <PostDetail slug="slug" />
+      <PostDetail slug='slug' />
       <div className={styles.PostListWrapper}>
-        <PostList title="관련 게시물" postCountInRow={5} />
+        <PostList title='관련 게시물' postCountInRow={5} queryKey='related-posts' />
       </div>
     </div>
   );

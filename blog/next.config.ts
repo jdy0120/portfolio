@@ -2,9 +2,7 @@
 import createNextIntlPlugin from "next-intl/plugin";
 import type { NextConfig } from "next";
 
-const withNextIntl = createNextIntlPlugin(
-  "./src/shared/libs/i18n/request.ts"
-);
+const withNextIntl = createNextIntlPlugin("./src/shared/libs/i18n/request.ts");
 
 import dotenv from "dotenv";
 
@@ -22,7 +20,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "**",
+        hostname: "*",
       },
     ],
   },
@@ -31,8 +29,7 @@ const nextConfig: NextConfig = {
     MODE: process.env.MODE,
   },
   webpack: (config: import("webpack").Configuration) => {
-    (config.module = config.module || {}).rules =
-      config.module?.rules || [];
+    (config.module = config.module || {}).rules = config.module?.rules || [];
     config.module.rules.push({
       test: /\.svg$/,
       use: ["@svgr/webpack"],

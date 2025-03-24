@@ -3,27 +3,53 @@
 import React from "react";
 import { PostListStyles } from "./PostList.styles";
 import PostCard from "@/features/postcard/ui/PostCard";
+import dayjs from "dayjs";
+import { useGetPosts } from "@/app/(blog)/home/apis/posts";
+import { Skeleton } from "../components";
 
+const storageBaseUrl = process.env.NEXT_PUBLIC_STORAGE_BASE_URL;
 interface PostListProps {
   title: string;
   postCountInRow?: number;
+  queryKey: string;
 }
 
-const PostList = ({ title, postCountInRow = 4 }: PostListProps) => {
+const PostList = ({ title, postCountInRow = 4, queryKey }: PostListProps) => {
+  const { data: posts, isLoading } = useGetPosts({ page: 1, count: 10, sort: "createdAt", dir: "desc", queryKey });
+
+  if (isLoading) {
+    return (
+      <PostListStyles.Container>
+        <PostListStyles.Title>{title}</PostListStyles.Title>
+        <PostListStyles.PostList postCountInRow={postCountInRow}>
+          {Array.from({ length: postCountInRow }).map((_, index) => (
+            <Skeleton key={index} />
+          ))}
+        </PostListStyles.PostList>
+      </PostListStyles.Container>
+    );
+  }
+
   return (
     <PostListStyles.Container>
       <PostListStyles.Title>{title}</PostListStyles.Title>
       <PostListStyles.PostList postCountInRow={postCountInRow}>
-        {Array.from({ length: postCountInRow }).map((_, index) => (
-          <PostCard
-            key={index}
-            title="PostCard"
-            description="PostCard"
-            date="2024-01-01"
-            image="/assets/images/doyeonism_square.jpg"
-            link="/blog/post/slugname"
-          />
-        ))}
+        {posts?.data
+          .slice(0, postCountInRow)
+          .map((post) => (
+            <PostCard
+              key={post.id}
+              title={post.title}
+              description={post.description}
+              date={dayjs(post.createdAt).format("YYYY-MM-DD")}
+              image={
+                post.thumbnails?.[0]?.path
+                  ? `${storageBaseUrl}/${post.thumbnails?.[0]?.path}`
+                  : "/assets/placeholders/250x192.svg"
+              }
+              link={`/blog/post/${post.slug}`}
+            />
+          ))}
       </PostListStyles.PostList>
     </PostListStyles.Container>
   );

@@ -21,7 +21,7 @@ const PostDetail = async ({ slug }: PostDetailProps) => {
   return (
     <div className={styles.Container}>
       <HydrationBoundary state={dehydratedState}>
-        <Wrapper queryKey='post-item' />
+        <Wrapper slug={slug} queryKey='post-item' />
       </HydrationBoundary>
       <Comment />
     </div>

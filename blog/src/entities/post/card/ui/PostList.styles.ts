@@ -14,11 +14,8 @@ const PostListStyles = {
 
   PostList: styled.div<{ postCountInRow: number }>`
     display: grid;
-    grid-template-columns: repeat(
-      ${({ postCountInRow }) => postCountInRow},
-      1fr
-    );
-    gap: 24px;
+    grid-template-columns: repeat(${({ postCountInRow }) => postCountInRow}, 250px);
+    justify-content: space-between;
   `,
 };
 

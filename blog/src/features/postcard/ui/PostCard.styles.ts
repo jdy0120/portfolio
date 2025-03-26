@@ -47,7 +47,11 @@ const PostCardStyles = {
   Title: styled.h3`
     text-align: start;
     color: ${({ theme }) => theme.colors.black};
-    ${({ theme }) => theme.typography.HomePageTitle}
+    ${({ theme }) => theme.typography.HomePageTitle};
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   `,
 
   Description: styled.p`

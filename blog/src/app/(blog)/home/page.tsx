@@ -33,7 +33,7 @@ const page = async () => {
         <HydrationBoundary state={dehydratedState}>
           <PostList title='최근 게시글' postCountInRow={5} queryKey='newest-posts' />
           <PostList title='인기 게시글' postCountInRow={5} queryKey='popular-posts' />
-          <PostList title='모든 게시글' postCountInRow={5} queryKey='all-posts' />
+          <PostList title='모든 게시글' postCountInRow={5} queryKey='all-posts' isInfinite />
         </HydrationBoundary>
       </div>
       <Sidebar />

@@ -12,10 +12,18 @@ interface PostListProps {
   title: string;
   postCountInRow?: number;
   queryKey: string;
+  isInfinite?: boolean;
 }
 
-const PostList = ({ title, postCountInRow = 4, queryKey }: PostListProps) => {
-  const { data: posts, isLoading } = useGetPosts({ page: 1, count: 10, sort: "createdAt", dir: "desc", queryKey });
+const PostList = ({ title, postCountInRow = 4, queryKey, isInfinite = false }: PostListProps) => {
+  const { data: posts, isLoading } = useGetPosts({
+    page: 1,
+    count: postCountInRow,
+    sort: "createdAt",
+    dir: "desc",
+    queryKey,
+    isInfinite,
+  });
 
   if (isLoading) {
     return (
